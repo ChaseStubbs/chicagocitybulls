@@ -4475,6 +4475,8 @@ const THEMES_LIGHT = {
 
 // ── Landing page team selection ──────────────────────────────
 function lpSelectTeam(team) {
+  // Mark that the user has actively dismissed the landing page this session
+  try{ sessionStorage.setItem('hq_dismissed','1'); }catch(e){}
   var lp = document.getElementById('landing-page');
   if (lp) {
     lp.classList.add('lp-fade');
@@ -4633,8 +4635,16 @@ function toggleTheme(){
   const _slugTeam={dallas:'mavs',chicago:'bulls',okc:'thunder',h2h:'h2h',stats:'stats',draft:'draft',history:'draft-history',preview:'preview',fa:'fa'};
   const _raw=window.location.hash.slice(1);
   const _hash=_raw.toLowerCase();
-  if(!_hash) return;
-  // Has a hash — hide landing page immediately
+  if(!_hash) return; // no hash → always show landing page
+
+  // A hash exists. But on mobile, browsers restore the URL from a previous session
+  // (including any #dallas etc that was set). We only skip the landing if the user
+  // actually dismissed it during THIS session (tracked via sessionStorage).
+  var _inSession=false;
+  try{ _inSession=!!sessionStorage.getItem('hq_dismissed'); }catch(e){}
+  if(!_inSession) return; // stale hash from a prior session → show landing page
+
+  // Hash + active session → honor the hash (user reloaded mid-session)
   var _lp=document.getElementById('landing-page');
   if(_lp) _lp.style.display='none';
   // Direct slug match (team tabs + tool tabs)
