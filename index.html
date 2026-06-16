@@ -1870,7 +1870,7 @@ button{touch-action:manipulation;}
   opacity:1;transition:opacity .25s;
 }
 #landing-page.lp-fade{opacity:0;pointer-events:none;}
-body:not(.landing-active) #landing-page{display:none;}
+/* landing page hides itself once JS dismisses it */
 
 .lp-header{text-align:center;margin-bottom:52px;}
 .lp-ball{font-size:52px;line-height:1;margin-bottom:14px;display:block;}
@@ -1910,7 +1910,7 @@ body:not(.landing-active) #landing-page{display:none;}
 }
 </style>
 </head>
-<body class="landing-active">
+<body>
 
 <!-- ══ LANDING PAGE ══ -->
 <div id="landing-page">
@@ -4413,20 +4413,22 @@ const THEMES_LIGHT = {
 
 // ── Landing page team selection ──────────────────────────────
 function lpSelectTeam(team) {
-  const lp = document.getElementById('landing-page');
+  var lp = document.getElementById('landing-page');
   if (lp) {
     lp.classList.add('lp-fade');
-    setTimeout(function(){ document.body.classList.remove('landing-active'); switchTeam(team); }, 220);
+    setTimeout(function(){ lp.style.display = 'none'; switchTeam(team); }, 220);
   } else {
-    document.body.classList.remove('landing-active');
     switchTeam(team);
   }
 }
 
 function switchTeam(team) {
-  // ── URL hash deep-linking ────────────────────────────────────
+  // ── URL hash deep-linking (skip if landing page is still visible) ──
   const _hashSlug={mavs:'dallas',bulls:'chicago',thunder:'okc',h2h:'h2h',stats:'stats',draft:'draft','draft-history':'history',preview:'preview',fa:'fa'};
-  try{history.replaceState(null,'','#'+(_hashSlug[team]||team));}catch(e){}
+  var _lp=document.getElementById('landing-page');
+  if(!_lp || _lp.style.display==='none') {
+    try{history.replaceState(null,'','#'+(_hashSlug[team]||team));}catch(e){}
+  }
   // Hide all wrappers (flex team wrappers + block h2h wrapper)
   document.querySelectorAll('.wrapper').forEach(w => w.style.display = 'none');
   const h2hWrap = document.getElementById('wrapper-h2h');
@@ -4548,8 +4550,9 @@ function toggleTheme(){
   const _raw=window.location.hash.slice(1);
   const _hash=_raw.toLowerCase();
   if(!_hash) return;
-  // Has a hash — skip landing page
-  document.body.classList.remove('landing-active');
+  // Has a hash — hide landing page immediately
+  var _lp=document.getElementById('landing-page');
+  if(_lp) _lp.style.display='none';
   // Direct slug match (team tabs + tool tabs)
   if(_slugTeam[_hash]){switchTeam(_slugTeam[_hash]);return;}
   // Section anchor: mavs-*, bulls-*, thunder-* → switch team, then scroll into view
