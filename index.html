@@ -1810,9 +1810,9 @@ button{touch-action:manipulation;}
 /* Signing board */
 .fa-board{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
 .fa-board-col-header{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:9px 16px 8px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.025);}
-.fa-board-header{display:grid;grid-template-columns:40px 1fr 150px 120px 100px;gap:0;background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:7px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.fa-board-header{display:grid;grid-template-columns:95px 1fr 190px 115px;gap:0;background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:7px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
 .fa-board-empty{padding:36px 20px;text-align:center;font-size:13px;color:var(--muted);line-height:1.8;}
-.fa-row{display:grid;grid-template-columns:40px 1fr 150px 120px 100px;gap:0;padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;transition:background .12s;}
+.fa-row{display:grid;grid-template-columns:95px 1fr 190px 115px;gap:0;padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;transition:background .12s;}
 [data-light] .fa-row{border-bottom:1px solid rgba(0,0,0,.05);}
 .fa-row:last-child{border-bottom:none;}
 .fa-row:hover{background:rgba(255,255,255,.02);}
@@ -1822,20 +1822,33 @@ button{touch-action:manipulation;}
 [data-light] .fa-row.our-mavs{background:rgba(0,107,182,.06);}
 [data-light] .fa-row.our-bulls{background:rgba(206,17,65,.06);}
 [data-light] .fa-row.our-thunder{background:rgba(0,122,193,.06);}
-.fa-row-num{font-size:14px;font-weight:800;color:var(--muted);}
 .fa-row-player{font-weight:700;font-size:13px;}
 .fa-row-time{font-size:10px;color:var(--muted);margin-top:2px;}
-.fa-row-team{font-size:12px;font-weight:600;}
 .fa-row-contract{font-size:12px;color:var(--muted);}
-.fa-deal-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;}
-.fa-deal-max{background:rgba(255,165,0,.15);border:1px solid rgba(255,165,0,.4);color:#ffb300;}
-.fa-deal-supermax{background:rgba(255,107,53,.18);border:1px solid rgba(255,107,53,.45);color:#FF6B35;}
-.fa-deal-mle{background:rgba(91,156,246,.15);border:1px solid rgba(91,156,246,.4);color:#5b9cf6;}
-.fa-deal-biannual{background:rgba(160,100,255,.15);border:1px solid rgba(160,100,255,.4);color:#a064ff;}
-.fa-deal-minimum{background:rgba(150,150,150,.1);border:1px solid rgba(150,150,150,.3);color:var(--muted);}
-.fa-deal-twoway{background:rgba(130,80,230,.15);border:1px solid rgba(130,80,230,.4);color:#a060f0;}
-.fa-deal-sat{background:rgba(0,200,100,.12);border:1px solid rgba(0,200,100,.35);color:#00c864;}
-.fa-deal-extension{background:rgba(255,200,0,.12);border:1px solid rgba(255,200,0,.35);color:#ffc800;}
+/* FA Transaction Type badges */
+.fa-type-badge{display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;padding:3px 9px;border-radius:10px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+.fa-type-signed{background:rgba(0,200,100,.14);border:1px solid rgba(0,200,100,.38);color:#00c864;}
+.fa-type-traded{background:rgba(91,156,246,.15);border:1px solid rgba(91,156,246,.4);color:#5b9cf6;}
+.fa-type-waived{background:rgba(230,57,70,.12);border:1px solid rgba(230,57,70,.35);color:#e63946;}
+.fa-type-extended{background:rgba(255,165,0,.13);border:1px solid rgba(255,165,0,.38);color:#ffb300;}
+.fa-type-optin{background:rgba(0,180,200,.12);border:1px solid rgba(0,180,200,.35);color:#00b4c8;}
+.fa-type-optout{background:rgba(150,150,160,.1);border:1px solid rgba(150,150,160,.3);color:var(--muted);}
+/* FA From→To display */
+.fa-fromto{font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px;flex-wrap:wrap;line-height:1.5;}
+.fa-fromto-arrow{color:var(--muted);font-size:10px;flex-shrink:0;}
+.fa-fromto-from{color:var(--muted);font-weight:500;}
+.fa-fromto-to{color:var(--text);font-weight:700;}
+/* FA Filter Bar */
+.fa-filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
+.fa-filter-section{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.fa-filter-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);white-space:nowrap;}
+.fa-filter-btn{background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--muted);font-size:10px;font-weight:700;padding:3px 10px;cursor:pointer;transition:all .12s;white-space:nowrap;letter-spacing:.04em;}
+.fa-filter-btn:hover{border-color:var(--silver);color:var(--text);}
+.fa-filter-btn.active{background:rgba(255,255,255,.09);border-color:var(--team-light,#7DBAEC);color:var(--team-light,#7DBAEC);}
+[data-light] .fa-filter-btn.active{background:rgba(0,0,0,.06);border-color:var(--team-primary,#006BB6);color:var(--team-primary,#006BB6);}
+.fa-filter-divider{width:1px;height:18px;background:var(--border);flex-shrink:0;}
+.fa-filter-team-select{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:10px;font-weight:700;padding:3px 8px;cursor:pointer;letter-spacing:.03em;}
+[data-light] .fa-filter-team-select{background:rgba(255,255,255,.9);}
 @keyframes faRowIn{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
 .fa-row.new{animation:faRowIn .3s ease-out forwards;}
 
@@ -1861,13 +1874,14 @@ button{touch-action:manipulation;}
 
 @media(max-width:820px){.fa-teams-strip{grid-template-columns:1fr;}}
 @media(max-width:720px){
-  .fa-board-header,.fa-row{grid-template-columns:36px 1fr 110px 90px;}
-  .fa-board-header .fa-bh-deal,.fa-row .fa-row-deal{display:none;}
+  .fa-board-header,.fa-row{grid-template-columns:82px 1fr 160px;}
+  .fa-board-header .fa-bh-contract,.fa-row .fa-row-contract{display:none;}
 }
 @media(max-width:480px){
-  .fa-board-header,.fa-row{grid-template-columns:32px 1fr 90px;}
-  .fa-board-header .fa-bh-deal,.fa-row .fa-row-deal,
+  .fa-board-header,.fa-row{grid-template-columns:72px 1fr 130px;}
   .fa-board-header .fa-bh-contract,.fa-row .fa-row-contract{display:none;}
+  .fa-filter-bar{gap:7px;padding:8px 11px;}
+  .fa-filter-divider{display:none;}
 }
 
 
@@ -6669,56 +6683,89 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
      ═══════════════════════════════════════════════════════════════════ -->
 <div id="wrapper-fa" style="display:none;">
 
-  <!-- Admin bar (toggled via Add Signing button or Shift+Alt+F) -->
+  <!-- Admin bar (toggled via Add Move button or Shift+Alt+F) -->
   <div class="fa-admin-bar" id="fa-admin-bar">
-    <span class="fa-admin-label">Log Signing:</span>
+    <span class="fa-admin-label">Log Move:</span>
     <input class="fa-admin-input fa-admin-player" id="fa-admin-player" type="text" placeholder="Player name…" autocomplete="off" spellcheck="false">
-    <select class="fa-admin-select" id="fa-admin-team" style="flex:1 1 130px;min-width:110px;">
-      <option value="">Team…</option>
-      <option value="mavs">🏹 Dallas Mavericks</option>
-      <option value="bulls">🏀 Chicago Bulls</option>
-      <option value="thunder">🌩️ OKC Thunder</option>
+    <select class="fa-admin-select" id="fa-admin-type" style="flex:0 0 auto;min-width:100px;">
+      <option value="signed" selected>✍️ Signed</option>
+      <option value="traded">🔄 Traded</option>
+      <option value="waived">✂️ Waived</option>
+      <option value="extended">📋 Extended</option>
+      <option value="optin">✅ Opt In</option>
+      <option value="optout">🚪 Opt Out</option>
+    </select>
+    <select class="fa-admin-select" id="fa-admin-from" style="flex:1 1 130px;min-width:110px;">
+      <option value="fa">From: Free Agent</option>
+      <option value="mavs">From: 🏹 Dallas</option>
+      <option value="bulls">From: 🏀 Chicago</option>
+      <option value="thunder">From: 🌩️ OKC</option>
       <option disabled>──────────────</option>
-      <option value="hawks">Atlanta Hawks</option>
-      <option value="celtics">Boston Celtics</option>
-      <option value="nets">Brooklyn Nets</option>
-      <option value="hornets">Charlotte Hornets</option>
-      <option value="cavs">Cleveland Cavaliers</option>
-      <option value="nuggets">Denver Nuggets</option>
-      <option value="pistons">Detroit Pistons</option>
-      <option value="warriors">Golden State Warriors</option>
-      <option value="rockets">Houston Rockets</option>
-      <option value="pacers">Indiana Pacers</option>
-      <option value="clippers">LA Clippers</option>
-      <option value="lakers">LA Lakers</option>
-      <option value="grizzlies">Memphis Grizzlies</option>
-      <option value="heat">Miami Heat</option>
-      <option value="bucks">Milwaukee Bucks</option>
-      <option value="wolves">Minnesota Timberwolves</option>
-      <option value="pelicans">New Orleans Pelicans</option>
-      <option value="knicks">New York Knicks</option>
-      <option value="magic">Orlando Magic</option>
-      <option value="sixers">Philadelphia 76ers</option>
-      <option value="suns">Phoenix Suns</option>
-      <option value="blazers">Portland Trail Blazers</option>
-      <option value="kings">Sacramento Kings</option>
-      <option value="spurs">San Antonio Spurs</option>
-      <option value="raptors">Toronto Raptors</option>
-      <option value="jazz">Utah Jazz</option>
-      <option value="wizards">Washington Wizards</option>
+      <option value="hawks">From: Atlanta</option>
+      <option value="celtics">From: Boston</option>
+      <option value="nets">From: Brooklyn</option>
+      <option value="hornets">From: Charlotte</option>
+      <option value="cavs">From: Cleveland</option>
+      <option value="nuggets">From: Denver</option>
+      <option value="pistons">From: Detroit</option>
+      <option value="warriors">From: Golden State</option>
+      <option value="rockets">From: Houston</option>
+      <option value="pacers">From: Indiana</option>
+      <option value="clippers">From: LA Clippers</option>
+      <option value="lakers">From: LA Lakers</option>
+      <option value="grizzlies">From: Memphis</option>
+      <option value="heat">From: Miami</option>
+      <option value="bucks">From: Milwaukee</option>
+      <option value="wolves">From: Minnesota</option>
+      <option value="pelicans">From: New Orleans</option>
+      <option value="knicks">From: New York</option>
+      <option value="magic">From: Orlando</option>
+      <option value="sixers">From: Philadelphia</option>
+      <option value="suns">From: Phoenix</option>
+      <option value="blazers">From: Portland</option>
+      <option value="kings">From: Sacramento</option>
+      <option value="spurs">From: San Antonio</option>
+      <option value="raptors">From: Toronto</option>
+      <option value="jazz">From: Utah</option>
+      <option value="wizards">From: Washington</option>
     </select>
-    <input class="fa-admin-input fa-admin-contract" id="fa-admin-contract" type="text" placeholder="e.g. 3yr/$48M" autocomplete="off" style="flex:1 1 110px;min-width:90px;">
-    <select class="fa-admin-select" id="fa-admin-deal" style="flex:0 0 auto;">
-      <option value="max">Max</option>
-      <option value="supermax">Supermax</option>
-      <option value="mle" selected>MLE</option>
-      <option value="biannual">Bi-Annual</option>
-      <option value="minimum">Minimum</option>
-      <option value="twoway">Two-Way</option>
-      <option value="sat">Sign-and-Trade</option>
-      <option value="extension">Extension</option>
+    <select class="fa-admin-select" id="fa-admin-team" style="flex:1 1 130px;min-width:110px;">
+      <option value="">To Team…</option>
+      <option value="mavs">To: 🏹 Dallas</option>
+      <option value="bulls">To: 🏀 Chicago</option>
+      <option value="thunder">To: 🌩️ OKC</option>
+      <option disabled>──────────────</option>
+      <option value="hawks">To: Atlanta</option>
+      <option value="celtics">To: Boston</option>
+      <option value="nets">To: Brooklyn</option>
+      <option value="hornets">To: Charlotte</option>
+      <option value="cavs">To: Cleveland</option>
+      <option value="nuggets">To: Denver</option>
+      <option value="pistons">To: Detroit</option>
+      <option value="warriors">To: Golden State</option>
+      <option value="rockets">To: Houston</option>
+      <option value="pacers">To: Indiana</option>
+      <option value="clippers">To: LA Clippers</option>
+      <option value="lakers">To: LA Lakers</option>
+      <option value="grizzlies">To: Memphis</option>
+      <option value="heat">To: Miami</option>
+      <option value="bucks">To: Milwaukee</option>
+      <option value="wolves">To: Minnesota</option>
+      <option value="pelicans">To: New Orleans</option>
+      <option value="knicks">To: New York</option>
+      <option value="magic">To: Orlando</option>
+      <option value="sixers">To: Philadelphia</option>
+      <option value="suns">To: Phoenix</option>
+      <option value="blazers">To: Portland</option>
+      <option value="kings">To: Sacramento</option>
+      <option value="spurs">To: San Antonio</option>
+      <option value="raptors">To: Toronto</option>
+      <option value="jazz">To: Utah</option>
+      <option value="wizards">To: Washington</option>
+      <option value="fa">To: Free Agent</option>
     </select>
-    <button class="fa-admin-confirm" onclick="faAdminConfirm()">✅ Log Signing</button>
+    <input class="fa-admin-input fa-admin-contract" id="fa-admin-contract" type="text" placeholder="Contract (opt.)" autocomplete="off" style="flex:1 1 110px;min-width:90px;">
+    <button class="fa-admin-confirm" onclick="faAdminConfirm()">✅ Log Move</button>
     <button class="fa-admin-undo" onclick="faAdminUndo()">↩ Undo</button>
     <button class="fa-admin-exit" onclick="faAdminDeactivate()">✕ Exit Admin</button>
   </div>
@@ -6729,8 +6776,8 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
     <div class="fa-sub">Opens July 1, 2026 · 6 PM ET &nbsp;·&nbsp; Moratorium ends June 30</div>
     <div class="fa-countdown" id="fa-countdown">⏱ Loading countdown…</div>
     <div class="fa-header-row">
-      <div class="fa-signing-counter">Signings logged: <b id="fa-sign-count">0</b></div>
-      <button class="fa-add-btn" id="fa-add-btn" onclick="faAdminToggle()">➕ Add Signing</button>
+      <div class="fa-signing-counter">Moves logged: <b id="fa-sign-count">0</b></div>
+      <button class="fa-add-btn" id="fa-add-btn" onclick="faAdminToggle()">➕ Add Move</button>
       <button class="fa-share-btn" onclick="faShareState()">📤 Share Board</button>
     </div>
   </div>
@@ -6763,18 +6810,67 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
     </div>
   </div>
 
-  <!-- Signing Board -->
+  <!-- Filter Bar -->
+  <div class="fa-filter-bar" id="fa-filter-bar">
+    <span class="fa-filter-label">Type</span>
+    <div class="fa-filter-section" id="fa-type-filters">
+      <button class="fa-filter-btn active" onclick="faSetTypeFilter('all')">All</button>
+      <button class="fa-filter-btn" onclick="faSetTypeFilter('signed')">Signed</button>
+      <button class="fa-filter-btn" onclick="faSetTypeFilter('traded')">Traded</button>
+      <button class="fa-filter-btn" onclick="faSetTypeFilter('waived')">Waived</button>
+      <button class="fa-filter-btn" onclick="faSetTypeFilter('extended')">Extended</button>
+      <button class="fa-filter-btn" onclick="faSetTypeFilter('optin')">Opt In</button>
+      <button class="fa-filter-btn" onclick="faSetTypeFilter('optout')">Opt Out</button>
+    </div>
+    <div class="fa-filter-divider"></div>
+    <span class="fa-filter-label">Team</span>
+    <select class="fa-filter-team-select" id="fa-team-filter-select" onchange="faSetTeamFilter(this.value)">
+      <option value="all">All Teams</option>
+      <option value="mavs">🏹 Dallas Mavericks</option>
+      <option value="bulls">🏀 Chicago Bulls</option>
+      <option value="thunder">🌩️ OKC Thunder</option>
+      <option disabled>──────────────</option>
+      <option value="hawks">Atlanta Hawks</option>
+      <option value="celtics">Boston Celtics</option>
+      <option value="nets">Brooklyn Nets</option>
+      <option value="hornets">Charlotte Hornets</option>
+      <option value="cavs">Cleveland Cavaliers</option>
+      <option value="nuggets">Denver Nuggets</option>
+      <option value="pistons">Detroit Pistons</option>
+      <option value="warriors">Golden State Warriors</option>
+      <option value="rockets">Houston Rockets</option>
+      <option value="pacers">Indiana Pacers</option>
+      <option value="clippers">LA Clippers</option>
+      <option value="lakers">LA Lakers</option>
+      <option value="grizzlies">Memphis Grizzlies</option>
+      <option value="heat">Miami Heat</option>
+      <option value="bucks">Milwaukee Bucks</option>
+      <option value="wolves">Minnesota Timberwolves</option>
+      <option value="pelicans">New Orleans Pelicans</option>
+      <option value="knicks">New York Knicks</option>
+      <option value="magic">Orlando Magic</option>
+      <option value="sixers">Philadelphia 76ers</option>
+      <option value="suns">Phoenix Suns</option>
+      <option value="blazers">Portland Trail Blazers</option>
+      <option value="kings">Sacramento Kings</option>
+      <option value="spurs">San Antonio Spurs</option>
+      <option value="raptors">Toronto Raptors</option>
+      <option value="jazz">Utah Jazz</option>
+      <option value="wizards">Washington Wizards</option>
+    </select>
+  </div>
+
+  <!-- Transaction Board -->
   <div class="fa-board" id="fa-board">
-    <div class="fa-board-col-header">Live Signing Board · All Teams</div>
+    <div class="fa-board-col-header" id="fa-board-col-header">League Transaction Feed · All Teams</div>
     <div class="fa-board-header">
-      <div>#</div>
+      <div>Type</div>
       <div>Player</div>
-      <div>Team</div>
+      <div>Movement</div>
       <div class="fa-bh-contract">Contract</div>
-      <div class="fa-bh-deal">Deal Type</div>
     </div>
     <div id="fa-board-entries">
-      <div class="fa-board-empty">No signings logged yet.<br>Click <b>➕ Add Signing</b> above to start logging when free agency opens July 1.</div>
+      <div class="fa-board-empty">No moves logged yet.<br>Click <b>➕ Add Move</b> above to start logging when free agency opens July 1.</div>
     </div>
   </div>
 
@@ -6835,13 +6931,16 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// FREE AGENCY — ADMIN MODE + LIVE LOGGING
+// FREE AGENCY — ADMIN MODE + LEAGUE TRANSACTION FEED
 // ══════════════════════════════════════════════════════════════════
 var faAdminActive = false;
 var _faStorageKey = 'hh-fa-2026';
-var _faSignings = [];
+var _faMoves = [];
+var _faActiveTypeFilter = 'all';
+var _faActiveTeamFilter = 'all';
 
 var _faTeamNames = {
+  fa:'Free Agent',
   mavs:'Dallas Mavericks',bulls:'Chicago Bulls',thunder:'OKC Thunder',
   hawks:'Atlanta Hawks',celtics:'Boston Celtics',nets:'Brooklyn Nets',
   hornets:'Charlotte Hornets',cavs:'Cleveland Cavaliers',nuggets:'Denver Nuggets',
@@ -6853,12 +6952,39 @@ var _faTeamNames = {
   blazers:'Portland Trail Blazers',kings:'Sacramento Kings',spurs:'San Antonio Spurs',
   raptors:'Toronto Raptors',jazz:'Utah Jazz',wizards:'Washington Wizards'
 };
-var _faOurTeams = {mavs:1,bulls:1,thunder:1};
-var _faDealLabels = {
-  max:'Max',supermax:'Supermax',mle:'MLE',biannual:'Bi-Annual',
-  minimum:'Min',twoway:'Two-Way',sat:'S&T',extension:'Extension'
+var _faTeamShort = {
+  fa:'Free Agent',
+  mavs:'Dallas',bulls:'Chicago',thunder:'OKC',
+  hawks:'Atlanta',celtics:'Boston',nets:'Brooklyn',
+  hornets:'Charlotte',cavs:'Cleveland',nuggets:'Denver',
+  pistons:'Detroit',warriors:'Golden St.',rockets:'Houston',
+  pacers:'Indiana',clippers:'Clippers',lakers:'Lakers',
+  grizzlies:'Memphis',heat:'Miami',bucks:'Milwaukee',
+  wolves:'Minnesota',pelicans:'New Orleans',knicks:'New York',
+  magic:'Orlando',sixers:'Philly',suns:'Phoenix',
+  blazers:'Portland',kings:'Sacramento',spurs:'San Antonio',
+  raptors:'Toronto',jazz:'Utah',wizards:'Washington'
 };
+var _faOurTeams = {mavs:1,bulls:1,thunder:1};
 var _faTeamIcons = {mavs:'🏹',bulls:'🏀',thunder:'🌩️'};
+var _faTypeLabels = {
+  signed:'Signed',traded:'Traded',waived:'Waived',
+  extended:'Extended',optin:'Opt In',optout:'Opt Out'
+};
+
+// ── Migrate old records that used {team, deal} schema ─────────────
+function _faMigrateRecord(r) {
+  if (r.toTeam !== undefined) return r; // already new schema
+  return {
+    id:       r.id,
+    player:   r.player,
+    type:     r.deal === 'sat' ? 'traded' : (r.deal === 'extension' ? 'extended' : 'signed'),
+    fromTeam: 'fa',
+    toTeam:   r.team || '',
+    contract: r.contract || '',
+    ts:       r.ts
+  };
+}
 
 // ── Admin activate / deactivate ───────────────────────────────────
 function faAdminToggle() {
@@ -6880,137 +7006,214 @@ function faAdminDeactivate() {
   faAdminActive = false;
   document.getElementById('fa-admin-bar').classList.remove('active');
   var btn = document.getElementById('fa-add-btn');
-  if (btn) { btn.textContent = '➕ Add Signing'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = ''; }
+  if (btn) { btn.textContent = '➕ Add Move'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = ''; }
 }
 
-// ── Log a signing ─────────────────────────────────────────────────
+// ── Log a move ────────────────────────────────────────────────────
 function faAdminConfirm() {
   var player = (document.getElementById('fa-admin-player').value || '').trim();
   if (!player) { document.getElementById('fa-admin-player').focus(); return; }
-  var team     = document.getElementById('fa-admin-team').value || '';
+  var type     = document.getElementById('fa-admin-type').value || 'signed';
+  var fromTeam = document.getElementById('fa-admin-from').value || 'fa';
+  var toTeam   = document.getElementById('fa-admin-team').value || '';
   var contract = (document.getElementById('fa-admin-contract').value || '').trim();
-  var deal     = document.getElementById('fa-admin-deal').value || 'minimum';
 
-  var signing = { id: Date.now(), player: player, team: team, contract: contract, deal: deal, ts: Date.now() };
-  _faSignings.push(signing);
-  faSaveSignings();
-  faRenderSigning(signing, true);
+  var move = { id: Date.now(), player: player, type: type, fromTeam: fromTeam, toTeam: toTeam, contract: contract, ts: Date.now() };
+  _faMoves.push(move);
+  faSaveMoves();
+  faRebuildBoard(); // rebuild to respect active filters
   faUpdateTeamStrip();
-  faUpdateSigningCount();
+  faUpdateMoveCount();
 
-  // Clear player + contract, keep team + deal for fast repeat-entry
+  // Clear player + contract; keep type + teams for fast repeat-entry
   document.getElementById('fa-admin-player').value = '';
   document.getElementById('fa-admin-contract').value = '';
   document.getElementById('fa-admin-player').focus();
 }
 
 function faAdminUndo() {
-  if (!_faSignings.length) return;
-  var last = _faSignings[_faSignings.length - 1];
-  if (!confirm('Remove last signing: ' + last.player + '?')) return;
-  _faSignings.pop();
-  faSaveSignings();
+  if (!_faMoves.length) return;
+  var last = _faMoves[_faMoves.length - 1];
+  if (!confirm('Remove last move: ' + last.player + '?')) return;
+  _faMoves.pop();
+  faSaveMoves();
   faRebuildBoard();
   faUpdateTeamStrip();
-  faUpdateSigningCount();
+  faUpdateMoveCount();
 }
 
 // ── Render one row ────────────────────────────────────────────────
-function faRenderSigning(signing, isNew) {
+function faRenderMove(move, prepend) {
   var container = document.getElementById('fa-board-entries');
-  var emptyMsg = container ? container.querySelector('.fa-board-empty') : null;
+  if (!container) return;
+  var emptyMsg = container.querySelector('.fa-board-empty');
   if (emptyMsg) emptyMsg.remove();
 
-  var num      = _faSignings.indexOf(signing) + 1;
-  var d        = new Date(signing.ts);
+  var d        = new Date(move.ts);
+  var dateStr  = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   var timeStr  = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-  var slug     = signing.team || '';
-  var teamName = _faTeamNames[slug] || slug || '—';
-  var isOur    = !!_faOurTeams[slug];
-  var ourCls   = isOur ? ' our-' + slug : '';
-  var dealCls  = 'fa-deal-' + (signing.deal || 'minimum');
-  var dealLbl  = _faDealLabels[signing.deal] || signing.deal || '';
-  var teamIcon = isOur ? (_faTeamIcons[slug] || '') + ' ' : '';
+
+  var typeCls  = 'fa-type-' + (move.type || 'signed');
+  var typeLbl  = _faTypeLabels[move.type] || move.type || 'Signed';
+
+  var fromSlug = move.fromTeam || 'fa';
+  var toSlug   = move.toTeam   || '';
+  var fromName = _faTeamShort[fromSlug] || _faTeamNames[fromSlug] || fromSlug || '—';
+  var toName   = toSlug ? (_faTeamShort[toSlug] || _faTeamNames[toSlug] || toSlug) : '—';
+
+  // Determine if any of our teams are involved
+  var ourCls = '';
+  if (_faOurTeams[toSlug])   ourCls = ' our-' + toSlug;
+  else if (_faOurTeams[fromSlug]) ourCls = ' our-' + fromSlug;
 
   var row = document.createElement('div');
-  row.className = 'fa-row' + ourCls + (isNew ? ' new' : '');
-  row.setAttribute('data-fa-id', signing.id);
-  row.innerHTML =
-    '<div class="fa-row-num">' + num + '</div>' +
-    '<div><div class="fa-row-player">' + signing.player + '</div>' +
-    '<div class="fa-row-time">' + timeStr + '</div></div>' +
-    '<div class="fa-row-team">' + teamIcon + teamName + '</div>' +
-    '<div class="fa-row-contract fa-bh-contract">' + (signing.contract || '—') + '</div>' +
-    '<div class="fa-row-deal fa-bh-deal"><span class="fa-deal-badge ' + dealCls + '">' + dealLbl + '</span></div>';
+  row.className = 'fa-row' + ourCls + (prepend ? ' new' : '');
+  row.setAttribute('data-fa-id', move.id);
+  row.setAttribute('data-fa-type', move.type || 'signed');
+  row.setAttribute('data-fa-from', fromSlug);
+  row.setAttribute('data-fa-to', toSlug);
 
-  // Prepend — newest signing appears at top
-  if (container) container.insertBefore(row, container.firstChild);
+  row.innerHTML =
+    '<div><span class="fa-type-badge ' + typeCls + '">' + typeLbl + '</span></div>' +
+    '<div><div class="fa-row-player">' + move.player + '</div>' +
+    '<div class="fa-row-time">' + dateStr + ' · ' + timeStr + '</div></div>' +
+    '<div class="fa-fromto">' +
+      '<span class="fa-fromto-from">' + fromName + '</span>' +
+      '<span class="fa-fromto-arrow">→</span>' +
+      '<span class="fa-fromto-to">' + toName + '</span>' +
+    '</div>' +
+    '<div class="fa-row-contract fa-bh-contract">' + (move.contract || '—') + '</div>';
+
+  if (prepend) {
+    container.insertBefore(row, container.firstChild);
+  } else {
+    container.appendChild(row);
+  }
 }
 
-// ── Rebuild full board from _faSignings ───────────────────────────
+// ── Filter helpers ────────────────────────────────────────────────
+function faSetTypeFilter(type) {
+  _faActiveTypeFilter = type;
+  // Update button active states
+  document.querySelectorAll('#fa-type-filters .fa-filter-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === (type === 'all' ? 'all' : _faTypeLabels[type] ? _faTypeLabels[type].toLowerCase() : type));
+    if (type === 'all') btn.classList.toggle('active', btn.textContent.trim() === 'All');
+  });
+  faApplyFilters();
+}
+
+function faSetTeamFilter(team) {
+  _faActiveTeamFilter = team;
+  faApplyFilters();
+}
+
+function faApplyFilters() {
+  var rows = document.querySelectorAll('#fa-board-entries .fa-row');
+  var visibleCount = 0;
+  rows.forEach(function(row) {
+    var typeMatch = _faActiveTypeFilter === 'all' || row.getAttribute('data-fa-type') === _faActiveTypeFilter;
+    var teamMatch = _faActiveTeamFilter === 'all' ||
+      row.getAttribute('data-fa-from') === _faActiveTeamFilter ||
+      row.getAttribute('data-fa-to') === _faActiveTeamFilter;
+    var show = typeMatch && teamMatch;
+    row.style.display = show ? '' : 'none';
+    if (show) visibleCount++;
+  });
+
+  // Show empty state if nothing visible
+  var container = document.getElementById('fa-board-entries');
+  var noResults = container ? container.querySelector('.fa-filter-empty') : null;
+  if (visibleCount === 0 && _faMoves.length > 0) {
+    if (!noResults) {
+      var el = document.createElement('div');
+      el.className = 'fa-board-empty fa-filter-empty';
+      el.innerHTML = 'No moves match the current filters.';
+      container.appendChild(el);
+    }
+  } else if (noResults) {
+    noResults.remove();
+  }
+
+  // Update board col header label
+  var hdr = document.getElementById('fa-board-col-header');
+  if (hdr) {
+    var typeLabel = _faActiveTypeFilter === 'all' ? 'All Moves' : (_faTypeLabels[_faActiveTypeFilter] || _faActiveTypeFilter);
+    var teamLabel = _faActiveTeamFilter === 'all' ? 'All Teams' : (_faTeamNames[_faActiveTeamFilter] || _faActiveTeamFilter);
+    hdr.textContent = 'League Transaction Feed · ' + typeLabel + ' · ' + teamLabel;
+  }
+}
+
+// ── Rebuild full board from _faMoves ─────────────────────────────
 function faRebuildBoard() {
   var container = document.getElementById('fa-board-entries');
   if (!container) return;
   container.innerHTML = '';
-  if (!_faSignings.length) {
-    container.innerHTML = '<div class="fa-board-empty">No signings logged yet.<br>Press <b>Shift+Alt+F</b> on July 1 to open Admin Mode.</div>';
+  if (!_faMoves.length) {
+    container.innerHTML = '<div class="fa-board-empty">No moves logged yet.<br>Press <b>Shift+Alt+F</b> on July 1 to open Admin Mode.</div>';
     return;
   }
-  // Iterate oldest→newest with prepend → newest ends up at top
-  _faSignings.forEach(function(s) { faRenderSigning(s, false); });
+  // Render newest-first (reverse order)
+  var reversed = _faMoves.slice().reverse();
+  reversed.forEach(function(m) { faRenderMove(m, false); });
+  faApplyFilters();
 }
 
 // ── Our-teams summary strip ───────────────────────────────────────
 function faUpdateTeamStrip() {
   ['mavs', 'bulls', 'thunder'].forEach(function(t) {
-    var list    = _faSignings.filter(function(s) { return s.team === t; });
+    // Include any move where this team is involved (from or to)
+    var list = _faMoves.filter(function(m) {
+      return m.fromTeam === t || m.toTeam === t;
+    });
     var countEl = document.getElementById('fa-count-' + t);
     var listEl  = document.getElementById('fa-list-' + t);
     if (countEl) countEl.textContent = list.length;
     if (listEl) {
       if (!list.length) {
-        listEl.innerHTML = '<div class="fa-tc-empty">No signings yet</div>';
+        listEl.innerHTML = '<div class="fa-tc-empty">No moves yet</div>';
       } else {
-        listEl.innerHTML = list.slice(-5).reverse().map(function(s) {
+        listEl.innerHTML = list.slice(-5).reverse().map(function(m) {
+          var typeLbl = _faTypeLabels[m.type] || m.type || '';
           return '<div class="fa-tc-signing-pill">' +
-            '<span class="fa-tc-signing-name">' + s.player + '</span>' +
-            '<span class="fa-tc-signing-deal">' + (s.contract || (_faDealLabels[s.deal] || '')) + '</span></div>';
+            '<span class="fa-tc-signing-name">' + m.player + '</span>' +
+            '<span class="fa-tc-signing-deal">' + (m.contract || typeLbl) + '</span></div>';
         }).join('');
       }
     }
   });
 }
 
-function faUpdateSigningCount() {
+function faUpdateMoveCount() {
   var el = document.getElementById('fa-sign-count');
-  if (el) el.textContent = _faSignings.length;
+  if (el) el.textContent = _faMoves.length;
 }
 
 // ── localStorage ──────────────────────────────────────────────────
-function faSaveSignings() {
-  try { localStorage.setItem(_faStorageKey, JSON.stringify(_faSignings)); } catch(e) {}
+function faSaveMoves() {
+  try { localStorage.setItem(_faStorageKey, JSON.stringify(_faMoves)); } catch(e) {}
 }
 
-function faLoadSignings() {
+function faLoadMoves() {
   try {
     var saved = JSON.parse(localStorage.getItem(_faStorageKey) || '[]');
     if (!Array.isArray(saved) || !saved.length) return;
-    _faSignings = saved;
+    // Migrate any old-schema records
+    _faMoves = saved.map(_faMigrateRecord);
     faRebuildBoard();
     faUpdateTeamStrip();
-    faUpdateSigningCount();
+    faUpdateMoveCount();
   } catch(e) {}
 }
 
 // ── Share board state via URL ─────────────────────────────────────
 function faShareState() {
   try {
-    var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(_faSignings))));
+    var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(_faMoves))));
     var base = window.location.href.split('#')[0];
     var url  = base + '#fa?state=' + encoded;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(function() {
-        alert('📤 FA board link copied!\nSend to friends — they open it to see your signing board.');
+        alert('📤 FA board link copied!\nSend to friends — they open it to see your transaction board.');
       }).catch(function() { prompt('Copy this FA share link:', url); });
     } else {
       prompt('Copy this FA share link:', url);
@@ -7045,9 +7248,9 @@ function faUpdateCountdown() {
   if (diff <= 0) { el.textContent = '🟢 FREE AGENCY IS OPEN'; el.style.color = '#00c864'; return; }
   var d = Math.floor(diff / 86400000);
   var h = Math.floor((diff % 86400000) / 3600000);
-  var m = Math.floor((diff % 3600000) / 60000);
+  var mn = Math.floor((diff % 3600000) / 60000);
   var s = Math.floor((diff % 60000) / 1000);
-  el.textContent = '⏱ ' + d + 'd ' + h + 'h ' + m + 'm ' + s + 's until Free Agency';
+  el.textContent = '⏱ ' + d + 'd ' + h + 'h ' + mn + 'm ' + s + 's until Free Agency';
 }
 faUpdateCountdown();
 setInterval(faUpdateCountdown, 1000);
@@ -7067,24 +7270,26 @@ document.addEventListener('keydown', function(e) {
 (function() {
   function wireFAKeys() {
     var playerEl   = document.getElementById('fa-admin-player');
+    var typeEl     = document.getElementById('fa-admin-type');
+    var fromEl     = document.getElementById('fa-admin-from');
     var teamEl     = document.getElementById('fa-admin-team');
     var contractEl = document.getElementById('fa-admin-contract');
-    var dealEl     = document.getElementById('fa-admin-deal');
     if (!playerEl) return;
     playerEl.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || (e.key === 'Tab' && !e.shiftKey)) {
-        e.preventDefault(); if (teamEl) teamEl.focus();
+        e.preventDefault(); if (typeEl) typeEl.focus();
       }
+    });
+    if (typeEl) typeEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { if (fromEl) fromEl.focus(); }
+    });
+    if (fromEl) fromEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { if (teamEl) teamEl.focus(); }
     });
     if (teamEl) teamEl.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { if (contractEl) contractEl.focus(); }
     });
     if (contractEl) contractEl.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || (e.key === 'Tab' && !e.shiftKey)) {
-        e.preventDefault(); if (dealEl) dealEl.focus();
-      }
-    });
-    if (dealEl) dealEl.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') faAdminConfirm();
     });
   }
@@ -7095,9 +7300,9 @@ document.addEventListener('keydown', function(e) {
   }
 })();
 
-// ── Load saved signings on page ready ────────────────────────────
+// ── Load saved moves on page ready ───────────────────────────────
 (function() {
-  function go() { setTimeout(faLoadSignings, 200); }
+  function go() { setTimeout(faLoadMoves, 200); }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', go);
   } else {
