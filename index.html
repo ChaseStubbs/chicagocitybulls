@@ -459,7 +459,7 @@ button{touch-action:manipulation;}
   .news-ticker{top:88px;}
   /* Total header: 88px picker + 26px ticker = 114px */
   .wrapper{margin-top:114px;}
-  #wrapper-h2h,#wrapper-stats,#wrapper-draft,#wrapper-draft-history,#wrapper-preview,#wrapper-fa{margin-top:114px;}
+  #wrapper-h2h,#wrapper-stats,#wrapper-draft,#wrapper-draft-history,#wrapper-preview,#wrapper-fa,#wrapper-picks{margin-top:114px;}
   /* Tighter padding on tool-tab wrappers */
   #wrapper-draft{padding:16px 14px 48px;}
   #wrapper-h2h{padding:16px 14px 48px;}
@@ -1885,6 +1885,67 @@ button{touch-action:manipulation;}
 }
 
 
+/* ── Predictions Tab ── */
+.team-tab.tab-picks{border-color:rgba(255,255,255,.15);}
+.team-tab.tab-picks:hover{color:#fff;background:rgba(255,255,255,.12);}
+.team-tab.tab-picks.active{background:linear-gradient(135deg,rgba(160,100,255,.18),rgba(120,60,220,.12));border-color:rgba(160,100,255,.5);color:#c080ff;}
+[data-light] .team-tab.tab-picks.active{background:rgba(120,60,220,.1);border-color:rgba(120,60,220,.4);color:#7a3ce0;}
+
+#wrapper-picks{max-width:1100px;margin:118px auto 0;padding:28px 24px 60px;width:100%;min-height:calc(100vh - 118px);box-sizing:border-box;}
+
+.picks-header{text-align:center;margin-bottom:28px;}
+.picks-title{font-size:28px;font-weight:800;letter-spacing:-.01em;}
+.picks-sub{font-size:13px;color:var(--muted);margin-top:4px;}
+.picks-header-row{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:12px;flex-wrap:wrap;}
+.picks-mode-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;}
+.picks-admin-btn{background:rgba(160,100,255,.1);border:1px solid rgba(160,100,255,.35);border-radius:20px;color:#c080ff;font-size:11px;font-weight:700;padding:4px 14px;cursor:pointer;transition:background .15s;}
+[data-light] .picks-admin-btn{color:#7a3ce0;border-color:rgba(120,60,220,.4);background:rgba(120,60,220,.08);}
+.picks-admin-btn:hover{background:rgba(160,100,255,.2);}
+
+.picks-section{margin-bottom:28px;}
+.picks-section-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;}
+.picks-sub-note{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:8px;}
+.picks-table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.picks-table{width:100%;border-collapse:collapse;}
+.picks-table thead tr{background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);}
+[data-light] .picks-table thead tr{background:rgba(0,0,0,.03);}
+.picks-table th{padding:9px 16px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;}
+.picks-th-result{color:#c080ff!important;}
+[data-light] .picks-th-result{color:#7a3ce0!important;}
+.picks-table td{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;vertical-align:middle;}
+[data-light] .picks-table td{border-bottom:1px solid rgba(0,0,0,.05);}
+.picks-table tr:last-child td{border-bottom:none;}
+.picks-td-label{font-size:13px;font-weight:700;color:var(--text);min-width:120px;white-space:nowrap;}
+.picks-cell{font-weight:600;color:var(--silver);transition:background .12s;white-space:nowrap;}
+.picks-cell.admin-mode{cursor:pointer;}
+.picks-cell.admin-mode:hover{background:rgba(160,100,255,.08);border-radius:4px;}
+[data-light] .picks-cell.admin-mode:hover{background:rgba(120,60,220,.07);}
+.picks-result-cell{color:var(--text);font-weight:700;border-left:1px solid rgba(160,100,255,.2);}
+.picks-correct{color:#00c864!important;font-weight:700;}
+.picks-wrong{color:rgba(255,255,255,.2)!important;text-decoration:line-through;}
+[data-light] .picks-wrong{color:rgba(0,0,0,.2)!important;}
+.picks-close{color:#ffb300!important;font-weight:700;}
+.picks-empty{color:var(--muted);font-size:12px;font-weight:400;font-style:italic;}
+.picks-cell-input{background:rgba(0,0,0,.3);border:1px solid rgba(160,100,255,.55);border-radius:5px;color:var(--text);font-size:12px;font-weight:600;padding:3px 8px;width:100%;min-width:70px;max-width:160px;outline:none;box-shadow:0 0 0 2px rgba(160,100,255,.15);}
+[data-light] .picks-cell-input{background:rgba(255,255,255,.95);border-color:rgba(120,60,220,.5);}
+
+.picks-scorebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 20px;font-size:13px;margin-bottom:12px;}
+.picks-score-item{font-weight:600;}
+.picks-score-item b{color:#c080ff;}
+[data-light] .picks-score-item b{color:#7a3ce0;}
+.picks-score-sep{color:var(--muted);}
+.picks-score-note{font-size:10px;color:var(--muted);margin-left:auto;}
+
+.picks-kbd-hint{text-align:center;font-size:10px;color:var(--muted);padding:6px 0;}
+.picks-kbd-hint kbd{background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-size:9px;}
+[data-light] .picks-kbd-hint kbd{background:rgba(0,0,0,.06);}
+
+@media(max-width:600px){
+  .picks-table th,.picks-table td{padding:8px 10px;font-size:12px;}
+  .picks-td-label{min-width:90px;font-size:12px;}
+  #wrapper-picks{padding:16px 14px 80px;}
+}
+
 /* ── Landing Page ── */
 #landing-page{
   position:fixed;inset:0;z-index:2000;
@@ -2050,6 +2111,9 @@ button{touch-action:manipulation;}
     </button>
     <button class="team-tab tab-fa" onclick="switchTeam('fa')">
       🤝 Free Agency
+    </button>
+    <button class="team-tab tab-picks" onclick="switchTeam('picks')">
+      🔮<span class="tab-name"> Predictions</span>
     </button>
   </div>
 </div>
@@ -4538,7 +4602,7 @@ function lpSelectTeam(team) {
 
 function switchTeam(team) {
   // ── URL hash deep-linking (skip if landing page is still visible) ──
-  const _hashSlug={mavs:'dallas',bulls:'chicago',thunder:'okc',h2h:'h2h',stats:'stats',draft:'draft','draft-history':'history',preview:'preview',fa:'fa'};
+  const _hashSlug={mavs:'dallas',bulls:'chicago',thunder:'okc',h2h:'h2h',stats:'stats',draft:'draft','draft-history':'history',preview:'preview',fa:'fa',picks:'picks'};
   var _lp=document.getElementById('landing-page');
   if(!_lp || _lp.style.display==='none') {
     try{history.replaceState(null,'','#'+(_hashSlug[team]||team));}catch(e){}
@@ -4561,6 +4625,8 @@ function switchTeam(team) {
   if (spWrap) spWrap.style.display = 'none';
   const faWrap = document.getElementById('wrapper-fa');
   if (faWrap) faWrap.style.display = 'none';
+  const picksWrap = document.getElementById('wrapper-picks');
+  if (picksWrap) picksWrap.style.display = 'none';
 
   document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('active'));
   const activeTab = document.querySelector('.team-tab.tab-' + team);
@@ -4604,6 +4670,12 @@ function switchTeam(team) {
 
   if (team === 'fa') {
     if (faWrap) faWrap.style.display = 'block';
+    currentTeam = team;
+    return;
+  }
+
+  if (team === 'picks') {
+    if (picksWrap) picksWrap.style.display = 'block';
     currentTeam = team;
     return;
   }
@@ -6877,6 +6949,77 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
 </div><!-- /#wrapper-fa -->
 
 
+<!-- ═══════════════════════════════════════════════════════════════════
+     PREDICTIONS TAB
+     ═══════════════════════════════════════════════════════════════════ -->
+<div id="wrapper-picks" style="display:none;">
+
+  <!-- Header -->
+  <div class="picks-header">
+    <div class="picks-title">🔮 2026-27 Season Predictions</div>
+    <div class="picks-sub">Lock in your picks for league awards and team win totals before the season tips off.</div>
+    <div class="picks-header-row">
+      <div class="picks-mode-badge" id="picks-mode-badge">👁️ View Mode</div>
+      <button class="picks-admin-btn" id="picks-admin-btn" onclick="picksAdminToggle()">✏️ Edit Picks</button>
+    </div>
+  </div>
+
+  <!-- Awards section -->
+  <div class="picks-section">
+    <div class="picks-section-title">🏆 League Awards</div>
+    <div class="picks-table-wrap">
+      <table class="picks-table">
+        <thead>
+          <tr>
+            <th class="picks-th-award">Award</th>
+            <th>Riley</th>
+            <th>Chase</th>
+            <th>Matt</th>
+            <th class="picks-th-result">✓ Result</th>
+          </tr>
+        </thead>
+        <tbody id="picks-awards-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Win totals section -->
+  <div class="picks-section">
+    <div class="picks-section-title">📊 Win Total Predictions</div>
+    <div class="picks-sub-note">1 pt if within ±3 of the actual final win total</div>
+    <div class="picks-table-wrap">
+      <table class="picks-table">
+        <thead>
+          <tr>
+            <th class="picks-th-award">Team</th>
+            <th>Riley</th>
+            <th>Chase</th>
+            <th>Matt</th>
+            <th class="picks-th-result">✓ Final W</th>
+          </tr>
+        </thead>
+        <tbody id="picks-wins-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Score bar -->
+  <div class="picks-scorebar">
+    <div class="picks-score-item">Riley: <b id="picks-score-riley">—</b></div>
+    <div class="picks-score-sep">·</div>
+    <div class="picks-score-item">Chase: <b id="picks-score-chase">—</b></div>
+    <div class="picks-score-sep">·</div>
+    <div class="picks-score-item">Matt: <b id="picks-score-matt">—</b></div>
+    <div class="picks-score-note">Awards: 1pt exact · Win totals: 1pt if within ±3</div>
+  </div>
+
+  <div class="picks-kbd-hint" id="picks-edit-hint" style="display:none;">
+    Click any cell to edit &nbsp;·&nbsp; <kbd>Enter</kbd> to save &nbsp;·&nbsp; <kbd>Esc</kbd> to cancel &nbsp;·&nbsp; <kbd>Shift+Alt+P</kbd> to exit edit mode
+  </div>
+
+</div><!-- /#wrapper-picks -->
+
+
 <script>
 // ── Season Preview ─────────────────────────────────────────────────────────
 (function(){
@@ -7308,6 +7451,217 @@ document.addEventListener('keydown', function(e) {
   } else {
     go();
   }
+})();
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// PREDICTIONS / PICKS
+// ══════════════════════════════════════════════════════════════════
+var _picksAdminActive = false;
+var _picksKey = 'hh-picks-2026';
+var _picks = { riley:{}, chase:{}, matt:{}, result:{} };
+
+var _pickAwards = [
+  { id:'mvp',      emoji:'🏆', label:'MVP',      hint:'Regular Season Most Valuable Player' },
+  { id:'dpoy',     emoji:'🛡️', label:'DPOY',     hint:'Defensive Player of the Year' },
+  { id:'roty',     emoji:'🌱', label:'ROTY',     hint:'Rookie of the Year' },
+  { id:'mip',      emoji:'📈', label:'MIP',      hint:'Most Improved Player' },
+  { id:'smoy',     emoji:'💺', label:'SMOY',     hint:'Sixth Man of the Year' },
+  { id:'champion', emoji:'🏆', label:'Champion', hint:'NBA Champion (enter team name)' },
+];
+
+var _pickWins = [
+  { id:'mavs_w',    emoji:'🏹', label:'Dallas Mavericks' },
+  { id:'bulls_w',   emoji:'🏀', label:'Chicago Bulls' },
+  { id:'thunder_w', emoji:'🌩️', label:'OKC Thunder' },
+];
+
+var _pickPersons = ['riley','chase','matt'];
+
+// ── Admin toggle ──────────────────────────────────────────────────
+function picksAdminToggle() {
+  _picksAdminActive = !_picksAdminActive;
+  var badge = document.getElementById('picks-mode-badge');
+  var btn   = document.getElementById('picks-admin-btn');
+  var hint  = document.getElementById('picks-edit-hint');
+  if (_picksAdminActive) {
+    if (badge) badge.textContent = '✏️ Edit Mode';
+    if (btn)   { btn.textContent = '✕ Done'; btn.style.background = 'rgba(230,57,70,.12)'; btn.style.borderColor = 'rgba(230,57,70,.4)'; btn.style.color = '#e63946'; }
+    if (hint)  hint.style.display = '';
+    document.querySelectorAll('.picks-cell').forEach(function(c) { c.classList.add('admin-mode'); });
+  } else {
+    if (badge) badge.textContent = '👁️ View Mode';
+    if (btn)   { btn.textContent = '✏️ Edit Picks'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = ''; }
+    if (hint)  hint.style.display = 'none';
+    document.querySelectorAll('.picks-cell').forEach(function(c) { c.classList.remove('admin-mode'); });
+  }
+}
+
+// ── Click-to-edit cell ────────────────────────────────────────────
+function picksEditCell(cell) {
+  if (!_picksAdminActive) return;
+  // Don't double-open if already editing
+  if (cell.querySelector('input')) return;
+  var person = cell.getAttribute('data-pp');
+  var id     = cell.getAttribute('data-pid');
+  var current = _picks[person] ? (_picks[person][id] || '') : '';
+  var isWin   = id.indexOf('_w') > -1;
+
+  var input = document.createElement('input');
+  input.type = isWin ? 'number' : 'text';
+  input.value = current;
+  input.className = 'picks-cell-input';
+  input.placeholder = person === 'result' ? (isWin ? 'Actual W' : 'Actual…') : (isWin ? 'Win total' : 'Player…');
+  if (isWin) { input.min = 0; input.max = 82; }
+  cell.innerHTML = '';
+  cell.appendChild(input);
+  input.focus();
+  input.select();
+
+  function save() {
+    if (!_picks[person]) _picks[person] = {};
+    _picks[person][id] = input.value.trim();
+    picksAutosave();
+    picksRenderAll();
+    picksUpdateScores();
+    // Re-apply admin-mode class after re-render
+    if (_picksAdminActive) {
+      document.querySelectorAll('.picks-cell').forEach(function(c) { c.classList.add('admin-mode'); });
+    }
+  }
+
+  var saved = false;
+  input.addEventListener('blur', function() {
+    if (!saved) { saved = true; save(); }
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); saved = true; input.blur(); }
+    if (e.key === 'Escape') { saved = true; picksRenderAll(); if (_picksAdminActive) document.querySelectorAll('.picks-cell').forEach(function(c){c.classList.add('admin-mode');}); }
+  });
+}
+
+// ── Score class helper ────────────────────────────────────────────
+function _picksScoreCls(person, id) {
+  var resultVal = (_picks.result && _picks.result[id]) ? _picks.result[id] : '';
+  var myVal = (_picks[person] && _picks[person][id]) ? _picks[person][id] : '';
+  if (!resultVal || !myVal) return '';
+  var isWin = id.indexOf('_w') > -1;
+  if (isWin) {
+    var diff = Math.abs(parseInt(myVal,10) - parseInt(resultVal,10));
+    if (isNaN(diff)) return '';
+    if (diff === 0) return ' picks-correct';
+    if (diff <= 3)  return ' picks-close';
+    return ' picks-wrong';
+  }
+  return myVal.trim().toLowerCase() === resultVal.trim().toLowerCase() ? ' picks-correct' : ' picks-wrong';
+}
+
+function _picksCellHTML(person, id) {
+  var val = (_picks[person] && _picks[person][id]) ? _picks[person][id] : '';
+  var scoreClass = person === 'result' ? '' : _picksScoreCls(person, id);
+  var display = val ? val : '<span class="picks-empty">—</span>';
+  return '<td class="picks-cell' + scoreClass + '" data-pp="' + person + '" data-pid="' + id + '" onclick="picksEditCell(this)">' + display + '</td>';
+}
+
+function _picksResultCellHTML(id) {
+  var val = (_picks.result && _picks.result[id]) ? _picks.result[id] : '';
+  var display = val ? val : '<span class="picks-empty">—</span>';
+  return '<td class="picks-cell picks-result-cell" data-pp="result" data-pid="' + id + '" onclick="picksEditCell(this)">' + display + '</td>';
+}
+
+// ── Render both tables ────────────────────────────────────────────
+function picksRenderAll() {
+  // Awards
+  var aBody = document.getElementById('picks-awards-body');
+  if (aBody) {
+    aBody.innerHTML = '';
+    _pickAwards.forEach(function(award) {
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td class="picks-td-label" title="' + award.hint + '">' + award.emoji + ' ' + award.label + '</td>' +
+        _picksCellHTML('riley', award.id) +
+        _picksCellHTML('chase', award.id) +
+        _picksCellHTML('matt',  award.id) +
+        _picksResultCellHTML(award.id);
+      aBody.appendChild(tr);
+    });
+  }
+  // Win totals
+  var wBody = document.getElementById('picks-wins-body');
+  if (wBody) {
+    wBody.innerHTML = '';
+    _pickWins.forEach(function(win) {
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td class="picks-td-label">' + win.emoji + ' ' + win.label + '</td>' +
+        _picksCellHTML('riley', win.id) +
+        _picksCellHTML('chase', win.id) +
+        _picksCellHTML('matt',  win.id) +
+        _picksResultCellHTML(win.id);
+      wBody.appendChild(tr);
+    });
+  }
+}
+
+// ── Score bar ─────────────────────────────────────────────────────
+function picksUpdateScores() {
+  _pickPersons.forEach(function(person) {
+    var score = 0, possible = 0;
+    _pickAwards.forEach(function(a) {
+      var r = (_picks.result && _picks.result[a.id]) ? _picks.result[a.id].trim().toLowerCase() : '';
+      var v = (_picks[person] && _picks[person][a.id]) ? _picks[person][a.id].trim().toLowerCase() : '';
+      if (r) { possible++; if (v && v === r) score++; }
+    });
+    _pickWins.forEach(function(w) {
+      var r = (_picks.result && _picks.result[w.id]) ? _picks.result[w.id] : '';
+      var v = (_picks[person] && _picks[person][w.id]) ? _picks[person][w.id] : '';
+      if (r && v) {
+        possible++;
+        var diff = Math.abs(parseInt(v,10) - parseInt(r,10));
+        if (!isNaN(diff) && diff <= 3) score++;
+      }
+    });
+    var el = document.getElementById('picks-score-' + person);
+    if (el) el.textContent = possible > 0 ? score + '/' + possible : '—';
+  });
+}
+
+// ── localStorage ──────────────────────────────────────────────────
+function picksAutosave() {
+  try { localStorage.setItem(_picksKey, JSON.stringify(_picks)); } catch(e) {}
+}
+
+function picksLoad() {
+  try {
+    var saved = JSON.parse(localStorage.getItem(_picksKey) || 'null');
+    if (saved && typeof saved === 'object') {
+      ['riley','chase','matt','result'].forEach(function(k) {
+        if (saved[k] && typeof saved[k] === 'object') _picks[k] = saved[k];
+      });
+    }
+  } catch(e) {}
+  picksRenderAll();
+  picksUpdateScores();
+}
+
+// ── Keyboard shortcut: Shift+Alt+P → Picks Admin ─────────────────
+document.addEventListener('keydown', function(e) {
+  if (e.shiftKey && e.altKey && (e.key === 'p' || e.key === 'P')) {
+    var pw = document.getElementById('wrapper-picks');
+    if (pw && pw.style.display !== 'none') {
+      e.preventDefault();
+      picksAdminToggle();
+    }
+  }
+});
+
+// ── Init ──────────────────────────────────────────────────────────
+(function() {
+  function go() { setTimeout(picksLoad, 250); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', go);
+  } else { go(); }
 })();
 </script>
 
