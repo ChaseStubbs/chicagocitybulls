@@ -434,8 +434,13 @@ button{touch-action:manipulation;}
   .fl-grid{grid-template-columns:1fr;}
   .team-tab{padding:5px 8px;font-size:11px;gap:4px;}
   .tab-record{display:none;}
+  .tab-name{display:none;}
+  .team-tab.tab-mavs,.team-tab.tab-bulls,.team-tab.tab-thunder{padding:5px 11px;justify-content:center;}
+  .team-tab img{width:27px;height:27px;}
   .row-tools{height:36px;}
   .row-tools .team-tab{font-size:10px;padding:4px 8px;}
+  /* make room for bottom nav on team pages */
+  .wrapper .main{padding-bottom:80px;}
   .note-cell{display:none;}
   .pc-bottom{grid-template-columns:1fr;}
   .section-sub{margin-left:0;font-size:12px;}
@@ -1875,6 +1880,32 @@ button{touch-action:manipulation;}
 .hero-updated{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;opacity:.8;}
 .hero-updated::before{content:'🕐';font-size:11px;}
 
+/* ── Mobile Bottom Nav ─────────────────────────────────────── */
+#mobile-bottom-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:998;
+  background:rgba(5,10,20,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,.1);
+  height:60px;padding-bottom:env(safe-area-inset-bottom,0px);
+  flex-direction:row;align-items:stretch;
+}
+.mbn-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;text-decoration:none;
+  color:rgba(255,255,255,.38);
+  transition:color .15s;
+  padding:6px 2px;border-radius:0;
+}
+.mbn-item:hover,.mbn-item.mbn-active{color:var(--team-light,#7DBAEC);}
+.mbn-icon{font-size:17px;line-height:1;}
+.mbn-label{font-size:8.5px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+[data-light] #mobile-bottom-nav{background:rgba(242,245,250,.97);border-top:1px solid rgba(0,0,0,.12);}
+[data-light] .mbn-item{color:rgba(0,0,0,.32);}
+[data-light] .mbn-item:hover,[data-light] .mbn-item.mbn-active{color:var(--team-primary);}
+@media(max-width:480px){
+  #mobile-bottom-nav.mbn-visible{display:flex;}
+}
+
 .lp-header{text-align:center;margin-bottom:52px;}
 .lp-ball{font-size:52px;line-height:1;margin-bottom:14px;display:block;}
 .lp-title{
@@ -1951,15 +1982,15 @@ button{touch-action:manipulation;}
     <div class="hh-logo">🏀 HoopHeads HQ <span>2026</span></div>
     <button class="team-tab tab-mavs active" onclick="switchTeam('mavs')">
       <img src="https://cdn.nba.com/logos/nba/1610612742/global/L/logo.svg" onerror="this.style.display='none'">
-      Dallas <span class="tab-record">26–56</span>
+      <span class="tab-name">Dallas</span><span class="tab-record"> 26–56</span>
     </button>
     <button class="team-tab tab-bulls" onclick="switchTeam('bulls')">
       <img src="https://cdn.nba.com/logos/nba/1610612741/global/L/logo.svg" onerror="this.style.display='none'">
-      Chicago <span class="tab-record">Rebuild Mode</span>
+      <span class="tab-name">Chicago</span><span class="tab-record"> Rebuild Mode</span>
     </button>
     <button class="team-tab tab-thunder" onclick="switchTeam('thunder')">
       <img src="https://cdn.nba.com/logos/nba/1610612760/global/L/logo.svg" onerror="this.style.display='none'">
-      OKC <span class="tab-record">2025 Champions 🏆</span>
+      <span class="tab-name">OKC</span><span class="tab-record"> 2025 Champions 🏆</span>
     </button>
     <button class="theme-toggle" style="margin-left:auto" onclick="toggleTheme()" title="Toggle light / dark mode" aria-label="Toggle light/dark mode">
       <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -1988,6 +2019,30 @@ button{touch-action:manipulation;}
     </button>
   </div>
 </div>
+
+<!-- ══ MOBILE BOTTOM NAV ══ -->
+<nav id="mobile-bottom-nav">
+  <a class="mbn-item" id="mbn-fo" href="#mavs-leadership">
+    <span class="mbn-icon">🏢</span>
+    <span class="mbn-label">Front Office</span>
+  </a>
+  <a class="mbn-item" id="mbn-roster" href="#mavs-roster">
+    <span class="mbn-icon">📋</span>
+    <span class="mbn-label">Roster</span>
+  </a>
+  <a class="mbn-item" id="mbn-draft" href="#mavs-draft">
+    <span class="mbn-icon">🎯</span>
+    <span class="mbn-label">Draft</span>
+  </a>
+  <a class="mbn-item" id="mbn-fa" href="#mavs-freeagency">
+    <span class="mbn-icon">🤝</span>
+    <span class="mbn-label">Free Agency</span>
+  </a>
+  <a class="mbn-item" id="mbn-stats" href="#mavs-stats">
+    <span class="mbn-icon">📊</span>
+    <span class="mbn-label">Stats</span>
+  </a>
+</nav>
 
 <!-- ══ BREAKING NEWS TICKER ══ -->
 <div class="news-ticker" id="newsTicker">
@@ -4436,6 +4491,10 @@ function switchTeam(team) {
   if(!_lp || _lp.style.display==='none') {
     try{history.replaceState(null,'','#'+(_hashSlug[team]||team));}catch(e){}
   }
+  // ── Mobile bottom nav: hide by default; team pages re-show it below ──
+  const _mbn = document.getElementById('mobile-bottom-nav');
+  if (_mbn) _mbn.classList.remove('mbn-visible');
+
   // Hide all wrappers (flex team wrappers + block h2h wrapper)
   document.querySelectorAll('.wrapper').forEach(w => w.style.display = 'none');
   const h2hWrap = document.getElementById('wrapper-h2h');
@@ -4502,6 +4561,24 @@ function switchTeam(team) {
   const th = (isLight ? THEMES_LIGHT[team] : THEMES[team]) || THEMES.mavs;
   Object.entries(th).forEach(([k,v]) => document.documentElement.style.setProperty('--'+k, v));
   currentTeam = team;
+
+  // ── Mobile bottom nav: show and update section links ──
+  if (_mbn) {
+    const _mbnAnchors = {
+      mavs:    {fo:'#mavs-leadership',    roster:'#mavs-roster',    draft:'#mavs-draft',    fa:'#mavs-freeagency',    stats:'#mavs-stats'},
+      bulls:   {fo:'#bulls-leadership',   roster:'#bulls-roster',   draft:'#bulls-draft',   fa:'#bulls-freeagency',   stats:'#bulls-stats'},
+      thunder: {fo:'#thunder-leadership', roster:'#thunder-roster', draft:'#thunder-draft', fa:'#thunder-freeagency', stats:'#thunder-stats'},
+    };
+    const _an = _mbnAnchors[team];
+    if (_an) {
+      document.getElementById('mbn-fo').href    = _an.fo;
+      document.getElementById('mbn-roster').href = _an.roster;
+      document.getElementById('mbn-draft').href  = _an.draft;
+      document.getElementById('mbn-fa').href     = _an.fa;
+      document.getElementById('mbn-stats').href  = _an.stats;
+      _mbn.classList.add('mbn-visible');
+    }
+  }
   // Move offseason calendar into the active team's main content area
   const _cal = document.getElementById('offseason-cal');
   if (_cal) {
