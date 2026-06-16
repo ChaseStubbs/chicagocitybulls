@@ -135,7 +135,7 @@ button{touch-action:manipulation;}
 .meta-pill.silver{background:rgba(190,192,194,.1);border-color:rgba(190,192,194,.25);color:var(--silver);}
 
 /* Section */
-.section{margin-bottom:52px;scroll-margin-top:24px;}
+.section{margin-bottom:52px;scroll-margin-top:126px;}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--border);}
 .section-icon{width:30px;height:30px;border-radius:7px;background:var(--team-primary);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .section-title{font-size:18px;font-weight:800;color:#fff;}
@@ -458,6 +458,12 @@ button{touch-action:manipulation;}
   .pc-meas{min-width:80px;flex:1 1 80px;}
   /* Reduce pick card min-width so 2 fit per row on small phones */
   .pick-card{min-width:130px;}
+  /* Section anchor scroll offset — match 114px sticky header */
+  .section{scroll-margin-top:122px;}
+  /* Kill inline horizontal padding on calendar at narrow width */
+  #offseason-cal{padding-left:0!important;padding-right:0!important;}
+  /* Section header subtitle wraps instead of getting squished */
+  .section-header{flex-wrap:wrap;}
 }
 
 /* ── Visualizations ─────────────────────────────────────────── */
@@ -1535,6 +1541,53 @@ button{touch-action:manipulation;}
 .dt-tl-msg{line-height:1.55;}
 .traded-badge{display:inline-block;font-size:9px;background:rgba(15,98,254,.2);border:1px solid rgba(91,156,246,.4);border-radius:3px;padding:1px 5px;color:#5b9cf6;font-weight:700;margin-left:4px;white-space:nowrap;}
 [data-light] .traded-badge{background:rgba(15,98,254,.1);color:#0043a8;border-color:rgba(0,67,168,.3);}
+
+/* ── Admin Mode bar ─────────────────────────────────────────────── */
+.dt-admin-bar{display:none;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.22);border-radius:12px;padding:12px 16px;margin-bottom:18px;gap:10px;flex-wrap:wrap;align-items:center;}
+.dt-admin-bar.active{display:flex;}
+.dt-admin-badge{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;background:rgba(0,200,100,.18);border:1px solid rgba(0,200,100,.35);border-radius:20px;padding:4px 11px;color:#00c864;white-space:nowrap;flex-shrink:0;}
+.dt-otc-label{font-size:12px;font-weight:700;color:var(--text);flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;}
+.dt-admin-input{background:rgba(0,0,0,.22);border:1px solid rgba(0,200,100,.28);border-radius:6px;color:var(--text);font-size:13px;font-weight:600;padding:6px 10px;}
+.dt-admin-input:focus{outline:none;border-color:#00c864;box-shadow:0 0 0 2px rgba(0,200,100,.15);}
+.dt-admin-name{flex:2 1 140px;min-width:120px;}
+.dt-admin-meta{flex:1 1 110px;min-width:90px;}
+.dt-admin-confirm{background:linear-gradient(135deg,#00c864,#009a4e);border:none;border-radius:7px;color:#fff;font-size:12px;font-weight:800;padding:7px 15px;cursor:pointer;flex-shrink:0;transition:opacity .15s;white-space:nowrap;}
+.dt-admin-confirm:hover{opacity:.85;}
+.dt-admin-nav{display:flex;gap:4px;flex-shrink:0;}
+.dt-admin-nav button{background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:12px;padding:5px 9px;cursor:pointer;transition:background .12s;}
+.dt-admin-nav button:hover{background:rgba(255,255,255,.15);}
+.dt-admin-skip{background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);font-size:11px;padding:6px 11px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.dt-admin-skip:hover{border-color:var(--muted);color:var(--text);}
+.dt-admin-exit{background:transparent;border:1px solid rgba(230,57,70,.38);border-radius:7px;color:#e63946;font-size:11px;padding:6px 11px;cursor:pointer;flex-shrink:0;margin-left:auto;}
+.dt-admin-exit:hover{background:rgba(230,57,70,.08);}
+[data-light] .dt-admin-bar{background:rgba(0,160,80,.06);border-color:rgba(0,160,80,.2);}
+[data-light] .dt-admin-input{background:rgba(255,255,255,.9);border-color:rgba(0,160,80,.3);}
+[data-light] .dt-admin-nav button{background:rgba(0,0,0,.04);}
+
+/* "On the Clock" pulsing row */
+@keyframes dtOtcPulse{0%,100%{box-shadow:inset 3px 0 0 #FF6B35;}50%{box-shadow:inset 3px 0 0 #FF6B35,0 0 10px rgba(255,107,53,.3);}}
+.dt-row.on-the-clock{background:rgba(255,107,53,.09)!important;animation:dtOtcPulse 1.8s ease-in-out infinite;}
+.dt-row.on-the-clock .dt-row-pick{color:#FF6B35!important;}
+/* Confirm flash */
+@keyframes dtFlash{from{background:rgba(0,200,100,.28);}to{background:rgba(0,200,100,.06);}}
+.dt-row.just-confirmed{animation:dtFlash .65s ease-out forwards;}
+
+/* ── Pick Activity Feed ──────────────────────────────────────────── */
+.dt-feed{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-top:16px;}
+.dt-feed-header{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);gap:8px;}
+.dt-feed-actions{display:flex;gap:6px;align-items:center;}
+.dt-feed-action{padding:3px 10px;background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);font-size:10px;cursor:pointer;font-weight:600;transition:border-color .12s,color .12s;text-transform:none;letter-spacing:0;}
+.dt-feed-action:hover{border-color:var(--muted);color:var(--text);}
+.dt-feed-entry{display:grid;grid-template-columns:58px 42px 1fr;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+[data-light] .dt-feed-entry{border-bottom:1px solid rgba(0,0,0,.05);}
+.dt-feed-entry:last-child{border-bottom:none;}
+.dt-feed-time{font-size:10px;color:var(--muted);}
+.dt-feed-pick{font-weight:800;font-size:14px;text-align:center;}
+.dt-feed-player{font-weight:700;font-size:12px;}
+.dt-feed-detail{font-size:10.5px;color:var(--muted);}
+.dt-feed-empty{font-size:12px;color:var(--muted);padding:4px 0;line-height:1.6;}
+@keyframes dtFeedIn{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+.dt-feed-entry.new{animation:dtFeedIn .28s ease-out forwards;}
 
 /* 2nd round section */
 .dt-second-round{margin-top:20px;}
@@ -5195,6 +5248,12 @@ function dtConfirmPick() {
   document.getElementById('dt-player-meta').value = '';
   document.getElementById('dt-pick-num').value = '';
   dtUpdatePickCounter();
+  // Persist + feed + flash
+  dtSavePick(pickNum, name, meta);
+  dtInitRowTeamNames();
+  dtFeedAdd(pickNum, name, meta, (_dtRTN && _dtRTN[pickNum]) || '');
+  var _fr = document.getElementById('row-'+pickNum);
+  if(_fr){ _fr.classList.remove('just-confirmed'); void _fr.offsetWidth; _fr.classList.add('just-confirmed'); }
 }
 
 function dtResetPick() {
@@ -5266,6 +5325,9 @@ function dtResetAll() {
   document.getElementById('dt-player-meta').value = '';
   document.getElementById('dt-pick-num').value = '';
   dtUpdatePickCounter();
+  // Also clear persisted state and feed display
+  dtClearStorage();
+  dtFeedClear();
 }
 
 // ── Trade Feature ────────────────────────────────────────────
@@ -5443,6 +5505,288 @@ function dtClearTradeLog() {
   if (log) log.style.display = 'none';
 }
 
+// ══════════════════════════════════════════════════════════════════
+// ADMIN MODE · LIVE LOGGING · PERSISTENCE
+// ══════════════════════════════════════════════════════════════════
+var dtAdminActive = false;
+var dtOtcPick = 1;
+var _dtRTN = {};           // pick# → team name (lazy)
+var _dtStorageKey = 'hh-draft-2026';
+
+// Lazy-init team name lookup from DOM
+function dtInitRowTeamNames() {
+  if (Object.keys(_dtRTN).length) return;
+  document.querySelectorAll('#wrapper-draft .dt-row[data-pick]').forEach(function(r) {
+    var p = parseInt(r.getAttribute('data-pick'));
+    var el = r.querySelector('.dt-row-team');
+    if (p && el) _dtRTN[p] = el.textContent.trim();
+  });
+}
+
+// ── Admin activate / deactivate ───────────────────────────────────
+function dtAdminToggle() {
+  if (dtAdminActive) { dtAdminDeactivate(); return; }
+  var code = prompt('Enter draft admin code:');
+  if (code === null || code.trim() !== '2026') return;
+  dtAdminActivate();
+}
+
+function dtAdminActivate() {
+  dtInitRowTeamNames();
+  dtAdminActive = true;
+  document.getElementById('dt-admin-bar').classList.add('active');
+  dtOtcPick = dtFindNextUnconfirmed(1);
+  dtAdminSetOtc(dtOtcPick);
+}
+
+function dtAdminDeactivate() {
+  dtAdminActive = false;
+  document.getElementById('dt-admin-bar').classList.remove('active');
+  document.querySelectorAll('.dt-row.on-the-clock').forEach(function(r) {
+    r.classList.remove('on-the-clock');
+  });
+}
+
+// ── Set "On the Clock" pick ───────────────────────────────────────
+function dtAdminSetOtc(n) {
+  dtInitRowTeamNames();
+  n = Math.max(1, Math.min(60, n));
+  dtOtcPick = n;
+  dtSelectedPick = n;
+  document.querySelectorAll('.dt-row.on-the-clock').forEach(function(r) {
+    r.classList.remove('on-the-clock');
+  });
+  var row = document.getElementById('row-' + n);
+  if (row && !row.classList.contains('selected')) {
+    row.classList.add('on-the-clock');
+    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  var lbl = document.getElementById('dt-otc-label');
+  if (lbl) lbl.textContent = 'On the Clock: Pick #' + n + (_dtRTN[n] ? ' — ' + _dtRTN[n] : '');
+  // Pre-fill consensus meta in admin bar
+  var cons = dtConsensus[n];
+  var metaEl = document.getElementById('dt-admin-meta');
+  if (cons && metaEl && !metaEl.value) metaEl.value = cons.meta || '';
+  var nameEl = document.getElementById('dt-admin-name');
+  if (nameEl) { nameEl.value = ''; nameEl.focus(); }
+  // Sync the existing pick panel fields
+  var numEl = document.getElementById('dt-pick-num');
+  var pname = document.getElementById('pname-' + n);
+  var pmeta = document.getElementById('pmeta-' + n);
+  if (numEl) numEl.value = n;
+  if (pname) {
+    var curName = pname.textContent.replace(/[🏹🏀🌩️]\s*OUR PICK/,'').trim();
+    var panelName = document.getElementById('dt-player-name');
+    if (panelName) panelName.value = curName;
+  }
+  if (pmeta) {
+    var curMeta = pmeta.textContent.replace(/✓ LOCKED IN · /,'').trim();
+    var panelMeta = document.getElementById('dt-player-meta');
+    if (panelMeta) panelMeta.value = curMeta;
+  }
+  // Highlight row as editing in board
+  document.querySelectorAll('.dt-row.editing').forEach(function(r) { r.classList.remove('editing'); });
+  if (row) row.classList.add('editing');
+}
+
+// ── Admin confirm / skip / nav ────────────────────────────────────
+function dtAdminConfirm() {
+  var name = (document.getElementById('dt-admin-name').value || '').trim();
+  if (!name) { document.getElementById('dt-admin-name').focus(); return; }
+  var meta = (document.getElementById('dt-admin-meta').value || '').trim();
+  // Sync to panel and call standard confirm
+  var panelName = document.getElementById('dt-player-name');
+  var panelMeta = document.getElementById('dt-player-meta');
+  if (panelName) panelName.value = name;
+  if (panelMeta) panelMeta.value = meta;
+  dtSelectedPick = dtOtcPick;
+  dtConfirmPick();
+  // Clear admin input fields
+  var nameEl = document.getElementById('dt-admin-name');
+  var metaEl = document.getElementById('dt-admin-meta');
+  if (nameEl) nameEl.value = '';
+  if (metaEl) metaEl.value = '';
+  // Advance to next unconfirmed
+  var next = dtFindNextUnconfirmed(dtOtcPick + 1);
+  if (next <= 60) {
+    dtAdminSetOtc(next);
+  } else {
+    var lbl = document.getElementById('dt-otc-label');
+    if (lbl) lbl.innerHTML = '🎉 All 60 picks logged!';
+    document.querySelectorAll('.dt-row.on-the-clock').forEach(function(r) { r.classList.remove('on-the-clock'); });
+  }
+}
+
+function dtAdminSkip() {
+  var next = dtFindNextUnconfirmed(dtOtcPick + 1);
+  if (next <= 60) dtAdminSetOtc(next);
+}
+
+function dtAdminNav(dir) {
+  var target = Math.max(1, Math.min(60, dtOtcPick + dir));
+  dtAdminSetOtc(target);
+}
+
+function dtFindNextUnconfirmed(startFrom) {
+  for (var i = startFrom; i <= 60; i++) {
+    var r = document.getElementById('row-' + i);
+    if (r && !r.classList.contains('selected')) return i;
+  }
+  return 61;
+}
+
+// ── localStorage persistence ──────────────────────────────────────
+function dtSavePick(pickNum, name, meta) {
+  try {
+    var saved = JSON.parse(localStorage.getItem(_dtStorageKey) || '{}');
+    saved[pickNum] = { name: name, meta: meta, ts: Date.now() };
+    localStorage.setItem(_dtStorageKey, JSON.stringify(saved));
+  } catch(e) {}
+}
+
+function dtClearStorage() {
+  try { localStorage.removeItem(_dtStorageKey); } catch(e) {}
+}
+
+function dtApplyPickToBoard(pickNum, name, meta) {
+  var pname  = document.getElementById('pname-' + pickNum);
+  var pmeta  = document.getElementById('pmeta-' + pickNum);
+  var row    = document.getElementById('row-' + pickNum);
+  var btn    = document.getElementById('btn-' + pickNum);
+  var btnTxt = document.getElementById('btn-txt-' + pickNum);
+  var sumEl  = document.getElementById('summary-' + pickNum);
+  if (!pname) return;
+  var ourTeam = row ? (row.getAttribute('data-our') || '') : '';
+  var ourBadge = '';
+  if (ourTeam) {
+    var ic = ourTeam === 'mavs' ? '🏹' : ourTeam === 'bulls' ? '🏀' : '🌩️';
+    ourBadge = ' <span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">' + ic + ' OUR PICK</span>';
+  }
+  pname.innerHTML = name + ourBadge;
+  if (pmeta) pmeta.innerHTML = '<span style="color:#00c864;font-weight:600;">✓ LOCKED IN</span> · ' + meta;
+  if (row)   { row.classList.add('selected'); row.classList.remove('editing', 'on-the-clock'); }
+  if (btn)   btn.classList.add('done');
+  if (btnTxt) btnTxt.textContent = '✅ Done';
+  if (sumEl) { sumEl.textContent = name; sumEl.className = 'dt-pick-name confirmed'; }
+}
+
+function dtLoadSavedPicks() {
+  dtInitRowTeamNames();
+  try {
+    var saved = JSON.parse(localStorage.getItem(_dtStorageKey) || '{}');
+    var keys = Object.keys(saved).map(Number).sort(function(a,b){ return a - b; });
+    if (!keys.length) return;
+    keys.forEach(function(n) {
+      var p = saved[n];
+      dtApplyPickToBoard(n, p.name, p.meta);
+      dtFeedAdd(n, p.name, p.meta, _dtRTN[n] || '', new Date(p.ts), true);
+    });
+    dtUpdatePickCounter();
+  } catch(e) {}
+}
+
+// ── Activity Feed ─────────────────────────────────────────────────
+function dtFeedAdd(pickNum, name, meta, team, dateObj, silent) {
+  var container = document.getElementById('dt-feed-entries');
+  if (!container) return;
+  var emptyMsg = container.querySelector('.dt-feed-empty');
+  if (emptyMsg) emptyMsg.remove();
+  var d = dateObj || new Date();
+  var timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  var row = document.getElementById('row-' + pickNum);
+  var ourTeam = row ? (row.getAttribute('data-our') || '') : '';
+  var pickColor = ourTeam === 'mavs' ? '#409fd8' : ourTeam === 'bulls' ? '#e85c80' : ourTeam === 'thunder' ? '#50aadf' : 'var(--muted)';
+  var entry = document.createElement('div');
+  entry.className = 'dt-feed-entry' + (silent ? '' : ' new');
+  entry.innerHTML =
+    '<div class="dt-feed-time">' + timeStr + '</div>' +
+    '<div class="dt-feed-pick" style="color:' + pickColor + ';">#' + pickNum + '</div>' +
+    '<div><div class="dt-feed-player">' + name + '</div>' +
+    '<div class="dt-feed-detail">' + (meta || '') + (team ? ' &middot; ' + team : '') + '</div></div>';
+  container.insertBefore(entry, container.firstChild);
+}
+
+function dtFeedClear() {
+  var container = document.getElementById('dt-feed-entries');
+  if (container) container.innerHTML = '<div class="dt-feed-empty">No picks confirmed yet. Click ✏️ Edit on any board row to log a pick — or press <b>Shift+Alt+D</b> on draft night to open Admin Mode for fast keyboard logging.</div>';
+}
+
+// ── Share state via URL ───────────────────────────────────────────
+function dtShareState() {
+  try {
+    var saved = localStorage.getItem(_dtStorageKey) || '{}';
+    var encoded = btoa(unescape(encodeURIComponent(saved)));
+    var base = window.location.href.split('#')[0];
+    var url = base + '#draft?state=' + encoded;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() {
+        alert('📤 Share link copied!\n\nSend to friends — they open it to see the current draft board state.');
+      }).catch(function() { prompt('Copy this share link:', url); });
+    } else {
+      prompt('Copy this share link:', url);
+    }
+  } catch(e) { alert('Could not generate share link.'); }
+}
+
+// Import state from URL hash on page load
+(function() {
+  try {
+    var hash = window.location.hash || '';
+    var m = hash.match(/[?&]state=([A-Za-z0-9+/=]+)/);
+    if (!m) return;
+    var decoded = decodeURIComponent(escape(atob(m[1])));
+    var imported = JSON.parse(decoded);
+    var existing = JSON.parse(localStorage.getItem(_dtStorageKey) || '{}');
+    Object.keys(imported).forEach(function(k) { existing[k] = imported[k]; });
+    localStorage.setItem(_dtStorageKey, JSON.stringify(existing));
+  } catch(e) {}
+})();
+
+// ── Keyboard shortcut: Shift+Alt+D → Admin Mode ───────────────────
+document.addEventListener('keydown', function(e) {
+  if (e.shiftKey && e.altKey && (e.key === 'd' || e.key === 'D')) {
+    var dw = document.getElementById('wrapper-draft');
+    if (dw && dw.style.display !== 'none') {
+      e.preventDefault();
+      dtAdminToggle();
+    }
+  }
+});
+
+// ── Admin form keyboard nav ───────────────────────────────────────
+(function() {
+  function wireAdminKeys() {
+    var nameEl = document.getElementById('dt-admin-name');
+    var metaEl = document.getElementById('dt-admin-meta');
+    if (!nameEl || !metaEl) return;
+    nameEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        if (!metaEl.value.trim()) { metaEl.focus(); }
+        else { dtAdminConfirm(); }
+      }
+      if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); metaEl.focus(); }
+    });
+    metaEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') dtAdminConfirm();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireAdminKeys);
+  } else {
+    wireAdminKeys();
+  }
+})();
+
+// ── Load persisted picks on page ready ───────────────────────────
+(function() {
+  function loadOnReady() { setTimeout(dtLoadSavedPicks, 150); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadOnReady);
+  } else {
+    loadOnReady();
+  }
+})();
+
 // ── Draft night countdown
 function dtUpdateCountdown() {
   var el = document.getElementById('dt-countdown');
@@ -5466,6 +5810,22 @@ setInterval(dtUpdateCountdown, 1000);
      LIVE DRAFT TRACKER
 ════════════════════════════════════════════════════════════════════ -->
 <div id="wrapper-draft" style="display:none;">
+
+  <!-- ── Admin Mode Bar (hidden — Shift+Alt+D to activate) ───── -->
+  <div class="dt-admin-bar" id="dt-admin-bar">
+    <div class="dt-admin-badge">🔐 Admin Mode</div>
+    <div class="dt-otc-label" id="dt-otc-label">On the Clock: Pick #1</div>
+    <input class="dt-admin-input dt-admin-name" id="dt-admin-name" type="text" placeholder="Player name…" autocomplete="off" spellcheck="false">
+    <input class="dt-admin-input dt-admin-meta" id="dt-admin-meta" type="text" placeholder="Pos · School · Ht" autocomplete="off" spellcheck="false">
+    <button class="dt-admin-confirm" onclick="dtAdminConfirm()">✅ Confirm</button>
+    <div class="dt-admin-nav">
+      <button onclick="dtAdminNav(-1)" title="← Previous pick">◀</button>
+      <button onclick="dtAdminNav(1)" title="Next pick →">▶</button>
+    </div>
+    <button class="dt-admin-skip" onclick="dtAdminSkip()">Skip →</button>
+    <button class="dt-admin-exit" onclick="dtAdminDeactivate()">✕ Exit Admin</button>
+  </div>
+
   <div class="dt-header">
     <div class="dt-title">🎯 2026 NBA Draft — Live Tracker</div>
     <div class="dt-sub">June 23, 2026 · 8 PM ET · ESPN / ABC · Barclays Center, Brooklyn</div>
@@ -5628,6 +5988,21 @@ setInterval(dtUpdateCountdown, 1000);
         <div class="dt-tl-empty">No trades logged yet. Switch to the &#128256; Log a Trade tab, enter picks &amp; players on both sides, and confirm.</div>
       </div>
     </div>
+
+    <!-- ── Live Pick Activity Feed ────────────────────────────── -->
+    <div class="dt-feed" id="dt-feed">
+      <div class="dt-feed-header">
+        <span>📋 Live Pick Log</span>
+        <div class="dt-feed-actions">
+          <button class="dt-feed-action" onclick="dtShareState()" title="Copy shareable link with current board state">📤 Share</button>
+          <button class="dt-feed-action" onclick="dtFeedClear()">Clear log</button>
+        </div>
+      </div>
+      <div id="dt-feed-entries">
+        <div class="dt-feed-empty">No picks confirmed yet. Click ✏️ Edit on any board row to log a pick — or press <b>Shift+Alt+D</b> on draft night to open Admin Mode for fast keyboard logging.</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
