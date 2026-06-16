@@ -4424,8 +4424,6 @@ function lpSelectTeam(team) {
 }
 
 function switchTeam(team) {
-  // ── Dismiss landing page if still active (e.g. direct hash link) ──
-  document.body.classList.remove('landing-active');
   // ── URL hash deep-linking ────────────────────────────────────
   const _hashSlug={mavs:'dallas',bulls:'chicago',thunder:'okc',h2h:'h2h',stats:'stats',draft:'draft','draft-history':'history',preview:'preview',fa:'fa'};
   try{history.replaceState(null,'','#'+(_hashSlug[team]||team));}catch(e){}
@@ -4550,6 +4548,8 @@ function toggleTheme(){
   const _raw=window.location.hash.slice(1);
   const _hash=_raw.toLowerCase();
   if(!_hash) return;
+  // Has a hash — skip landing page
+  document.body.classList.remove('landing-active');
   // Direct slug match (team tabs + tool tabs)
   if(_slugTeam[_hash]){switchTeam(_slugTeam[_hash]);return;}
   // Section anchor: mavs-*, bulls-*, thunder-* → switch team, then scroll into view
