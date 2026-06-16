@@ -1480,9 +1480,9 @@ button{touch-action:manipulation;}
 /* Board layout */
 .dt-dual-board{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;align-items:start;}.dt-board-col-header{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:9px 14px 8px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.025);}
 .dt-board{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
-.dt-board-header{display:grid;grid-template-columns:44px 1fr 1.4fr 72px;gap:0;background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:7px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
-.dt-row{display:grid;grid-template-columns:44px 1fr 1.4fr 72px;gap:0;padding:7px 14px 7px 10px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;transition:all .15s;}
-.dt-row:hover{background:rgba(255,255,255,.03);}
+.dt-board-header{display:grid;grid-template-columns:44px 1fr 1.4fr;gap:0;background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:7px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.dt-row{display:grid;grid-template-columns:44px 1fr 1.4fr;gap:0;padding:7px 14px 7px 10px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;transition:background .15s;cursor:pointer;user-select:none;}
+.dt-row:hover{background:rgba(255,255,255,.06);}
 .dt-row:last-child{border-bottom:none;}
 .dt-row.our-pick{background:rgba(255,107,53,.04);}
 .dt-row.our-pick.mavs-row{box-shadow:inset 3px 0 0 #006BB6;background:rgba(0,107,182,.07);}
@@ -1502,8 +1502,32 @@ button{touch-action:manipulation;}
 .dt-select-btn.done{background:rgba(0,200,100,.12);border-color:rgba(0,200,100,.3);color:#00c864;}
 .dt-round-divider{background:rgba(255,255,255,.03);border-bottom:1px solid var(--border);padding:5px 14px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
 
-/* Right panel — pick editor */
-.dt-panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;max-width:540px;margin:0 auto;}
+/* Inline row editor */
+.dt-row-editor{background:rgba(255,107,53,.04);border-top:1px solid rgba(255,107,53,.2);border-bottom:1px solid rgba(255,107,53,.15);padding:14px 16px 14px 54px;animation:dtEditorIn .18s ease-out;}
+@keyframes dtEditorIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+[data-light] .dt-row-editor{background:rgba(255,107,53,.03);}
+.dt-re-header{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+.dt-re-header b{color:var(--text);}
+.dt-re-fields{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;}
+.dt-re-input{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px;font-weight:600;padding:6px 10px;min-width:0;}
+.dt-re-input:focus{outline:none;border-color:rgba(255,107,53,.6);box-shadow:0 0 0 2px rgba(255,107,53,.12);}
+.dt-re-name{flex:2 1 160px;}
+.dt-re-meta{flex:2 1 160px;}
+.dt-re-confirm{background:linear-gradient(135deg,#FF6B35,#e63946);border:none;border-radius:6px;color:#fff;font-size:12px;font-weight:800;padding:7px 14px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.dt-re-confirm:hover{opacity:.88;}
+.dt-re-reset{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:11px;padding:6px 11px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.dt-re-reset:hover{border-color:var(--muted);color:var(--text);}
+.dt-re-cancel{background:transparent;border:none;color:var(--muted);font-size:16px;padding:4px 6px;cursor:pointer;margin-left:2px;flex-shrink:0;line-height:1;}
+.dt-re-cancel:hover{color:var(--text);}
+.dt-re-trade-btn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:11px;padding:5px 12px;cursor:pointer;transition:all .12s;}
+.dt-re-trade-btn:hover{border-color:rgba(15,98,254,.5);color:#5b9cf6;}
+.dt-re-trade-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.dt-re-trade-confirm{background:linear-gradient(135deg,#0f62fe,#0043a8);border:none;border-radius:6px;color:#fff;font-size:12px;font-weight:800;padding:7px 14px;cursor:pointer;margin-top:10px;white-space:nowrap;}
+.dt-re-trade-confirm:hover{opacity:.88;}
+@media(max-width:600px){.dt-re-fields{gap:6px;}.dt-re-name,.dt-re-meta{flex-basis:100%;}}
+
+/* Right panel — pick editor (kept for legacy, hidden) */
+.dt-panel{display:none;}
 .dt-panel-title{font-size:13px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
 .dt-input-group{margin-bottom:12px;}
 .dt-input-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:4px;}
@@ -1596,11 +1620,12 @@ button{touch-action:manipulation;}
 @media(max-width:820px){
   .dt-board-wrap{grid-template-columns:1fr;}
   .dt-teams-strip{grid-template-columns:1fr;}
-  .dt-panel{position:static;}
-  .dt-board-header{grid-template-columns:36px 1fr 90px;}
+  .dt-board-header{grid-template-columns:36px 1fr;}
   .dt-board-header .dt-bh-pos{display:none;}
-  .dt-row{grid-template-columns:36px 1fr 90px;}
+  .dt-row{grid-template-columns:36px 1fr;}
   .dt-row-team{display:none;}
+  .dt-re-fields{flex-wrap:wrap;}
+  .dt-re-name,.dt-re-meta{flex-basis:100%;}
 }
 
 
@@ -5285,120 +5310,194 @@ var dtConsensus = {
 // Our team picks for summary strip
 var dtOurPicks = [4,9,12,15,17,30,37,48];
 
-function dtSelectPick(pickNum) {
-  dtSelectedPick = pickNum;
-  var info = document.getElementById('dt-panel-info');
-  var numInput = document.getElementById('dt-pick-num');
-  var nameInput = document.getElementById('dt-player-name');
-  var metaInput = document.getElementById('dt-player-meta');
-  var pname = document.getElementById('pname-'+pickNum);
-  var pmeta = document.getElementById('pmeta-'+pickNum);
+// ── Inline row editor ─────────────────────────────────────────
+var _dtInlineOpen = null; // pick number of currently open inline editor
+
+function dtClickRow(rowEl, pickNum) {
+  // Toggle: clicking open row closes it
+  if (_dtInlineOpen === pickNum) { dtCloseInlineEditor(); return; }
+  dtCloseInlineEditor();
+
+  var pname = document.getElementById('pname-' + pickNum);
+  var pmeta = document.getElementById('pmeta-' + pickNum);
   if (!pname) return;
-  numInput.value = pickNum;
-  // Strip our-pick badge from displayed name for editing
-  var currentName = pname.textContent.replace(/[🏹🏀🌩️]\s*OUR PICK/, '').trim();
-  var currentMeta = pmeta ? pmeta.textContent.trim() : '';
-  nameInput.value = currentName;
-  metaInput.value = currentMeta;
-  info.innerHTML = "Editing <b>Pick #"+pickNum+"</b> — type the player's name and confirm.";
-  // Highlight selected row
-  document.querySelectorAll('.dt-row').forEach(function(r){r.classList.remove('editing');});
-  var row = document.getElementById('row-'+pickNum);
-  if(row) row.classList.add('editing');
-  // Scroll the selected row into view (center it), then scroll panel into view on mobile
-  if(row) row.scrollIntoView({behavior:'smooth',block:'center'});
-  setTimeout(function(){ document.getElementById('dt-panel').scrollIntoView({behavior:'smooth',block:'nearest'}); }, 300);
-  // Pre-fill the first pick row in the trade form
-  var firstPtrRow = document.querySelector('#dt-pick-rows .dt-ptr-row');
-  if (firstPtrRow) {
-    firstPtrRow.querySelector('.dt-ptr-pick').value = pickNum;
-    var rowOwner2 = row ? (row.getAttribute('data-our') || '') : '';
-    if (rowOwner2) firstPtrRow.querySelector('.dt-ptr-from').value = rowOwner2;
-  }
-  var tradeInfoEl = document.getElementById('dt-trade-info');
-  if (tradeInfoEl && dtActiveTab === 'trade') {
-    tradeInfoEl.innerHTML = 'Pick <b>#' + pickNum + '</b> pre-filled &mdash; add picks &amp; players on both sides, then confirm.';
-  }
+
+  var currentName = pname.textContent.replace(/[🏹🏀🌩️]\s*OUR PICK/, '').replace('✓ LOCKED IN · ', '').trim();
+  var currentMeta = pmeta ? pmeta.textContent.replace('✓ LOCKED IN · ', '').trim() : '';
+  var teamName = rowEl.querySelector('.dt-row-team') ? rowEl.querySelector('.dt-row-team').textContent : '';
+  var ourTeam  = rowEl.getAttribute('data-our') || '';
+
+  var teamOpts = function(side) {
+    return '<option value="">'+side+'&hellip;</option>'
+      +'<option value="mavs">🏹 Dallas</option>'
+      +'<option value="bulls">🏀 Chicago</option>'
+      +'<option value="thunder">⚡ OKC</option>'
+      +'<option value="other">Other</option>';
+  };
+
+  var ed = document.createElement('div');
+  ed.className = 'dt-row-editor';
+  ed.id = 'dt-inline-editor';
+  ed.innerHTML =
+    '<div class="dt-re-header">Editing <b>Pick #'+pickNum+'</b> &mdash; '+teamName+'</div>'
+    +'<div class="dt-re-fields">'
+    +'<input class="dt-re-input dt-re-name" id="dt-re-name" type="text" placeholder="Player name…" value="'+currentName.replace(/"/g,'&quot;')+'" autocomplete="off" spellcheck="false">'
+    +'<input class="dt-re-input dt-re-meta" id="dt-re-meta" type="text" placeholder="Pos · School · Height" value="'+currentMeta.replace(/"/g,'&quot;')+'" autocomplete="off">'
+    +'<button class="dt-re-confirm" onclick="dtConfirmInlinePick('+pickNum+')">✅ Confirm</button>'
+    +'<button class="dt-re-reset" onclick="dtResetInlinePick('+pickNum+')">↺ Reset</button>'
+    +'<button class="dt-re-cancel" onclick="dtCloseInlineEditor()" title="Close">✕</button>'
+    +'</div>'
+    +'<div><button class="dt-re-trade-btn" onclick="dtToggleInlineTrade(this)">🔀 Log a Trade for This Pick</button></div>'
+    +'<div class="dt-re-trade-section" id="dt-re-trade-section" style="display:none;">'
+    +'<div class="dt-input-label" style="font-size:10px;margin-bottom:6px;">Picks Changing Hands</div>'
+    +'<div id="dt-re-pick-rows">'
+    +'<div class="dt-ptr-row">'
+    +'<input class="dt-input dt-ptr-pick" type="number" min="1" max="60" placeholder="Pick #" value="'+pickNum+'">'
+    +'<select class="dt-input dt-ptr-from"><'+teamOpts('From')+'</select>'
+    +(ourTeam ? '<script>document.querySelector("#dt-re-pick-rows .dt-ptr-from").value="'+ourTeam+'";<\/script>' : '')
+    +'<span class="dt-ptr-arrow">&rarr;</span>'
+    +'<select class="dt-input dt-ptr-to"><'+teamOpts('To')+'</select>'
+    +'<button class="dt-ptr-remove" onclick="this.closest(\'.dt-ptr-row\').remove()" title="Remove">&times;</button>'
+    +'</div></div>'
+    +'<button class="dt-re-reset" style="margin:5px 0 10px;font-size:11px;" onclick="dtAddInlinePickRow()">+ Add pick</button>'
+    +'<div class="dt-input-group" style="margin-bottom:10px;">'
+    +'<div class="dt-input-label" style="font-size:10px;">Players Involved <span style="font-weight:400;opacity:.55">(optional)</span></div>'
+    +'<input class="dt-input" id="dt-re-trade-players" type="text" placeholder="e.g. Josh Green to OKC, Klay Thompson to DAL">'
+    +'</div>'
+    +'<button class="dt-re-trade-confirm" onclick="dtConfirmInlineTrade()">🔀 Confirm Trade</button>'
+    +'</div>';
+
+  rowEl.after(ed);
+  _dtInlineOpen = pickNum;
+  rowEl.classList.add('editing');
+
+  setTimeout(function() {
+    var ni = document.getElementById('dt-re-name');
+    if (ni) { ni.focus(); ni.select(); }
+  }, 60);
+
+  // Keyboard: Tab from name→meta, Enter on meta→confirm
+  setTimeout(function() {
+    var ni = document.getElementById('dt-re-name');
+    var mi = document.getElementById('dt-re-meta');
+    if (ni) ni.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); dtConfirmInlinePick(pickNum); }
+      else if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); if (mi) { mi.focus(); mi.select(); } }
+    });
+    if (mi) mi.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); dtConfirmInlinePick(pickNum); }
+    });
+  }, 80);
 }
 
-function dtConfirmPick() {
-  if(!dtSelectedPick) return;
-  var pickNum = dtSelectedPick;
-  var name = document.getElementById('dt-player-name').value.trim();
-  var meta = document.getElementById('dt-player-meta').value.trim();
-  if(!name) return;
-
-  // Update board row
-  var pname = document.getElementById('pname-'+pickNum);
-  var pmeta = document.getElementById('pmeta-'+pickNum);
-  var row = document.getElementById('row-'+pickNum);
-  var btn = document.getElementById('btn-'+pickNum);
-  var btnTxt = document.getElementById('btn-txt-'+pickNum);
-
-  if(pname){
-    // Check if it's our pick — re-add badge
-    var ourBadge = '';
-    var ourTeam = row ? row.getAttribute('data-our') : '';
-    if(ourTeam){
-      var icon = ourTeam==='mavs'?'🏹':ourTeam==='bulls'?'🏀':'🌩️';
-      ourBadge = ' <span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">'+icon+' OUR PICK</span>';
-    }
-    pname.innerHTML = name + ourBadge;
+function dtCloseInlineEditor() {
+  var ed = document.getElementById('dt-inline-editor');
+  if (ed) ed.remove();
+  if (_dtInlineOpen) {
+    var row = document.getElementById('row-' + _dtInlineOpen);
+    if (row) row.classList.remove('editing');
   }
-  if(pmeta) pmeta.innerHTML = '<span style="color:#00c864;font-weight:600;">✓ LOCKED IN</span> · ' + meta;
-  if(row){ row.classList.add('selected'); row.classList.remove('editing'); }
-  if(btnTxt) btnTxt.textContent = '✅ Done';
-  if(btn){ btn.classList.add('done'); }
-
-  // Update summary strip
-  var summary = document.getElementById('summary-'+pickNum);
-  if(summary){ summary.textContent = name; summary.className = 'dt-pick-name confirmed'; }
-
-  // Reset panel
-  document.getElementById('dt-panel-info').innerHTML = '<span style="color:#00c864;">✓ Pick #'+pickNum+' confirmed: <b>'+name+'</b></span>';
-  dtSelectedPick = null;
-  document.getElementById('dt-player-name').value = '';
-  document.getElementById('dt-player-meta').value = '';
-  document.getElementById('dt-pick-num').value = '';
-  dtUpdatePickCounter();
-  // Persist + feed + flash
-  dtSavePick(pickNum, name, meta);
-  dtInitRowTeamNames();
-  dtFeedAdd(pickNum, name, meta, (_dtRTN && _dtRTN[pickNum]) || '');
-  var _fr = document.getElementById('row-'+pickNum);
-  if(_fr){ _fr.classList.remove('just-confirmed'); void _fr.offsetWidth; _fr.classList.add('just-confirmed'); }
+  _dtInlineOpen = null;
 }
 
-function dtResetPick() {
-  if(!dtSelectedPick) return;
-  var pickNum = dtSelectedPick;
+function dtConfirmInlinePick(pickNum) {
+  var name = (document.getElementById('dt-re-name').value || '').trim();
+  var meta = (document.getElementById('dt-re-meta').value || '').trim();
+  if (!name) { document.getElementById('dt-re-name').focus(); return; }
+  dtDirectConfirmPick(pickNum, name, meta);
+  dtCloseInlineEditor();
+}
+
+function dtResetInlinePick(pickNum) {
   var def = dtConsensus[pickNum];
-  if(!def) return;
+  if (!def) return;
+  dtDirectResetPick(pickNum);
+  dtCloseInlineEditor();
+}
+
+function dtToggleInlineTrade(btn) {
+  var sec = document.getElementById('dt-re-trade-section');
+  if (!sec) return;
+  var open = sec.style.display !== 'none';
+  sec.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? '🔀 Log a Trade for This Pick' : '✕ Close Trade';
+}
+
+function dtAddInlinePickRow() {
+  var container = document.getElementById('dt-re-pick-rows');
+  if (!container) return;
+  var row = document.createElement('div');
+  row.className = 'dt-ptr-row';
+  row.innerHTML = '<input class="dt-input dt-ptr-pick" type="number" min="1" max="60" placeholder="Pick #">'
+    +'<select class="dt-input dt-ptr-from"><option value="">From&hellip;</option><option value="mavs">🏹 Dallas</option><option value="bulls">🏀 Chicago</option><option value="thunder">⚡ OKC</option><option value="other">Other</option></select>'
+    +'<span class="dt-ptr-arrow">&rarr;</span>'
+    +'<select class="dt-input dt-ptr-to"><option value="">To&hellip;</option><option value="mavs">🏹 Dallas</option><option value="bulls">🏀 Chicago</option><option value="thunder">⚡ OKC</option><option value="other">Other</option></select>'
+    +'<button class="dt-ptr-remove" onclick="this.closest(\'.dt-ptr-row\').remove()" title="Remove">&times;</button>';
+  container.appendChild(row);
+}
+
+function dtConfirmInlineTrade() {
+  var pickRows = document.querySelectorAll('#dt-re-pick-rows .dt-ptr-row');
+  var picks = [];
+  pickRows.forEach(function(r) {
+    var p = r.querySelector('.dt-ptr-pick').value;
+    var f = r.querySelector('.dt-ptr-from').value;
+    var t = r.querySelector('.dt-ptr-to').value;
+    if (p) picks.push({pick: parseInt(p), from: f, to: t});
+  });
+  if (!picks.length) return;
+  var players = (document.getElementById('dt-re-trade-players').value || '').trim();
+  dtConfirmTrade(picks, players);
+  dtCloseInlineEditor();
+}
+
+// ── Direct confirm / reset (used by inline editor and OTC admin) ──
+function dtDirectConfirmPick(pickNum, name, meta) {
   var pname = document.getElementById('pname-'+pickNum);
   var pmeta = document.getElementById('pmeta-'+pickNum);
-  var row = document.getElementById('row-'+pickNum);
-  var btn = document.getElementById('btn-'+pickNum);
-  var btnTxt = document.getElementById('btn-txt-'+pickNum);
+  var row   = document.getElementById('row-'+pickNum);
   var ourTeam = row ? row.getAttribute('data-our') : '';
   var ourBadge = '';
-  if(ourTeam){
+  if (ourTeam) {
     var icon = ourTeam==='mavs'?'🏹':ourTeam==='bulls'?'🏀':'🌩️';
     ourBadge = ' <span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">'+icon+' OUR PICK</span>';
   }
-  if(pname) pname.innerHTML = def.name + ourBadge;
-  if(pmeta) pmeta.innerHTML = def.meta;
-  if(row){ row.classList.remove('selected','editing'); }
-  if(btn) btn.classList.remove('done');
-  if(btnTxt) btnTxt.textContent = '✏️ Edit';
+  if (pname) pname.innerHTML = name + ourBadge;
+  if (pmeta) pmeta.innerHTML = '<span style="color:#00c864;font-weight:600;">✓</span> ' + meta;
+  if (row) { row.classList.add('selected'); row.classList.remove('editing'); }
   var summary = document.getElementById('summary-'+pickNum);
-  if(summary){ summary.textContent = def.name; summary.className = 'dt-pick-name'; }
-  document.getElementById('dt-panel-info').textContent = 'Select any pick on the board to update it live on draft night.';
-  dtSelectedPick = null;
-  document.getElementById('dt-player-name').value = '';
-  document.getElementById('dt-player-meta').value = '';
-  document.getElementById('dt-pick-num').value = '';
+  if (summary) { summary.textContent = name; summary.className = 'dt-pick-name confirmed'; }
+  dtUpdatePickCounter();
+  dtSavePick(pickNum, name, meta);
+  dtInitRowTeamNames();
+  dtFeedAdd(pickNum, name, meta, (_dtRTN && _dtRTN[pickNum]) || '');
+  if (row) { row.classList.remove('just-confirmed'); void row.offsetWidth; row.classList.add('just-confirmed'); }
+}
+
+function dtDirectResetPick(pickNum) {
+  var def = dtConsensus[pickNum];
+  if (!def) return;
+  var pname = document.getElementById('pname-'+pickNum);
+  var pmeta = document.getElementById('pmeta-'+pickNum);
+  var row   = document.getElementById('row-'+pickNum);
+  var ourTeam = row ? row.getAttribute('data-our') : '';
+  var ourBadge = '';
+  if (ourTeam) {
+    var icon = ourTeam==='mavs'?'🏹':ourTeam==='bulls'?'🏀':'🌩️';
+    ourBadge = ' <span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">'+icon+' OUR PICK</span>';
+  }
+  if (pname) pname.innerHTML = def.name + ourBadge;
+  if (pmeta) pmeta.innerHTML = def.meta;
+  if (row) row.classList.remove('selected','editing');
+  var summary = document.getElementById('summary-'+pickNum);
+  if (summary) { summary.textContent = def.name; summary.className = 'dt-pick-name'; }
   dtUpdatePickCounter();
 }
+
+// Keep legacy stubs so OTC admin still compiles
+function dtSelectPick(n) { dtClickRow(document.getElementById('row-'+n), n); }
+function dtConfirmPick() { if (dtSelectedPick) dtConfirmInlinePick(dtSelectedPick); }
+function dtResetPick()   { if (dtSelectedPick) dtResetInlinePick(dtSelectedPick); }
 
 // ── Pick counter ─────────────────────────────────────────────
 function dtUpdatePickCounter() {
@@ -5410,107 +5509,43 @@ function dtUpdatePickCounter() {
 // ── Reset All Picks ──────────────────────────────────────────
 function dtResetAll() {
   if(!confirm('Reset all confirmed picks back to consensus? This cannot be undone.')) return;
-  for(var i = 1; i <= 60; i++) {
-    var def = dtConsensus[i];
-    if(!def) continue;
-    var pname = document.getElementById('pname-'+i);
-    var pmeta = document.getElementById('pmeta-'+i);
-    var row = document.getElementById('row-'+i);
-    var btn = document.getElementById('btn-'+i);
-    var btnTxt = document.getElementById('btn-txt-'+i);
-    var summary = document.getElementById('summary-'+i);
-    var ourTeam = row ? row.getAttribute('data-our') : '';
-    var ourBadge = '';
-    if(ourTeam){
-      var icon = ourTeam==='mavs'?'🏹':ourTeam==='bulls'?'🏀':'🌩️';
-      ourBadge = ' <span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">'+icon+' OUR PICK</span>';
-    }
-    if(pname) pname.innerHTML = def.name + ourBadge;
-    if(pmeta) pmeta.innerHTML = def.meta;
-    if(row){ row.classList.remove('selected','editing'); }
-    if(btn) btn.classList.remove('done');
-    if(btnTxt) btnTxt.textContent = '✏️ Edit';
-    if(summary){ summary.textContent = def.name; summary.className = 'dt-pick-name'; }
-  }
-  document.getElementById('dt-panel-info').textContent = 'Select any pick on the board to update it live on draft night.';
+  dtCloseInlineEditor();
+  for(var i = 1; i <= 60; i++) { dtDirectResetPick(i); }
   dtSelectedPick = null;
-  document.getElementById('dt-player-name').value = '';
-  document.getElementById('dt-player-meta').value = '';
-  document.getElementById('dt-pick-num').value = '';
   dtUpdatePickCounter();
-  // Also clear persisted state and feed display
   dtClearStorage();
   dtFeedClear();
 }
 
 // ── Trade Feature ────────────────────────────────────────────
 var dtActiveTab = 'pick';
+// Legacy stubs (panel removed, kept for safety)
+function dtSwitchTab(tab) { dtActiveTab = tab; }
+function dtAddPickRow() {}
+function dtRemovePickRow(btn) { if (btn) btn.closest('.dt-ptr-row').remove(); }
 
-function dtSwitchTab(tab) {
-  dtActiveTab = tab;
-  document.getElementById('dt-tab-pick').style.display = tab === 'pick' ? '' : 'none';
-  document.getElementById('dt-tab-trade').style.display = tab === 'trade' ? '' : 'none';
-  document.getElementById('ptab-pick').classList.toggle('active', tab === 'pick');
-  document.getElementById('ptab-trade').classList.toggle('active', tab === 'trade');
-  // Pre-fill first pick row when switching to trade tab with a pick selected
-  if (tab === 'trade' && dtSelectedPick) {
-    var firstRow = document.querySelector('#dt-pick-rows .dt-ptr-row');
-    if (firstRow) {
-      firstRow.querySelector('.dt-ptr-pick').value = dtSelectedPick;
-      var boardRow = document.getElementById('row-' + dtSelectedPick);
-      var owner = boardRow ? (boardRow.getAttribute('data-our') || '') : '';
-      if (owner) firstRow.querySelector('.dt-ptr-from').value = owner;
-    }
-    document.getElementById('dt-trade-info').innerHTML =
-      'Pick <b>#' + dtSelectedPick + '</b> pre-filled &mdash; add picks &amp; players on both sides, then confirm.';
-  }
-}
-
-function dtAddPickRow(pickNum, fromTeam) {
-  var container = document.getElementById('dt-pick-rows');
-  // Clone the first row's structure (retains correct option text/emoji)
-  var template = container.querySelector('.dt-ptr-row');
-  var div = template.cloneNode(true);
-  div.querySelector('.dt-ptr-pick').value = pickNum || '';
-  div.querySelector('.dt-ptr-from').value = fromTeam || '';
-  div.querySelector('.dt-ptr-to').value = '';
-  container.appendChild(div);
-}
-
-function dtRemovePickRow(btn) {
-  var container = document.getElementById('dt-pick-rows');
-  var rows = container.querySelectorAll('.dt-ptr-row');
-  if (rows.length > 1) {
-    btn.closest('.dt-ptr-row').remove();
-  } else {
-    // Last row — reset instead of remove
-    var r = rows[0];
-    r.querySelector('.dt-ptr-pick').value = '';
-    r.querySelector('.dt-ptr-from').value = '';
-    r.querySelector('.dt-ptr-to').value = '';
-  }
-}
-
-function dtConfirmTrade() {
-  var rows = document.querySelectorAll('#dt-pick-rows .dt-ptr-row');
+// dtConfirmTrade now accepts either inline picks array or reads from old panel
+function dtConfirmTrade(inlinePicks, inlinePlayers) {
   var transfers = [];
-  rows.forEach(function(r) {
-    var pick = parseInt(r.querySelector('.dt-ptr-pick').value);
-    var from = r.querySelector('.dt-ptr-from').value;
-    var to   = r.querySelector('.dt-ptr-to').value;
-    if (pick && to) transfers.push({pick:pick, from:from||'', to:to});
-  });
-  var playersNote = document.getElementById('dt-trade-players').value.trim();
-  if (!transfers.length && !playersNote) {
-    document.getElementById('dt-trade-info').innerHTML =
-      '<span style="color:#e63946;">&#9888; Enter at least one pick or player involved in the trade.</span>';
-    return;
+  if (inlinePicks) {
+    // Called from inline editor
+    inlinePicks.forEach(function(p) { if (p.pick && p.to) transfers.push(p); });
+  } else {
+    // Legacy panel path (panel is hidden but kept as fallback)
+    var rows = document.querySelectorAll('#dt-pick-rows .dt-ptr-row');
+    rows.forEach(function(r) {
+      var pick = parseInt(r.querySelector('.dt-ptr-pick').value);
+      var from = r.querySelector('.dt-ptr-from').value;
+      var to   = r.querySelector('.dt-ptr-to').value;
+      if (pick && to) transfers.push({pick:pick, from:from||'', to:to});
+    });
   }
+  var playersNote = inlinePlayers !== undefined ? inlinePlayers
+    : (document.getElementById('dt-trade-players') ? document.getElementById('dt-trade-players').value.trim() : '');
+  if (!transfers.length && !playersNote) return;
   var now = new Date();
   var timeStr = now.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', second:'2-digit'});
-  // Apply each pick ownership change to the board
   transfers.forEach(function(t) { dtUpdatePickOwnership(t.pick, t.to, t.from); });
-  // Build trade log entry
   var parts = transfers.map(function(t) {
     var fromLabel = t.from ? (_dtTeamNames[t.from] || 'Other') + ' &#8594; ' : '';
     return 'Pick <b>#' + t.pick + '</b> ' + fromLabel + '<b>' + (_dtTeamNames[t.to] || 'Other') + '</b>';
@@ -5518,19 +5553,6 @@ function dtConfirmTrade() {
   var msg = '&#128256; <b>Trade:</b> ' + (parts.length ? parts.join(' &middot; ') : '(players only)');
   if (playersNote) msg += '<br><span style="color:var(--muted);font-size:11px;">Players: ' + playersNote + '</span>';
   dtAddTradeEntry(msg, timeStr);
-  // Feedback
-  var n = transfers.length;
-  document.getElementById('dt-trade-info').innerHTML =
-    '<span style="color:#5b9cf6;">&#10003; Trade logged' + (n ? ' &mdash; ' + n + ' pick' + (n!==1?'s':'') + ' updated' : '') + '.</span>';
-  // Reset form: clear values, keep first row, remove extras
-  rows.forEach(function(r, i) {
-    if (i === 0) {
-      r.querySelector('.dt-ptr-pick').value = '';
-      r.querySelector('.dt-ptr-from').value = '';
-      r.querySelector('.dt-ptr-to').value = '';
-    } else { r.remove(); }
-  });
-  document.getElementById('dt-trade-players').value = '';
   dtSelectedPick = null;
 }
 
@@ -5682,21 +5704,6 @@ function dtAdminSetOtc(n) {
   if (cons && metaEl && !metaEl.value) metaEl.value = cons.meta || '';
   var nameEl = document.getElementById('dt-admin-name');
   if (nameEl) { nameEl.value = ''; nameEl.focus(); }
-  // Sync the existing pick panel fields
-  var numEl = document.getElementById('dt-pick-num');
-  var pname = document.getElementById('pname-' + n);
-  var pmeta = document.getElementById('pmeta-' + n);
-  if (numEl) numEl.value = n;
-  if (pname) {
-    var curName = pname.textContent.replace(/[🏹🏀🌩️]\s*OUR PICK/,'').trim();
-    var panelName = document.getElementById('dt-player-name');
-    if (panelName) panelName.value = curName;
-  }
-  if (pmeta) {
-    var curMeta = pmeta.textContent.replace(/✓ LOCKED IN · /,'').trim();
-    var panelMeta = document.getElementById('dt-player-meta');
-    if (panelMeta) panelMeta.value = curMeta;
-  }
   // Highlight row as editing in board
   document.querySelectorAll('.dt-row.editing').forEach(function(r) { r.classList.remove('editing'); });
   if (row) row.classList.add('editing');
@@ -5707,18 +5714,12 @@ function dtAdminConfirm() {
   var name = (document.getElementById('dt-admin-name').value || '').trim();
   if (!name) { document.getElementById('dt-admin-name').focus(); return; }
   var meta = (document.getElementById('dt-admin-meta').value || '').trim();
-  // Sync to panel and call standard confirm
-  var panelName = document.getElementById('dt-player-name');
-  var panelMeta = document.getElementById('dt-player-meta');
-  if (panelName) panelName.value = name;
-  if (panelMeta) panelMeta.value = meta;
-  dtSelectedPick = dtOtcPick;
-  dtConfirmPick();
+  // Confirm directly without needing the old panel
+  dtDirectConfirmPick(dtOtcPick, name, meta);
+  dtCloseInlineEditor();
   // Clear admin input fields
-  var nameEl = document.getElementById('dt-admin-name');
-  var metaEl = document.getElementById('dt-admin-meta');
-  if (nameEl) nameEl.value = '';
-  if (metaEl) metaEl.value = '';
+  document.getElementById('dt-admin-name').value = '';
+  document.getElementById('dt-admin-meta').value = '';
   // Advance to next unconfirmed
   var next = dtFindNextUnconfirmed(dtOtcPick + 1);
   if (next <= 60) {
@@ -5762,25 +5763,11 @@ function dtClearStorage() {
 }
 
 function dtApplyPickToBoard(pickNum, name, meta) {
-  var pname  = document.getElementById('pname-' + pickNum);
-  var pmeta  = document.getElementById('pmeta-' + pickNum);
-  var row    = document.getElementById('row-' + pickNum);
-  var btn    = document.getElementById('btn-' + pickNum);
-  var btnTxt = document.getElementById('btn-txt-' + pickNum);
-  var sumEl  = document.getElementById('summary-' + pickNum);
-  if (!pname) return;
-  var ourTeam = row ? (row.getAttribute('data-our') || '') : '';
-  var ourBadge = '';
-  if (ourTeam) {
-    var ic = ourTeam === 'mavs' ? '🏹' : ourTeam === 'bulls' ? '🏀' : '🌩️';
-    ourBadge = ' <span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">' + ic + ' OUR PICK</span>';
-  }
-  pname.innerHTML = name + ourBadge;
-  if (pmeta) pmeta.innerHTML = '<span style="color:#00c864;font-weight:600;">✓ LOCKED IN</span> · ' + meta;
-  if (row)   { row.classList.add('selected'); row.classList.remove('editing', 'on-the-clock'); }
-  if (btn)   btn.classList.add('done');
-  if (btnTxt) btnTxt.textContent = '✅ Done';
-  if (sumEl) { sumEl.textContent = name; sumEl.className = 'dt-pick-name confirmed'; }
+  // Thin wrapper used by dtLoadSavedPicks — calls shared confirm logic
+  dtDirectConfirmPick(pickNum, name, meta);
+  // Also remove OTC pulsing for restored picks
+  var row = document.getElementById('row-' + pickNum);
+  if (row) row.classList.remove('on-the-clock');
 }
 
 function dtLoadSavedPicks() {
@@ -6006,9 +5993,8 @@ setInterval(dtUpdateCountdown, 1000);
           <div>#</div>
           <div>Team</div>
           <div>Player · School</div>
-          <div>Edit</div>
         </div>
-      <div class="dt-row" id="row-1" data-pick="1" data-our=""><div class="dt-row-pick">1</div><div class="dt-row-team">Wizards</div><div class="dt-row-player"><div class="player-name" id="pname-1">AJ Dybantsa</div><div class="player-meta" id="pmeta-1">SF · BYU · 6\'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-1" onclick="dtSelectPick(1)" title="Edit this pick"><span id="btn-txt-1">✏️ Edit</span></button></div></div><div class="dt-row" id="row-2" data-pick="2" data-our=""><div class="dt-row-pick">2</div><div class="dt-row-team">Jazz</div><div class="dt-row-player"><div class="player-name" id="pname-2">Darryn Peterson</div><div class="player-meta" id="pmeta-2">PG · Kansas · 6\'5"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-2" onclick="dtSelectPick(2)" title="Edit this pick"><span id="btn-txt-2">✏️ Edit</span></button></div></div><div class="dt-row" id="row-3" data-pick="3" data-our=""><div class="dt-row-pick">3</div><div class="dt-row-team">Grizzlies</div><div class="dt-row-player"><div class="player-name" id="pname-3">Cameron Boozer</div><div class="player-meta" id="pmeta-3">PF · Duke · 6\'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-3" onclick="dtSelectPick(3)" title="Edit this pick"><span id="btn-txt-3">✏️ Edit</span></button></div></div><div class="dt-row our-pick bulls-row" id="row-4" data-pick="4" data-our="bulls"><div class="dt-row-pick own">4</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-4">Caleb Wilson<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-4">SF/PF · North Carolina · 6\'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-4" onclick="dtSelectPick(4)" title="Edit this pick"><span id="btn-txt-4">✏️ Edit</span></button></div></div><div class="dt-row" id="row-5" data-pick="5" data-our=""><div class="dt-row-pick">5</div><div class="dt-row-team">Clippers (via IND)</div><div class="dt-row-player"><div class="player-name" id="pname-5">Keaton Wagler</div><div class="player-meta" id="pmeta-5">PG/SG · Illinois · 6\'4"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-5" onclick="dtSelectPick(5)" title="Edit this pick"><span id="btn-txt-5">✏️ Edit</span></button></div></div><div class="dt-row" id="row-6" data-pick="6" data-our=""><div class="dt-row-pick">6</div><div class="dt-row-team">Nets</div><div class="dt-row-player"><div class="player-name" id="pname-6">Darius Acuff Jr.</div><div class="player-meta" id="pmeta-6">PG · Arkansas · 6'2"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-6" onclick="dtSelectPick(6)" title="Edit this pick"><span id="btn-txt-6">✏️ Edit</span></button></div></div><div class="dt-row" id="row-7" data-pick="7" data-our=""><div class="dt-row-pick">7</div><div class="dt-row-team">Kings</div><div class="dt-row-player"><div class="player-name" id="pname-7">Kingston Flemings</div><div class="player-meta" id="pmeta-7">PG/SG · Houston · 6'4"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-7" onclick="dtSelectPick(7)" title="Edit this pick"><span id="btn-txt-7">✏️ Edit</span></button></div></div><div class="dt-row" id="row-8" data-pick="8" data-our=""><div class="dt-row-pick">8</div><div class="dt-row-team">Hawks (via NO)</div><div class="dt-row-player"><div class="player-name" id="pname-8">Aday Mara</div><div class="player-meta" id="pmeta-8">C · Michigan · 7'3"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-8" onclick="dtSelectPick(8)" title="Edit this pick"><span id="btn-txt-8">✏️ Edit</span></button></div></div><div class="dt-row our-pick mavs-row" id="row-9" data-pick="9" data-our="mavs"><div class="dt-row-pick own">9</div><div class="dt-row-team">Mavericks</div><div class="dt-row-player"><div class="player-name" id="pname-9">Mikel Brown Jr.<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏹 OUR PICK</span></div><div class="player-meta" id="pmeta-9">PG · Louisville · 6'5"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-9" onclick="dtSelectPick(9)" title="Edit this pick"><span id="btn-txt-9">✏️ Edit</span></button></div></div><div class="dt-row" id="row-10" data-pick="10" data-our=""><div class="dt-row-pick">10</div><div class="dt-row-team">Bucks</div><div class="dt-row-player"><div class="player-name" id="pname-10">Nate Ament</div><div class="player-meta" id="pmeta-10">SF · Tennessee · 6\'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-10" onclick="dtSelectPick(10)" title="Edit this pick"><span id="btn-txt-10">✏️ Edit</span></button></div></div><div class="dt-row" id="row-11" data-pick="11" data-our=""><div class="dt-row-pick">11</div><div class="dt-row-team">Warriors</div><div class="dt-row-player"><div class="player-name" id="pname-11">Brayden Burries</div><div class="player-meta" id="pmeta-11">SG · Arizona · 6'5"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-11" onclick="dtSelectPick(11)" title="Edit this pick"><span id="btn-txt-11">✏️ Edit</span></button></div></div><div class="dt-row our-pick thunder-row" id="row-12" data-pick="12" data-our="thunder"><div class="dt-row-pick own">12</div><div class="dt-row-team">Thunder</div><div class="dt-row-player"><div class="player-name" id="pname-12">Yaxel Lendeborg<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🌩️ OUR PICK</span></div><div class="player-meta" id="pmeta-12">PF · Michigan · 6'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-12" onclick="dtSelectPick(12)" title="Edit this pick"><span id="btn-txt-12">✏️ Edit</span></button></div></div><div class="dt-row" id="row-13" data-pick="13" data-our=""><div class="dt-row-pick">13</div><div class="dt-row-team">Heat</div><div class="dt-row-player"><div class="player-name" id="pname-13">Labaron Philon Jr.</div><div class="player-meta" id="pmeta-13">PG · Alabama · 6'3"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-13" onclick="dtSelectPick(13)" title="Edit this pick"><span id="btn-txt-13">✏️ Edit</span></button></div></div><div class="dt-row" id="row-14" data-pick="14" data-our=""><div class="dt-row-pick">14</div><div class="dt-row-team">Hornets</div><div class="dt-row-player"><div class="player-name" id="pname-14">Karim López</div><div class="player-meta" id="pmeta-14">F · Mexico · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-14" onclick="dtSelectPick(14)" title="Edit this pick"><span id="btn-txt-14">✏️ Edit</span></button></div></div><div class="dt-row our-pick bulls-row" id="row-15" data-pick="15" data-our="bulls"><div class="dt-row-pick own">15</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-15">Cameron Carr<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-15">SG/SF · Baylor · 6'5"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-15" onclick="dtSelectPick(15)" title="Edit this pick"><span id="btn-txt-15">✏️ Edit</span></button></div></div><div class="dt-row" id="row-16" data-pick="16" data-our=""><div class="dt-row-pick">16</div><div class="dt-row-team">Grizzlies (via PHX)</div><div class="dt-row-player"><div class="player-name" id="pname-16">Christian Anderson</div><div class="player-meta" id="pmeta-16">PG · Texas Tech · 6'1"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-16" onclick="dtSelectPick(16)" title="Edit this pick"><span id="btn-txt-16">✏️ Edit</span></button></div></div><div class="dt-row our-pick thunder-row" id="row-17" data-pick="17" data-our="thunder"><div class="dt-row-pick own">17</div><div class="dt-row-team">Thunder</div><div class="dt-row-player"><div class="player-name" id="pname-17">Morez Johnson Jr.<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🌩️ OUR PICK</span></div><div class="player-meta" id="pmeta-17">PF/C · Michigan · 6'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-17" onclick="dtSelectPick(17)" title="Edit this pick"><span id="btn-txt-17">✏️ Edit</span></button></div></div><div class="dt-row" id="row-18" data-pick="18" data-our=""><div class="dt-row-pick">18</div><div class="dt-row-team">Hornets (via ORL)</div><div class="dt-row-player"><div class="player-name" id="pname-18">Hannes Steinbach</div><div class="player-meta" id="pmeta-18">PF/C · Washington · 6'10"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-18" onclick="dtSelectPick(18)" title="Edit this pick"><span id="btn-txt-18">✏️ Edit</span></button></div></div><div class="dt-row" id="row-19" data-pick="19" data-our=""><div class="dt-row-pick">19</div><div class="dt-row-team">Raptors</div><div class="dt-row-player"><div class="player-name" id="pname-19">Bennett Stirtz</div><div class="player-meta" id="pmeta-19">PG · Iowa · 6'3"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-19" onclick="dtSelectPick(19)" title="Edit this pick"><span id="btn-txt-19">✏️ Edit</span></button></div></div><div class="dt-row" id="row-20" data-pick="20" data-our=""><div class="dt-row-pick">20</div><div class="dt-row-team">Spurs (via ATL)</div><div class="dt-row-player"><div class="player-name" id="pname-20">Jayden Quaintance</div><div class="player-meta" id="pmeta-20">C · Kentucky · 6'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-20" onclick="dtSelectPick(20)" title="Edit this pick"><span id="btn-txt-20">✏️ Edit</span></button></div></div><div class="dt-row" id="row-21" data-pick="21" data-our=""><div class="dt-row-pick">21</div><div class="dt-row-team">Pistons (via MIN)</div><div class="dt-row-player"><div class="player-name" id="pname-21">Isaiah Evans</div><div class="player-meta" id="pmeta-21">SG · Duke · 6'6"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-21" onclick="dtSelectPick(21)" title="Edit this pick"><span id="btn-txt-21">✏️ Edit</span></button></div></div><div class="dt-row" id="row-22" data-pick="22" data-our=""><div class="dt-row-pick">22</div><div class="dt-row-team">Sixers (via HOU)</div><div class="dt-row-player"><div class="player-name" id="pname-22">Allen Graves</div><div class="player-meta" id="pmeta-22">PF · Santa Clara · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-22" onclick="dtSelectPick(22)" title="Edit this pick"><span id="btn-txt-22">✏️ Edit</span></button></div></div><div class="dt-row" id="row-23" data-pick="23" data-our=""><div class="dt-row-pick">23</div><div class="dt-row-team">Hawks (via CLE)</div><div class="dt-row-player"><div class="player-name" id="pname-23">Ebuka Okorie</div><div class="player-meta" id="pmeta-23">PG · Stanford · 6'1"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-23" onclick="dtSelectPick(23)" title="Edit this pick"><span id="btn-txt-23">✏️ Edit</span></button></div></div><div class="dt-row" id="row-24" data-pick="24" data-our=""><div class="dt-row-pick">24</div><div class="dt-row-team">Knicks</div><div class="dt-row-player"><div class="player-name" id="pname-24">Chris Cenac Jr.</div><div class="player-meta" id="pmeta-24">PF/C · Houston · 6'10"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-24" onclick="dtSelectPick(24)" title="Edit this pick"><span id="btn-txt-24">✏️ Edit</span></button></div></div><div class="dt-row" id="row-25" data-pick="25" data-our=""><div class="dt-row-pick">25</div><div class="dt-row-team">Lakers</div><div class="dt-row-player"><div class="player-name" id="pname-25">Tarris Reed Jr.</div><div class="player-meta" id="pmeta-25">C · UConn · 6\'10"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-25" onclick="dtSelectPick(25)" title="Edit this pick"><span id="btn-txt-25">✏️ Edit</span></button></div></div><div class="dt-row" id="row-26" data-pick="26" data-our=""><div class="dt-row-pick">26</div><div class="dt-row-team">Nuggets</div><div class="dt-row-player"><div class="player-name" id="pname-26">Dailyn Swain</div><div class="player-meta" id="pmeta-26">SG/SF · Texas · 6'7"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-26" onclick="dtSelectPick(26)" title="Edit this pick"><span id="btn-txt-26">✏️ Edit</span></button></div></div><div class="dt-row" id="row-27" data-pick="27" data-our=""><div class="dt-row-pick">27</div><div class="dt-row-team">Celtics</div><div class="dt-row-player"><div class="player-name" id="pname-27">Koa Peat</div><div class="player-meta" id="pmeta-27">PF/SF · Arizona · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-27" onclick="dtSelectPick(27)" title="Edit this pick"><span id="btn-txt-27">✏️ Edit</span></button></div></div><div class="dt-row" id="row-28" data-pick="28" data-our=""><div class="dt-row-pick">28</div><div class="dt-row-team">Timberwolves (via DET)</div><div class="dt-row-player"><div class="player-name" id="pname-28">Joshua Jefferson</div><div class="player-meta" id="pmeta-28">SF/PF · Iowa State · 6\'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-28" onclick="dtSelectPick(28)" title="Edit this pick"><span id="btn-txt-28">✏️ Edit</span></button></div></div><div class="dt-row" id="row-29" data-pick="29" data-our=""><div class="dt-row-pick">29</div><div class="dt-row-team">Cavaliers (via SA)</div><div class="dt-row-player"><div class="player-name" id="pname-29">Zuby Ejiofor</div><div class="player-meta" id="pmeta-29">PF/C · St. John's · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-29" onclick="dtSelectPick(29)" title="Edit this pick"><span id="btn-txt-29">✏️ Edit</span></button></div></div><div class="dt-row our-pick mavs-row" id="row-30" data-pick="30" data-our="mavs"><div class="dt-row-pick own">30</div><div class="dt-row-team">Mavericks</div><div class="dt-row-player"><div class="player-name" id="pname-30">Joshua Jefferson<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏹 OUR PICK</span></div><div class="player-meta" id="pmeta-30">SF/PF · Iowa State · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-30" onclick="dtSelectPick(30)" title="Edit this pick"><span id="btn-txt-30">✏️ Edit</span></button></div></div>
+      <div class="dt-row" id="row-1" data-pick="1" data-our="" onclick="dtClickRow(this,1)" style="cursor:pointer;"><div class="dt-row-pick">1</div><div class="dt-row-team">Wizards</div><div class="dt-row-player"><div class="player-name" id="pname-1">AJ Dybantsa</div><div class="player-meta" id="pmeta-1">SF · BYU · 6\'9"</div></div></div><div class="dt-row" id="row-2" data-pick="2" data-our="" onclick="dtClickRow(this,2)" style="cursor:pointer;"><div class="dt-row-pick">2</div><div class="dt-row-team">Jazz</div><div class="dt-row-player"><div class="player-name" id="pname-2">Darryn Peterson</div><div class="player-meta" id="pmeta-2">PG · Kansas · 6\'5"</div></div></div><div class="dt-row" id="row-3" data-pick="3" data-our="" onclick="dtClickRow(this,3)" style="cursor:pointer;"><div class="dt-row-pick">3</div><div class="dt-row-team">Grizzlies</div><div class="dt-row-player"><div class="player-name" id="pname-3">Cameron Boozer</div><div class="player-meta" id="pmeta-3">PF · Duke · 6\'9"</div></div></div><div class="dt-row our-pick bulls-row" id="row-4" data-pick="4" data-our="bulls" onclick="dtClickRow(this,4)" style="cursor:pointer;"><div class="dt-row-pick own">4</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-4">Caleb Wilson<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-4">SF/PF · North Carolina · 6\'9"</div></div></div><div class="dt-row" id="row-5" data-pick="5" data-our="" onclick="dtClickRow(this,5)" style="cursor:pointer;"><div class="dt-row-pick">5</div><div class="dt-row-team">Clippers (via IND)</div><div class="dt-row-player"><div class="player-name" id="pname-5">Keaton Wagler</div><div class="player-meta" id="pmeta-5">PG/SG · Illinois · 6\'4"</div></div></div><div class="dt-row" id="row-6" data-pick="6" data-our="" onclick="dtClickRow(this,6)" style="cursor:pointer;"><div class="dt-row-pick">6</div><div class="dt-row-team">Nets</div><div class="dt-row-player"><div class="player-name" id="pname-6">Darius Acuff Jr.</div><div class="player-meta" id="pmeta-6">PG · Arkansas · 6'2"</div></div></div><div class="dt-row" id="row-7" data-pick="7" data-our="" onclick="dtClickRow(this,7)" style="cursor:pointer;"><div class="dt-row-pick">7</div><div class="dt-row-team">Kings</div><div class="dt-row-player"><div class="player-name" id="pname-7">Kingston Flemings</div><div class="player-meta" id="pmeta-7">PG/SG · Houston · 6'4"</div></div></div><div class="dt-row" id="row-8" data-pick="8" data-our="" onclick="dtClickRow(this,8)" style="cursor:pointer;"><div class="dt-row-pick">8</div><div class="dt-row-team">Hawks (via NO)</div><div class="dt-row-player"><div class="player-name" id="pname-8">Aday Mara</div><div class="player-meta" id="pmeta-8">C · Michigan · 7'3"</div></div></div><div class="dt-row our-pick mavs-row" id="row-9" data-pick="9" data-our="mavs" onclick="dtClickRow(this,9)" style="cursor:pointer;"><div class="dt-row-pick own">9</div><div class="dt-row-team">Mavericks</div><div class="dt-row-player"><div class="player-name" id="pname-9">Mikel Brown Jr.<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏹 OUR PICK</span></div><div class="player-meta" id="pmeta-9">PG · Louisville · 6'5"</div></div></div><div class="dt-row" id="row-10" data-pick="10" data-our="" onclick="dtClickRow(this,10)" style="cursor:pointer;"><div class="dt-row-pick">10</div><div class="dt-row-team">Bucks</div><div class="dt-row-player"><div class="player-name" id="pname-10">Nate Ament</div><div class="player-meta" id="pmeta-10">SF · Tennessee · 6\'9"</div></div></div><div class="dt-row" id="row-11" data-pick="11" data-our="" onclick="dtClickRow(this,11)" style="cursor:pointer;"><div class="dt-row-pick">11</div><div class="dt-row-team">Warriors</div><div class="dt-row-player"><div class="player-name" id="pname-11">Brayden Burries</div><div class="player-meta" id="pmeta-11">SG · Arizona · 6'5"</div></div></div><div class="dt-row our-pick thunder-row" id="row-12" data-pick="12" data-our="thunder" onclick="dtClickRow(this,12)" style="cursor:pointer;"><div class="dt-row-pick own">12</div><div class="dt-row-team">Thunder</div><div class="dt-row-player"><div class="player-name" id="pname-12">Yaxel Lendeborg<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🌩️ OUR PICK</span></div><div class="player-meta" id="pmeta-12">PF · Michigan · 6'9"</div></div></div><div class="dt-row" id="row-13" data-pick="13" data-our="" onclick="dtClickRow(this,13)" style="cursor:pointer;"><div class="dt-row-pick">13</div><div class="dt-row-team">Heat</div><div class="dt-row-player"><div class="player-name" id="pname-13">Labaron Philon Jr.</div><div class="player-meta" id="pmeta-13">PG · Alabama · 6'3"</div></div></div><div class="dt-row" id="row-14" data-pick="14" data-our="" onclick="dtClickRow(this,14)" style="cursor:pointer;"><div class="dt-row-pick">14</div><div class="dt-row-team">Hornets</div><div class="dt-row-player"><div class="player-name" id="pname-14">Karim López</div><div class="player-meta" id="pmeta-14">F · Mexico · 6'8"</div></div></div><div class="dt-row our-pick bulls-row" id="row-15" data-pick="15" data-our="bulls" onclick="dtClickRow(this,15)" style="cursor:pointer;"><div class="dt-row-pick own">15</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-15">Cameron Carr<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-15">SG/SF · Baylor · 6'5"</div></div></div><div class="dt-row" id="row-16" data-pick="16" data-our="" onclick="dtClickRow(this,16)" style="cursor:pointer;"><div class="dt-row-pick">16</div><div class="dt-row-team">Grizzlies (via PHX)</div><div class="dt-row-player"><div class="player-name" id="pname-16">Christian Anderson</div><div class="player-meta" id="pmeta-16">PG · Texas Tech · 6'1"</div></div></div><div class="dt-row our-pick thunder-row" id="row-17" data-pick="17" data-our="thunder" onclick="dtClickRow(this,17)" style="cursor:pointer;"><div class="dt-row-pick own">17</div><div class="dt-row-team">Thunder</div><div class="dt-row-player"><div class="player-name" id="pname-17">Morez Johnson Jr.<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🌩️ OUR PICK</span></div><div class="player-meta" id="pmeta-17">PF/C · Michigan · 6'9"</div></div></div><div class="dt-row" id="row-18" data-pick="18" data-our="" onclick="dtClickRow(this,18)" style="cursor:pointer;"><div class="dt-row-pick">18</div><div class="dt-row-team">Hornets (via ORL)</div><div class="dt-row-player"><div class="player-name" id="pname-18">Hannes Steinbach</div><div class="player-meta" id="pmeta-18">PF/C · Washington · 6'10"</div></div></div><div class="dt-row" id="row-19" data-pick="19" data-our="" onclick="dtClickRow(this,19)" style="cursor:pointer;"><div class="dt-row-pick">19</div><div class="dt-row-team">Raptors</div><div class="dt-row-player"><div class="player-name" id="pname-19">Bennett Stirtz</div><div class="player-meta" id="pmeta-19">PG · Iowa · 6'3"</div></div></div><div class="dt-row" id="row-20" data-pick="20" data-our="" onclick="dtClickRow(this,20)" style="cursor:pointer;"><div class="dt-row-pick">20</div><div class="dt-row-team">Spurs (via ATL)</div><div class="dt-row-player"><div class="player-name" id="pname-20">Jayden Quaintance</div><div class="player-meta" id="pmeta-20">C · Kentucky · 6'9"</div></div></div><div class="dt-row" id="row-21" data-pick="21" data-our="" onclick="dtClickRow(this,21)" style="cursor:pointer;"><div class="dt-row-pick">21</div><div class="dt-row-team">Pistons (via MIN)</div><div class="dt-row-player"><div class="player-name" id="pname-21">Isaiah Evans</div><div class="player-meta" id="pmeta-21">SG · Duke · 6'6"</div></div></div><div class="dt-row" id="row-22" data-pick="22" data-our="" onclick="dtClickRow(this,22)" style="cursor:pointer;"><div class="dt-row-pick">22</div><div class="dt-row-team">Sixers (via HOU)</div><div class="dt-row-player"><div class="player-name" id="pname-22">Allen Graves</div><div class="player-meta" id="pmeta-22">PF · Santa Clara · 6'8"</div></div></div><div class="dt-row" id="row-23" data-pick="23" data-our="" onclick="dtClickRow(this,23)" style="cursor:pointer;"><div class="dt-row-pick">23</div><div class="dt-row-team">Hawks (via CLE)</div><div class="dt-row-player"><div class="player-name" id="pname-23">Ebuka Okorie</div><div class="player-meta" id="pmeta-23">PG · Stanford · 6'1"</div></div></div><div class="dt-row" id="row-24" data-pick="24" data-our="" onclick="dtClickRow(this,24)" style="cursor:pointer;"><div class="dt-row-pick">24</div><div class="dt-row-team">Knicks</div><div class="dt-row-player"><div class="player-name" id="pname-24">Chris Cenac Jr.</div><div class="player-meta" id="pmeta-24">PF/C · Houston · 6'10"</div></div></div><div class="dt-row" id="row-25" data-pick="25" data-our="" onclick="dtClickRow(this,25)" style="cursor:pointer;"><div class="dt-row-pick">25</div><div class="dt-row-team">Lakers</div><div class="dt-row-player"><div class="player-name" id="pname-25">Tarris Reed Jr.</div><div class="player-meta" id="pmeta-25">C · UConn · 6\'10"</div></div></div><div class="dt-row" id="row-26" data-pick="26" data-our="" onclick="dtClickRow(this,26)" style="cursor:pointer;"><div class="dt-row-pick">26</div><div class="dt-row-team">Nuggets</div><div class="dt-row-player"><div class="player-name" id="pname-26">Dailyn Swain</div><div class="player-meta" id="pmeta-26">SG/SF · Texas · 6'7"</div></div></div><div class="dt-row" id="row-27" data-pick="27" data-our="" onclick="dtClickRow(this,27)" style="cursor:pointer;"><div class="dt-row-pick">27</div><div class="dt-row-team">Celtics</div><div class="dt-row-player"><div class="player-name" id="pname-27">Koa Peat</div><div class="player-meta" id="pmeta-27">PF/SF · Arizona · 6'8"</div></div></div><div class="dt-row" id="row-28" data-pick="28" data-our="" onclick="dtClickRow(this,28)" style="cursor:pointer;"><div class="dt-row-pick">28</div><div class="dt-row-team">Timberwolves (via DET)</div><div class="dt-row-player"><div class="player-name" id="pname-28">Joshua Jefferson</div><div class="player-meta" id="pmeta-28">SF/PF · Iowa State · 6\'9"</div></div></div><div class="dt-row" id="row-29" data-pick="29" data-our="" onclick="dtClickRow(this,29)" style="cursor:pointer;"><div class="dt-row-pick">29</div><div class="dt-row-team">Cavaliers (via SA)</div><div class="dt-row-player"><div class="player-name" id="pname-29">Zuby Ejiofor</div><div class="player-meta" id="pmeta-29">PF/C · St. John's · 6'8"</div></div></div><div class="dt-row our-pick mavs-row" id="row-30" data-pick="30" data-our="mavs" onclick="dtClickRow(this,30)" style="cursor:pointer;"><div class="dt-row-pick own">30</div><div class="dt-row-team">Mavericks</div><div class="dt-row-player"><div class="player-name" id="pname-30">Joshua Jefferson<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏹 OUR PICK</span></div><div class="player-meta" id="pmeta-30">SF/PF · Iowa State · 6'8"</div></div></div>
     </div>
 
     <!-- Round 2 Board: Picks 31–60 -->
@@ -6018,78 +6004,11 @@ setInterval(dtUpdateCountdown, 1000);
           <div>#</div>
           <div>Team</div>
           <div>Player · School</div>
-          <div>Edit</div>
         </div>
-      <div class="dt-row" id="row-31" data-pick="31" data-our=""><div class="dt-row-pick">31</div><div class="dt-row-team">Knicks (via WSH)</div><div class="dt-row-player"><div class="player-name" id="pname-31">Alex Karaban</div><div class="player-meta" id="pmeta-31">SF/PF · UConn · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-31" onclick="dtSelectPick(31)" title="Edit this pick"><span id="btn-txt-31">✏️ Edit</span></button></div></div><div class="dt-row" id="row-32" data-pick="32" data-our=""><div class="dt-row-pick">32</div><div class="dt-row-team">Grizzlies (via IND)</div><div class="dt-row-player"><div class="player-name" id="pname-32">Amari Allen</div><div class="player-meta" id="pmeta-32">SF/PF · Alabama · 6'7"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-32" onclick="dtSelectPick(32)" title="Edit this pick"><span id="btn-txt-32">✏️ Edit</span></button></div></div><div class="dt-row" id="row-33" data-pick="33" data-our=""><div class="dt-row-pick">33</div><div class="dt-row-team">Nets</div><div class="dt-row-player"><div class="player-name" id="pname-33">Matt Able</div><div class="player-meta" id="pmeta-33">SF · NC State · 6'7"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-33" onclick="dtSelectPick(33)" title="Edit this pick"><span id="btn-txt-33">✏️ Edit</span></button></div></div><div class="dt-row" id="row-34" data-pick="34" data-our=""><div class="dt-row-pick">34</div><div class="dt-row-team">Kings</div><div class="dt-row-player"><div class="player-name" id="pname-34">Tounde Yessoufou</div><div class="player-meta" id="pmeta-34">SF · Baylor · 6'6"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-34" onclick="dtSelectPick(34)" title="Edit this pick"><span id="btn-txt-34">✏️ Edit</span></button></div></div><div class="dt-row" id="row-35" data-pick="35" data-our=""><div class="dt-row-pick">35</div><div class="dt-row-team">Spurs (via UTAH)</div><div class="dt-row-player"><div class="player-name" id="pname-35">Tyler Tanner</div><div class="player-meta" id="pmeta-35">PG/SG · Vanderbilt · 6'3"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-35" onclick="dtSelectPick(35)" title="Edit this pick"><span id="btn-txt-35">✏️ Edit</span></button></div></div><div class="dt-row" id="row-36" data-pick="36" data-our=""><div class="dt-row-pick">36</div><div class="dt-row-team">Clippers (via MEM)</div><div class="dt-row-player"><div class="player-name" id="pname-36">Malachi Moreno</div><div class="player-meta" id="pmeta-36">C · Kentucky · 7'0"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-36" onclick="dtSelectPick(36)" title="Edit this pick"><span id="btn-txt-36">✏️ Edit</span></button></div></div><div class="dt-row our-pick thunder-row" id="row-37" data-pick="37" data-our="thunder"><div class="dt-row-pick own">37</div><div class="dt-row-team">Thunder</div><div class="dt-row-player"><div class="player-name" id="pname-37">Tarris Reed Jr.<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🌩️ OUR PICK</span></div><div class="player-meta" id="pmeta-37">PF/C · UConn · 6'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-37" onclick="dtSelectPick(37)" title="Edit this pick"><span id="btn-txt-37">✏️ Edit</span></button></div></div><div class="dt-row our-pick bulls-row" id="row-38" data-pick="38" data-our="bulls"><div class="dt-row-pick own">38</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-38">Milan Momcilovic<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-38">PF/SF · Iowa State · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-38" onclick="dtSelectPick(38)" title="Edit this pick"><span id="btn-txt-38">✏️ Edit</span></button></div></div><div class="dt-row" id="row-39" data-pick="39" data-our=""><div class="dt-row-pick">39</div><div class="dt-row-team">Rockets (via CHI)</div><div class="dt-row-player"><div class="player-name" id="pname-39">Luigi Suigo</div><div class="player-meta" id="pmeta-39">C · Italy · 7'0"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-39" onclick="dtSelectPick(39)" title="Edit this pick"><span id="btn-txt-39">✏️ Edit</span></button></div></div><div class="dt-row" id="row-40" data-pick="40" data-our=""><div class="dt-row-pick">40</div><div class="dt-row-team">Celtics (via MIL)</div><div class="dt-row-player"><div class="player-name" id="pname-40">Jack Kayil</div><div class="player-meta" id="pmeta-40">PG/SG · Alba Berlin · 6'8"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-40" onclick="dtSelectPick(40)" title="Edit this pick"><span id="btn-txt-40">✏️ Edit</span></button></div></div><div class="dt-row" id="row-41" data-pick="41" data-our=""><div class="dt-row-pick">41</div><div class="dt-row-team">Heat (via GS)</div><div class="dt-row-player"><div class="player-name" id="pname-41">Baba Miller</div><div class="player-meta" id="pmeta-41">PF/C · Cincinnati · 6'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-41" onclick="dtSelectPick(41)" title="Edit this pick"><span id="btn-txt-41">✏️ Edit</span></button></div></div><div class="dt-row" id="row-42" data-pick="42" data-our=""><div class="dt-row-pick">42</div><div class="dt-row-team">Spurs (via POR)</div><div class="dt-row-player"><div class="player-name" id="pname-42">Flory Bidunga</div><div class="player-meta" id="pmeta-42">C · Kansas · 7'0"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-42" onclick="dtSelectPick(42)" title="Edit this pick"><span id="btn-txt-42">✏️ Edit</span></button></div></div><div class="dt-row" id="row-43" data-pick="43" data-our=""><div class="dt-row-pick">43</div><div class="dt-row-team">Nets (via LAC)</div><div class="dt-row-player"><div class="player-name" id="pname-43">Otega Oweh</div><div class="player-meta" id="pmeta-43">SG/SF · Kentucky · 6\'6"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-43" onclick="dtSelectPick(43)" title="Edit this pick"><span id="btn-txt-43">✏️ Edit</span></button></div></div><div class="dt-row" id="row-44" data-pick="44" data-our=""><div class="dt-row-pick">44</div><div class="dt-row-team">Spurs (via MIA)</div><div class="dt-row-player"><div class="player-name" id="pname-44">Ryan Conwell</div><div class="player-meta" id="pmeta-44">SG · Louisville · 6'2"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-44" onclick="dtSelectPick(44)" title="Edit this pick"><span id="btn-txt-44">✏️ Edit</span></button></div></div><div class="dt-row" id="row-45" data-pick="45" data-our=""><div class="dt-row-pick">45</div><div class="dt-row-team">Kings (via CHA)</div><div class="dt-row-player"><div class="player-name" id="pname-45">Trevon Brazile</div><div class="player-meta" id="pmeta-45">PF · Arkansas · 6\'9"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-45" onclick="dtSelectPick(45)" title="Edit this pick"><span id="btn-txt-45">✏️ Edit</span></button></div></div><div class="dt-row" id="row-46" data-pick="46" data-our=""><div class="dt-row-pick">46</div><div class="dt-row-team">Magic</div><div class="dt-row-player"><div class="player-name" id="pname-46">Braden Smith</div><div class="player-meta" id="pmeta-46">PG · Purdue · 6'0"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-46" onclick="dtSelectPick(46)" title="Edit this pick"><span id="btn-txt-46">✏️ Edit</span></button></div></div><div class="dt-row" id="row-47" data-pick="47" data-our=""><div class="dt-row-pick">47</div><div class="dt-row-team">Suns (via PHI)</div><div class="dt-row-player"><div class="player-name" id="pname-47">Jeremy Fears Jr.</div><div class="player-meta" id="pmeta-47">PG · Michigan State · 6'2"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-47" onclick="dtSelectPick(47)" title="Edit this pick"><span id="btn-txt-47">✏️ Edit</span></button></div></div><div class="dt-row our-pick mavs-row" id="row-48" data-pick="48" data-our="mavs"><div class="dt-row-pick own">48</div><div class="dt-row-team">Mavericks</div><div class="dt-row-player"><div class="player-name" id="pname-48">Rueben Chinyelu<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏹 OUR PICK</span></div><div class="player-meta" id="pmeta-48">C · Florida · 7'0"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-48" onclick="dtSelectPick(48)" title="Edit this pick"><span id="btn-txt-48">✏️ Edit</span></button></div></div><div class="dt-row" id="row-49" data-pick="49" data-our=""><div class="dt-row-pick">49</div><div class="dt-row-team">Nuggets (via ATL)</div><div class="dt-row-player"><div class="player-name" id="pname-49">Felix Okpara</div><div class="player-meta" id="pmeta-49">C · Tennessee · 7'0"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-49" onclick="dtSelectPick(49)" title="Edit this pick"><span id="btn-txt-49">✏️ Edit</span></button></div></div><div class="dt-row" id="row-50" data-pick="50" data-our=""><div class="dt-row-pick">50</div><div class="dt-row-team">Raptors</div><div class="dt-row-player"><div class="player-name" id="pname-50">Andrej Stojakovic</div><div class="player-meta" id="pmeta-50">SG/SF · Illinois · 6'7"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-50" onclick="dtSelectPick(50)" title="Edit this pick"><span id="btn-txt-50">✏️ Edit</span></button></div></div><div class="dt-row" id="row-51" data-pick="51" data-our=""><div class="dt-row-pick">51</div><div class="dt-row-team">Wizards (via MIN)</div><div class="dt-row-player"><div class="player-name" id="pname-51">Dillon Mitchell</div><div class="player-meta" id="pmeta-51">SF · St. John\'s · 6\'7"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-51" onclick="dtSelectPick(51)" title="Edit this pick"><span id="btn-txt-51">✏️ Edit</span></button></div></div><div class="dt-row" id="row-52" data-pick="52" data-our=""><div class="dt-row-pick">52</div><div class="dt-row-team">Clippers (via CLE)</div><div class="dt-row-player"><div class="player-name" id="pname-52">Richie Saunders</div><div class="player-meta" id="pmeta-52">SG/SF · BYU · 6'6"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-52" onclick="dtSelectPick(52)" title="Edit this pick"><span id="btn-txt-52">✏️ Edit</span></button></div></div><div class="dt-row" id="row-53" data-pick="53" data-our=""><div class="dt-row-pick">53</div><div class="dt-row-team">Rockets</div><div class="dt-row-player"><div class="player-name" id="pname-53">Billy Richmond III</div><div class="player-meta" id="pmeta-53">SG/SF · Arkansas · 6'6"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-53" onclick="dtSelectPick(53)" title="Edit this pick"><span id="btn-txt-53">✏️ Edit</span></button></div></div><div class="dt-row" id="row-54" data-pick="54" data-our=""><div class="dt-row-pick">54</div><div class="dt-row-team">Warriors (via LAL)</div><div class="dt-row-player"><div class="player-name" id="pname-54">Ja'Kobi Gillespie</div><div class="player-meta" id="pmeta-54">PG · Tennessee · 6'3"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-54" onclick="dtSelectPick(54)" title="Edit this pick"><span id="btn-txt-54">✏️ Edit</span></button></div></div><div class="dt-row" id="row-55" data-pick="55" data-our=""><div class="dt-row-pick">55</div><div class="dt-row-team">Knicks</div><div class="dt-row-player"><div class="player-name" id="pname-55">Izaiyah Nelson</div><div class="player-meta" id="pmeta-55">PG · South Florida · 6\'5"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-55" onclick="dtSelectPick(55)" title="Edit this pick"><span id="btn-txt-55">✏️ Edit</span></button></div></div><div class="dt-row our-pick bulls-row" id="row-56" data-pick="56" data-our="bulls"><div class="dt-row-pick own">56</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-56">Emanuel Sharp<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-56">SG · Houston · 6'4"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-56" onclick="dtSelectPick(56)" title="Edit this pick"><span id="btn-txt-56">✏️ Edit</span></button></div></div><div class="dt-row" id="row-57" data-pick="57" data-our=""><div class="dt-row-pick">57</div><div class="dt-row-team">Hawks (via BOS)</div><div class="dt-row-player"><div class="player-name" id="pname-57">Nick Martinelli</div><div class="player-meta" id="pmeta-57">SF/PF · Northwestern · 6'5"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-57" onclick="dtSelectPick(57)" title="Edit this pick"><span id="btn-txt-57">✏️ Edit</span></button></div></div><div class="dt-row" id="row-58" data-pick="58" data-our=""><div class="dt-row-pick">58</div><div class="dt-row-team">Pelicans (via DET)</div><div class="dt-row-player"><div class="player-name" id="pname-58">Kylan Boswell</div><div class="player-meta" id="pmeta-58">PG/SG · Illinois · 6'2"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-58" onclick="dtSelectPick(58)" title="Edit this pick"><span id="btn-txt-58">✏️ Edit</span></button></div></div><div class="dt-row" id="row-59" data-pick="59" data-our=""><div class="dt-row-pick">59</div><div class="dt-row-team">Timberwolves (via SA)</div><div class="dt-row-player"><div class="player-name" id="pname-59">Bruce Thornton</div><div class="player-meta" id="pmeta-59">PG/SG · Ohio State · 6'1"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-59" onclick="dtSelectPick(59)" title="Edit this pick"><span id="btn-txt-59">✏️ Edit</span></button></div></div><div class="dt-row" id="row-60" data-pick="60" data-our=""><div class="dt-row-pick">60</div><div class="dt-row-team">Wizards (via OKC)</div><div class="dt-row-player"><div class="player-name" id="pname-60">Ugonna Onyenso</div><div class="player-meta" id="pmeta-60">C · Virginia · 7'0"</div></div><div class="dt-row-action"><button class="dt-select-btn" id="btn-60" onclick="dtSelectPick(60)" title="Edit this pick"><span id="btn-txt-60">✏️ Edit</span></button></div></div>
+      <div class="dt-row" id="row-31" data-pick="31" data-our="" onclick="dtClickRow(this,31)" style="cursor:pointer;"><div class="dt-row-pick">31</div><div class="dt-row-team">Knicks (via WSH)</div><div class="dt-row-player"><div class="player-name" id="pname-31">Alex Karaban</div><div class="player-meta" id="pmeta-31">SF/PF · UConn · 6'8"</div></div></div><div class="dt-row" id="row-32" data-pick="32" data-our="" onclick="dtClickRow(this,32)" style="cursor:pointer;"><div class="dt-row-pick">32</div><div class="dt-row-team">Grizzlies (via IND)</div><div class="dt-row-player"><div class="player-name" id="pname-32">Amari Allen</div><div class="player-meta" id="pmeta-32">SF/PF · Alabama · 6'7"</div></div></div><div class="dt-row" id="row-33" data-pick="33" data-our="" onclick="dtClickRow(this,33)" style="cursor:pointer;"><div class="dt-row-pick">33</div><div class="dt-row-team">Nets</div><div class="dt-row-player"><div class="player-name" id="pname-33">Matt Able</div><div class="player-meta" id="pmeta-33">SF · NC State · 6'7"</div></div></div><div class="dt-row" id="row-34" data-pick="34" data-our="" onclick="dtClickRow(this,34)" style="cursor:pointer;"><div class="dt-row-pick">34</div><div class="dt-row-team">Kings</div><div class="dt-row-player"><div class="player-name" id="pname-34">Tounde Yessoufou</div><div class="player-meta" id="pmeta-34">SF · Baylor · 6'6"</div></div></div><div class="dt-row" id="row-35" data-pick="35" data-our="" onclick="dtClickRow(this,35)" style="cursor:pointer;"><div class="dt-row-pick">35</div><div class="dt-row-team">Spurs (via UTAH)</div><div class="dt-row-player"><div class="player-name" id="pname-35">Tyler Tanner</div><div class="player-meta" id="pmeta-35">PG/SG · Vanderbilt · 6'3"</div></div></div><div class="dt-row" id="row-36" data-pick="36" data-our="" onclick="dtClickRow(this,36)" style="cursor:pointer;"><div class="dt-row-pick">36</div><div class="dt-row-team">Clippers (via MEM)</div><div class="dt-row-player"><div class="player-name" id="pname-36">Malachi Moreno</div><div class="player-meta" id="pmeta-36">C · Kentucky · 7'0"</div></div></div><div class="dt-row our-pick thunder-row" id="row-37" data-pick="37" data-our="thunder" onclick="dtClickRow(this,37)" style="cursor:pointer;"><div class="dt-row-pick own">37</div><div class="dt-row-team">Thunder</div><div class="dt-row-player"><div class="player-name" id="pname-37">Tarris Reed Jr.<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🌩️ OUR PICK</span></div><div class="player-meta" id="pmeta-37">PF/C · UConn · 6'9"</div></div></div><div class="dt-row our-pick bulls-row" id="row-38" data-pick="38" data-our="bulls" onclick="dtClickRow(this,38)" style="cursor:pointer;"><div class="dt-row-pick own">38</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-38">Milan Momcilovic<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-38">PF/SF · Iowa State · 6'8"</div></div></div><div class="dt-row" id="row-39" data-pick="39" data-our="" onclick="dtClickRow(this,39)" style="cursor:pointer;"><div class="dt-row-pick">39</div><div class="dt-row-team">Rockets (via CHI)</div><div class="dt-row-player"><div class="player-name" id="pname-39">Luigi Suigo</div><div class="player-meta" id="pmeta-39">C · Italy · 7'0"</div></div></div><div class="dt-row" id="row-40" data-pick="40" data-our="" onclick="dtClickRow(this,40)" style="cursor:pointer;"><div class="dt-row-pick">40</div><div class="dt-row-team">Celtics (via MIL)</div><div class="dt-row-player"><div class="player-name" id="pname-40">Jack Kayil</div><div class="player-meta" id="pmeta-40">PG/SG · Alba Berlin · 6'8"</div></div></div><div class="dt-row" id="row-41" data-pick="41" data-our="" onclick="dtClickRow(this,41)" style="cursor:pointer;"><div class="dt-row-pick">41</div><div class="dt-row-team">Heat (via GS)</div><div class="dt-row-player"><div class="player-name" id="pname-41">Baba Miller</div><div class="player-meta" id="pmeta-41">PF/C · Cincinnati · 6'9"</div></div></div><div class="dt-row" id="row-42" data-pick="42" data-our="" onclick="dtClickRow(this,42)" style="cursor:pointer;"><div class="dt-row-pick">42</div><div class="dt-row-team">Spurs (via POR)</div><div class="dt-row-player"><div class="player-name" id="pname-42">Flory Bidunga</div><div class="player-meta" id="pmeta-42">C · Kansas · 7'0"</div></div></div><div class="dt-row" id="row-43" data-pick="43" data-our="" onclick="dtClickRow(this,43)" style="cursor:pointer;"><div class="dt-row-pick">43</div><div class="dt-row-team">Nets (via LAC)</div><div class="dt-row-player"><div class="player-name" id="pname-43">Otega Oweh</div><div class="player-meta" id="pmeta-43">SG/SF · Kentucky · 6\'6"</div></div></div><div class="dt-row" id="row-44" data-pick="44" data-our="" onclick="dtClickRow(this,44)" style="cursor:pointer;"><div class="dt-row-pick">44</div><div class="dt-row-team">Spurs (via MIA)</div><div class="dt-row-player"><div class="player-name" id="pname-44">Ryan Conwell</div><div class="player-meta" id="pmeta-44">SG · Louisville · 6'2"</div></div></div><div class="dt-row" id="row-45" data-pick="45" data-our="" onclick="dtClickRow(this,45)" style="cursor:pointer;"><div class="dt-row-pick">45</div><div class="dt-row-team">Kings (via CHA)</div><div class="dt-row-player"><div class="player-name" id="pname-45">Trevon Brazile</div><div class="player-meta" id="pmeta-45">PF · Arkansas · 6\'9"</div></div></div><div class="dt-row" id="row-46" data-pick="46" data-our="" onclick="dtClickRow(this,46)" style="cursor:pointer;"><div class="dt-row-pick">46</div><div class="dt-row-team">Magic</div><div class="dt-row-player"><div class="player-name" id="pname-46">Braden Smith</div><div class="player-meta" id="pmeta-46">PG · Purdue · 6'0"</div></div></div><div class="dt-row" id="row-47" data-pick="47" data-our="" onclick="dtClickRow(this,47)" style="cursor:pointer;"><div class="dt-row-pick">47</div><div class="dt-row-team">Suns (via PHI)</div><div class="dt-row-player"><div class="player-name" id="pname-47">Jeremy Fears Jr.</div><div class="player-meta" id="pmeta-47">PG · Michigan State · 6'2"</div></div></div><div class="dt-row our-pick mavs-row" id="row-48" data-pick="48" data-our="mavs" onclick="dtClickRow(this,48)" style="cursor:pointer;"><div class="dt-row-pick own">48</div><div class="dt-row-team">Mavericks</div><div class="dt-row-player"><div class="player-name" id="pname-48">Rueben Chinyelu<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏹 OUR PICK</span></div><div class="player-meta" id="pmeta-48">C · Florida · 7'0"</div></div></div><div class="dt-row" id="row-49" data-pick="49" data-our="" onclick="dtClickRow(this,49)" style="cursor:pointer;"><div class="dt-row-pick">49</div><div class="dt-row-team">Nuggets (via ATL)</div><div class="dt-row-player"><div class="player-name" id="pname-49">Felix Okpara</div><div class="player-meta" id="pmeta-49">C · Tennessee · 7'0"</div></div></div><div class="dt-row" id="row-50" data-pick="50" data-our="" onclick="dtClickRow(this,50)" style="cursor:pointer;"><div class="dt-row-pick">50</div><div class="dt-row-team">Raptors</div><div class="dt-row-player"><div class="player-name" id="pname-50">Andrej Stojakovic</div><div class="player-meta" id="pmeta-50">SG/SF · Illinois · 6'7"</div></div></div><div class="dt-row" id="row-51" data-pick="51" data-our="" onclick="dtClickRow(this,51)" style="cursor:pointer;"><div class="dt-row-pick">51</div><div class="dt-row-team">Wizards (via MIN)</div><div class="dt-row-player"><div class="player-name" id="pname-51">Dillon Mitchell</div><div class="player-meta" id="pmeta-51">SF · St. John\'s · 6\'7"</div></div></div><div class="dt-row" id="row-52" data-pick="52" data-our="" onclick="dtClickRow(this,52)" style="cursor:pointer;"><div class="dt-row-pick">52</div><div class="dt-row-team">Clippers (via CLE)</div><div class="dt-row-player"><div class="player-name" id="pname-52">Richie Saunders</div><div class="player-meta" id="pmeta-52">SG/SF · BYU · 6'6"</div></div></div><div class="dt-row" id="row-53" data-pick="53" data-our="" onclick="dtClickRow(this,53)" style="cursor:pointer;"><div class="dt-row-pick">53</div><div class="dt-row-team">Rockets</div><div class="dt-row-player"><div class="player-name" id="pname-53">Billy Richmond III</div><div class="player-meta" id="pmeta-53">SG/SF · Arkansas · 6'6"</div></div></div><div class="dt-row" id="row-54" data-pick="54" data-our="" onclick="dtClickRow(this,54)" style="cursor:pointer;"><div class="dt-row-pick">54</div><div class="dt-row-team">Warriors (via LAL)</div><div class="dt-row-player"><div class="player-name" id="pname-54">Ja'Kobi Gillespie</div><div class="player-meta" id="pmeta-54">PG · Tennessee · 6'3"</div></div></div><div class="dt-row" id="row-55" data-pick="55" data-our="" onclick="dtClickRow(this,55)" style="cursor:pointer;"><div class="dt-row-pick">55</div><div class="dt-row-team">Knicks</div><div class="dt-row-player"><div class="player-name" id="pname-55">Izaiyah Nelson</div><div class="player-meta" id="pmeta-55">PG · South Florida · 6\'5"</div></div></div><div class="dt-row our-pick bulls-row" id="row-56" data-pick="56" data-our="bulls" onclick="dtClickRow(this,56)" style="cursor:pointer;"><div class="dt-row-pick own">56</div><div class="dt-row-team">Bulls</div><div class="dt-row-player"><div class="player-name" id="pname-56">Emanuel Sharp<span style="font-size:9px;background:rgba(255,107,53,.2);border:1px solid rgba(255,107,53,.4);border-radius:3px;padding:1px 5px;color:#FF6B35;font-weight:700;margin-left:4px;">🏀 OUR PICK</span></div><div class="player-meta" id="pmeta-56">SG · Houston · 6'4"</div></div></div><div class="dt-row" id="row-57" data-pick="57" data-our="" onclick="dtClickRow(this,57)" style="cursor:pointer;"><div class="dt-row-pick">57</div><div class="dt-row-team">Hawks (via BOS)</div><div class="dt-row-player"><div class="player-name" id="pname-57">Nick Martinelli</div><div class="player-meta" id="pmeta-57">SF/PF · Northwestern · 6'5"</div></div></div><div class="dt-row" id="row-58" data-pick="58" data-our="" onclick="dtClickRow(this,58)" style="cursor:pointer;"><div class="dt-row-pick">58</div><div class="dt-row-team">Pelicans (via DET)</div><div class="dt-row-player"><div class="player-name" id="pname-58">Kylan Boswell</div><div class="player-meta" id="pmeta-58">PG/SG · Illinois · 6'2"</div></div></div><div class="dt-row" id="row-59" data-pick="59" data-our="" onclick="dtClickRow(this,59)" style="cursor:pointer;"><div class="dt-row-pick">59</div><div class="dt-row-team">Timberwolves (via SA)</div><div class="dt-row-player"><div class="player-name" id="pname-59">Bruce Thornton</div><div class="player-meta" id="pmeta-59">PG/SG · Ohio State · 6'1"</div></div></div><div class="dt-row" id="row-60" data-pick="60" data-our="" onclick="dtClickRow(this,60)" style="cursor:pointer;"><div class="dt-row-pick">60</div><div class="dt-row-team">Wizards (via OKC)</div><div class="dt-row-player"><div class="player-name" id="pname-60">Ugonna Onyenso</div><div class="player-meta" id="pmeta-60">C · Virginia · 7'0"</div></div></div>
     </div>
 
   </div>
-
-  <!-- Edit Panel -->
-    <div class="dt-panel" id="dt-panel">
-      <!-- Tab switcher -->
-      <div class="dt-panel-tabs">
-        <button class="dt-ptab active" id="ptab-pick" onclick="dtSwitchTab('pick')">✏️ Log a Pick</button>
-        <button class="dt-ptab" id="ptab-trade" onclick="dtSwitchTab('trade')">🔀 Log a Trade</button>
-      </div>
-
-      <!-- ── Pick Tab ── -->
-      <div id="dt-tab-pick">
-        <div class="dt-selected-pick-info" id="dt-panel-info">Select any pick on the board to update it live on draft night.</div>
-        <div class="dt-input-group">
-          <div class="dt-input-label">Pick #</div>
-          <input class="dt-input" id="dt-pick-num" type="number" min="1" max="60" placeholder="e.g. 4" readonly style="opacity:.6;">
-        </div>
-        <div class="dt-input-group">
-          <div class="dt-input-label">Player Name</div>
-          <input class="dt-input" id="dt-player-name" type="text" placeholder="e.g. Caleb Wilson">
-        </div>
-        <div class="dt-input-group">
-          <div class="dt-input-label">Position · School / Country</div>
-          <input class="dt-input" id="dt-player-meta" type="text" placeholder="e.g. PF · UNC · 6'9&quot;">
-        </div>
-        <button class="dt-confirm-btn" onclick="dtConfirmPick()">✅ Confirm Pick</button>
-        <button class="dt-reset-btn" onclick="dtResetPick()">↺ Reset to Consensus</button>
-      </div>
-
-      <!-- ══ Trade Tab ══ -->
-      <div id="dt-tab-trade" style="display:none;">
-        <div class="dt-selected-pick-info" id="dt-trade-info">Enter picks and players on both sides of the trade, then confirm.</div>
-
-        <!-- Pick rows: one per pick changing hands -->
-        <div class="dt-input-label" style="margin-bottom:6px;">Picks Changing Hands</div>
-        <div id="dt-pick-rows">
-          <div class="dt-ptr-row">
-            <input class="dt-input dt-ptr-pick" type="number" min="1" max="60" placeholder="Pick #">
-            <select class="dt-input dt-ptr-from">
-              <option value="">From&hellip;</option>
-              <option value="mavs">🏹 Dallas</option>
-              <option value="bulls">🏀 Chicago</option>
-              <option value="thunder">⚡ OKC</option>
-              <option value="other">Other</option>
-            </select>
-            <span class="dt-ptr-arrow">&rarr;</span>
-            <select class="dt-input dt-ptr-to">
-              <option value="">To&hellip;</option>
-              <option value="mavs">🏹 Dallas</option>
-              <option value="bulls">🏀 Chicago</option>
-              <option value="thunder">⚡ OKC</option>
-              <option value="other">Other</option>
-            </select>
-            <button class="dt-ptr-remove" onclick="dtRemovePickRow(this)" title="Remove">&times;</button>
-          </div>
-        </div>
-        <button class="dt-reset-btn" onclick="dtAddPickRow()" style="margin:5px 0 14px;font-size:11px;">+ Add another pick</button>
-
-        <!-- Players involved (free-text, both sides) -->
-        <div class="dt-input-group">
-          <div class="dt-input-label">Players Involved <span style="font-weight:400;opacity:.55">(optional)</span></div>
-          <input class="dt-input" id="dt-trade-players" type="text" placeholder="e.g. Josh Green to OKC, Klay Thompson to Dallas">
-        </div>
-
-        <button class="dt-confirm-btn" style="background:linear-gradient(135deg,#0f62fe,#0043a8);" onclick="dtConfirmTrade()">🔀 Confirm Trade</button>
-      </div>
-    </div>
 
     <!-- Trade Log (spans full width below the board) -->
     <div class="dt-trade-log" id="dt-trade-log" style="display:none;">
