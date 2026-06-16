@@ -1733,6 +1733,106 @@ button{touch-action:manipulation;}
 .sp-footer p{font-size:0.75rem;color:var(--muted,#888);margin:0;line-height:1.5;}
 @media(max-width:900px){.sp-grid{grid-template-columns:1fr;}#wrapper-preview{padding:16px 14px 32px;}}
 
+/* ══════════════════════════════════════════════════════════════════
+   FREE AGENCY TAB
+══════════════════════════════════════════════════════════════════ */
+.team-tab.tab-fa{border-color:rgba(255,255,255,.15);}
+.team-tab.tab-fa:hover{color:#fff;background:rgba(255,255,255,.12);}
+.team-tab.tab-fa.active{background:linear-gradient(135deg,rgba(0,200,100,.18),rgba(0,160,80,.12));border-color:rgba(0,200,100,.5);color:#00c864;}
+[data-light] .team-tab.tab-fa.active{background:rgba(0,160,80,.1);border-color:rgba(0,160,80,.4);color:#007a3d;}
+
+#wrapper-fa{max-width:1280px;margin:118px auto 0;padding:28px 24px 60px;width:100%;min-height:calc(100vh - 118px);box-sizing:border-box;}
+@media(max-width:480px){#wrapper-fa{margin-top:114px;padding:16px 14px 48px;}}
+
+/* FA header */
+.fa-header{text-align:center;margin-bottom:24px;}
+.fa-title{font-size:28px;font-weight:800;letter-spacing:-.01em;}
+.fa-sub{font-size:13px;color:var(--muted);margin-top:4px;}
+.fa-countdown{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,100,.12);border:1px solid rgba(0,200,100,.3);border-radius:20px;padding:5px 16px;margin-top:10px;font-size:13px;font-weight:700;color:#00c864;}
+.fa-header-row{display:flex;align-items:center;gap:14px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
+.fa-signing-counter{font-size:12px;color:var(--muted);}
+.fa-share-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(91,156,246,.1);border:1px solid rgba(91,156,246,.3);border-radius:20px;color:#5b9cf6;font-size:11px;font-weight:700;padding:4px 14px;cursor:pointer;transition:background .15s;}
+.fa-share-btn:hover{background:rgba(91,156,246,.2);}
+
+/* Our Teams strip */
+.fa-teams-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.fa-team-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+.fa-team-card.mavs{border-top:3px solid #006BB6;}
+.fa-team-card.bulls{border-top:3px solid #CE1141;}
+.fa-team-card.thunder{border-top:3px solid #007AC1;}
+.fa-tc-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px;}
+.fa-tc-signings{font-size:26px;font-weight:800;line-height:1;}
+.fa-tc-label{font-size:10px;color:var(--muted);margin-top:2px;margin-bottom:8px;}
+.fa-tc-list{display:flex;flex-direction:column;gap:4px;max-height:130px;overflow-y:auto;}
+.fa-tc-signing-pill{font-size:11px;padding:4px 8px;background:rgba(255,255,255,.04);border-radius:5px;display:flex;justify-content:space-between;align-items:center;gap:6px;}
+[data-light] .fa-tc-signing-pill{background:rgba(0,0,0,.04);}
+.fa-tc-signing-name{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.fa-tc-signing-deal{font-size:10px;color:var(--muted);white-space:nowrap;flex-shrink:0;}
+.fa-tc-empty{font-size:11px;color:var(--muted);font-style:italic;padding:2px 0;}
+
+/* Signing board */
+.fa-board{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.fa-board-col-header{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:9px 16px 8px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.025);}
+.fa-board-header{display:grid;grid-template-columns:40px 1fr 150px 120px 100px;gap:0;background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:7px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.fa-board-empty{padding:36px 20px;text-align:center;font-size:13px;color:var(--muted);line-height:1.8;}
+.fa-row{display:grid;grid-template-columns:40px 1fr 150px 120px 100px;gap:0;padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;transition:background .12s;}
+[data-light] .fa-row{border-bottom:1px solid rgba(0,0,0,.05);}
+.fa-row:last-child{border-bottom:none;}
+.fa-row:hover{background:rgba(255,255,255,.02);}
+.fa-row.our-mavs{box-shadow:inset 3px 0 0 #006BB6;background:rgba(0,107,182,.07);}
+.fa-row.our-bulls{box-shadow:inset 3px 0 0 #CE1141;background:rgba(206,17,65,.07);}
+.fa-row.our-thunder{box-shadow:inset 3px 0 0 #007AC1;background:rgba(0,122,193,.07);}
+[data-light] .fa-row.our-mavs{background:rgba(0,107,182,.06);}
+[data-light] .fa-row.our-bulls{background:rgba(206,17,65,.06);}
+[data-light] .fa-row.our-thunder{background:rgba(0,122,193,.06);}
+.fa-row-num{font-size:14px;font-weight:800;color:var(--muted);}
+.fa-row-player{font-weight:700;font-size:13px;}
+.fa-row-time{font-size:10px;color:var(--muted);margin-top:2px;}
+.fa-row-team{font-size:12px;font-weight:600;}
+.fa-row-contract{font-size:12px;color:var(--muted);}
+.fa-deal-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;}
+.fa-deal-max{background:rgba(255,165,0,.15);border:1px solid rgba(255,165,0,.4);color:#ffb300;}
+.fa-deal-supermax{background:rgba(255,107,53,.18);border:1px solid rgba(255,107,53,.45);color:#FF6B35;}
+.fa-deal-mle{background:rgba(91,156,246,.15);border:1px solid rgba(91,156,246,.4);color:#5b9cf6;}
+.fa-deal-biannual{background:rgba(160,100,255,.15);border:1px solid rgba(160,100,255,.4);color:#a064ff;}
+.fa-deal-minimum{background:rgba(150,150,150,.1);border:1px solid rgba(150,150,150,.3);color:var(--muted);}
+.fa-deal-twoway{background:rgba(130,80,230,.15);border:1px solid rgba(130,80,230,.4);color:#a060f0;}
+.fa-deal-sat{background:rgba(0,200,100,.12);border:1px solid rgba(0,200,100,.35);color:#00c864;}
+.fa-deal-extension{background:rgba(255,200,0,.12);border:1px solid rgba(255,200,0,.35);color:#ffc800;}
+@keyframes faRowIn{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
+.fa-row.new{animation:faRowIn .3s ease-out forwards;}
+
+/* FA Admin bar */
+.fa-admin-bar{display:none;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.22);border-radius:12px;padding:12px 16px;margin-bottom:18px;gap:10px;flex-wrap:wrap;align-items:center;}
+.fa-admin-bar.active{display:flex;}
+.fa-admin-badge{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;background:rgba(0,200,100,.18);border:1px solid rgba(0,200,100,.35);border-radius:20px;padding:4px 11px;color:#00c864;white-space:nowrap;flex-shrink:0;}
+.fa-admin-label{font-size:12px;font-weight:700;color:var(--text);flex-shrink:0;white-space:nowrap;}
+.fa-admin-input{background:rgba(0,0,0,.22);border:1px solid rgba(0,200,100,.28);border-radius:6px;color:var(--text);font-size:13px;font-weight:600;padding:6px 10px;}
+.fa-admin-input:focus{outline:none;border-color:#00c864;box-shadow:0 0 0 2px rgba(0,200,100,.15);}
+.fa-admin-select{background:rgba(0,0,0,.22);border:1px solid rgba(0,200,100,.28);border-radius:6px;color:var(--text);font-size:13px;padding:6px 10px;}
+.fa-admin-select:focus{outline:none;border-color:#00c864;}
+.fa-admin-player{flex:2 1 140px;min-width:120px;}
+.fa-admin-contract{flex:1 1 100px;min-width:80px;}
+.fa-admin-confirm{background:linear-gradient(135deg,#00c864,#009a4e);border:none;border-radius:7px;color:#fff;font-size:12px;font-weight:800;padding:7px 15px;cursor:pointer;flex-shrink:0;transition:opacity .15s;white-space:nowrap;}
+.fa-admin-confirm:hover{opacity:.85;}
+.fa-admin-undo{background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);font-size:11px;padding:6px 11px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.fa-admin-undo:hover{border-color:var(--muted);color:var(--text);}
+.fa-admin-exit{background:transparent;border:1px solid rgba(230,57,70,.38);border-radius:7px;color:#e63946;font-size:11px;padding:6px 11px;cursor:pointer;flex-shrink:0;margin-left:auto;}
+.fa-admin-exit:hover{background:rgba(230,57,70,.08);}
+[data-light] .fa-admin-bar{background:rgba(0,160,80,.06);border-color:rgba(0,160,80,.2);}
+[data-light] .fa-admin-input,[data-light] .fa-admin-select{background:rgba(255,255,255,.9);border-color:rgba(0,160,80,.3);}
+
+@media(max-width:820px){.fa-teams-strip{grid-template-columns:1fr;}}
+@media(max-width:720px){
+  .fa-board-header,.fa-row{grid-template-columns:36px 1fr 110px 90px;}
+  .fa-board-header .fa-bh-deal,.fa-row .fa-row-deal{display:none;}
+}
+@media(max-width:480px){
+  .fa-board-header,.fa-row{grid-template-columns:32px 1fr 90px;}
+  .fa-board-header .fa-bh-deal,.fa-row .fa-row-deal,
+  .fa-board-header .fa-bh-contract,.fa-row .fa-row-contract{display:none;}
+}
+
 </style>
 </head>
 <body>
@@ -1775,6 +1875,9 @@ button{touch-action:manipulation;}
     </button>
     <button class="team-tab tab-preview" onclick="switchTeam('preview')">
       🔭 Season Preview
+    </button>
+    <button class="team-tab tab-fa" onclick="switchTeam('fa')">
+      🤝 Free Agency
     </button>
   </div>
 </div>
@@ -4195,7 +4298,7 @@ const THEMES_LIGHT = {
 
 function switchTeam(team) {
   // ── URL hash deep-linking ────────────────────────────────────
-  const _hashSlug={mavs:'dallas',bulls:'chicago',thunder:'okc',h2h:'h2h',stats:'stats',draft:'draft','draft-history':'history',preview:'preview'};
+  const _hashSlug={mavs:'dallas',bulls:'chicago',thunder:'okc',h2h:'h2h',stats:'stats',draft:'draft','draft-history':'history',preview:'preview',fa:'fa'};
   try{history.replaceState(null,'','#'+(_hashSlug[team]||team));}catch(e){}
   // Hide all wrappers (flex team wrappers + block h2h wrapper)
   document.querySelectorAll('.wrapper').forEach(w => w.style.display = 'none');
@@ -4209,6 +4312,8 @@ function switchTeam(team) {
   if (dhWrap) dhWrap.style.display = 'none';
   const spWrap = document.getElementById('wrapper-preview');
   if (spWrap) spWrap.style.display = 'none';
+  const faWrap = document.getElementById('wrapper-fa');
+  if (faWrap) faWrap.style.display = 'none';
 
   document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('active'));
   const activeTab = document.querySelector('.team-tab.tab-' + team);
@@ -4247,6 +4352,12 @@ function switchTeam(team) {
     if (spWrap) spWrap.style.display = 'block';
     currentTeam = team;
     if (window._spInit) window._spInit();
+    return;
+  }
+
+  if (team === 'fa') {
+    if (faWrap) faWrap.style.display = 'block';
+    currentTeam = team;
     return;
   }
 
@@ -4306,7 +4417,7 @@ function toggleTheme(){
 
 // ── Restore team / section from URL hash on page load ─────────
 (function(){
-  const _slugTeam={dallas:'mavs',chicago:'bulls',okc:'thunder',h2h:'h2h',stats:'stats',draft:'draft',history:'draft-history',preview:'preview'};
+  const _slugTeam={dallas:'mavs',chicago:'bulls',okc:'thunder',h2h:'h2h',stats:'stats',draft:'draft',history:'draft-history',preview:'preview',fa:'fa'};
   const _raw=window.location.hash.slice(1);
   const _hash=_raw.toLowerCase();
   if(!_hash) return;
@@ -6394,6 +6505,123 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
 </div><!-- /#wrapper-preview -->
 
 
+<!-- ═══════════════════════════════════════════════════════════════════
+     FREE AGENCY TAB
+     ═══════════════════════════════════════════════════════════════════ -->
+<div id="wrapper-fa" style="display:none;">
+
+  <!-- Admin bar (Shift+Alt+F → code 2026) -->
+  <div class="fa-admin-bar" id="fa-admin-bar">
+    <div class="fa-admin-badge">🔐 Admin Mode</div>
+    <span class="fa-admin-label">Log Signing:</span>
+    <input class="fa-admin-input fa-admin-player" id="fa-admin-player" type="text" placeholder="Player name…" autocomplete="off" spellcheck="false">
+    <select class="fa-admin-select" id="fa-admin-team" style="flex:1 1 130px;min-width:110px;">
+      <option value="">Team…</option>
+      <option value="mavs">🏹 Dallas Mavericks</option>
+      <option value="bulls">🏀 Chicago Bulls</option>
+      <option value="thunder">🌩️ OKC Thunder</option>
+      <option disabled>──────────────</option>
+      <option value="hawks">Atlanta Hawks</option>
+      <option value="celtics">Boston Celtics</option>
+      <option value="nets">Brooklyn Nets</option>
+      <option value="hornets">Charlotte Hornets</option>
+      <option value="cavs">Cleveland Cavaliers</option>
+      <option value="nuggets">Denver Nuggets</option>
+      <option value="pistons">Detroit Pistons</option>
+      <option value="warriors">Golden State Warriors</option>
+      <option value="rockets">Houston Rockets</option>
+      <option value="pacers">Indiana Pacers</option>
+      <option value="clippers">LA Clippers</option>
+      <option value="lakers">LA Lakers</option>
+      <option value="grizzlies">Memphis Grizzlies</option>
+      <option value="heat">Miami Heat</option>
+      <option value="bucks">Milwaukee Bucks</option>
+      <option value="wolves">Minnesota Timberwolves</option>
+      <option value="pelicans">New Orleans Pelicans</option>
+      <option value="knicks">New York Knicks</option>
+      <option value="magic">Orlando Magic</option>
+      <option value="sixers">Philadelphia 76ers</option>
+      <option value="suns">Phoenix Suns</option>
+      <option value="blazers">Portland Trail Blazers</option>
+      <option value="kings">Sacramento Kings</option>
+      <option value="spurs">San Antonio Spurs</option>
+      <option value="raptors">Toronto Raptors</option>
+      <option value="jazz">Utah Jazz</option>
+      <option value="wizards">Washington Wizards</option>
+    </select>
+    <input class="fa-admin-input fa-admin-contract" id="fa-admin-contract" type="text" placeholder="e.g. 3yr/$48M" autocomplete="off" style="flex:1 1 110px;min-width:90px;">
+    <select class="fa-admin-select" id="fa-admin-deal" style="flex:0 0 auto;">
+      <option value="max">Max</option>
+      <option value="supermax">Supermax</option>
+      <option value="mle" selected>MLE</option>
+      <option value="biannual">Bi-Annual</option>
+      <option value="minimum">Minimum</option>
+      <option value="twoway">Two-Way</option>
+      <option value="sat">Sign-and-Trade</option>
+      <option value="extension">Extension</option>
+    </select>
+    <button class="fa-admin-confirm" onclick="faAdminConfirm()">✅ Log Signing</button>
+    <button class="fa-admin-undo" onclick="faAdminUndo()">↩ Undo</button>
+    <button class="fa-admin-exit" onclick="faAdminDeactivate()">✕ Exit Admin</button>
+  </div>
+
+  <!-- Header -->
+  <div class="fa-header">
+    <div class="fa-title">🤝 2026 NBA Free Agency</div>
+    <div class="fa-sub">Opens July 1, 2026 · 6 PM ET &nbsp;·&nbsp; Moratorium ends June 30</div>
+    <div class="fa-countdown" id="fa-countdown">⏱ Loading countdown…</div>
+    <div class="fa-header-row">
+      <div class="fa-signing-counter">Signings logged: <b id="fa-sign-count">0</b></div>
+      <button class="fa-share-btn" onclick="faShareState()">📤 Share Board</button>
+    </div>
+  </div>
+
+  <!-- Our Teams Summary Strip -->
+  <div class="fa-teams-strip">
+    <div class="fa-team-card mavs">
+      <div class="fa-tc-name">🏹 Dallas Mavericks</div>
+      <div class="fa-tc-signings" id="fa-count-mavs">0</div>
+      <div class="fa-tc-label">signings logged</div>
+      <div class="fa-tc-list" id="fa-list-mavs">
+        <div class="fa-tc-empty">No signings yet</div>
+      </div>
+    </div>
+    <div class="fa-team-card bulls">
+      <div class="fa-tc-name">🏀 Chicago Bulls</div>
+      <div class="fa-tc-signings" id="fa-count-bulls">0</div>
+      <div class="fa-tc-label">signings logged</div>
+      <div class="fa-tc-list" id="fa-list-bulls">
+        <div class="fa-tc-empty">No signings yet</div>
+      </div>
+    </div>
+    <div class="fa-team-card thunder">
+      <div class="fa-tc-name">🌩️ OKC Thunder</div>
+      <div class="fa-tc-signings" id="fa-count-thunder">0</div>
+      <div class="fa-tc-label">signings logged</div>
+      <div class="fa-tc-list" id="fa-list-thunder">
+        <div class="fa-tc-empty">No signings yet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signing Board -->
+  <div class="fa-board" id="fa-board">
+    <div class="fa-board-col-header">Live Signing Board · All Teams</div>
+    <div class="fa-board-header">
+      <div>#</div>
+      <div>Player</div>
+      <div>Team</div>
+      <div class="fa-bh-contract">Contract</div>
+      <div class="fa-bh-deal">Deal Type</div>
+    </div>
+    <div id="fa-board-entries">
+      <div class="fa-board-empty">No signings logged yet.<br>Press <b>Shift+Alt+F</b> on July 1 to open Admin Mode — then log each signing as it's reported live.</div>
+    </div>
+  </div>
+
+</div><!-- /#wrapper-fa -->
+
+
 <script>
 // ── Season Preview ─────────────────────────────────────────────────────────
 (function(){
@@ -6443,6 +6671,278 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
   window._spInit=function(){
     window.spRefresh();
   };
+})();
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// FREE AGENCY — ADMIN MODE + LIVE LOGGING
+// ══════════════════════════════════════════════════════════════════
+var faAdminActive = false;
+var _faStorageKey = 'hh-fa-2026';
+var _faSignings = [];
+
+var _faTeamNames = {
+  mavs:'Dallas Mavericks',bulls:'Chicago Bulls',thunder:'OKC Thunder',
+  hawks:'Atlanta Hawks',celtics:'Boston Celtics',nets:'Brooklyn Nets',
+  hornets:'Charlotte Hornets',cavs:'Cleveland Cavaliers',nuggets:'Denver Nuggets',
+  pistons:'Detroit Pistons',warriors:'Golden State Warriors',rockets:'Houston Rockets',
+  pacers:'Indiana Pacers',clippers:'LA Clippers',lakers:'LA Lakers',
+  grizzlies:'Memphis Grizzlies',heat:'Miami Heat',bucks:'Milwaukee Bucks',
+  wolves:'Minnesota Timberwolves',pelicans:'New Orleans Pelicans',knicks:'New York Knicks',
+  magic:'Orlando Magic',sixers:'Philadelphia 76ers',suns:'Phoenix Suns',
+  blazers:'Portland Trail Blazers',kings:'Sacramento Kings',spurs:'San Antonio Spurs',
+  raptors:'Toronto Raptors',jazz:'Utah Jazz',wizards:'Washington Wizards'
+};
+var _faOurTeams = {mavs:1,bulls:1,thunder:1};
+var _faDealLabels = {
+  max:'Max',supermax:'Supermax',mle:'MLE',biannual:'Bi-Annual',
+  minimum:'Min',twoway:'Two-Way',sat:'S&T',extension:'Extension'
+};
+var _faTeamIcons = {mavs:'🏹',bulls:'🏀',thunder:'🌩️'};
+
+// ── Admin activate / deactivate ───────────────────────────────────
+function faAdminToggle() {
+  if (faAdminActive) { faAdminDeactivate(); return; }
+  var code = prompt('Enter FA admin code:');
+  if (code === null || code.trim() !== '2026') return;
+  faAdminActivate();
+}
+
+function faAdminActivate() {
+  faAdminActive = true;
+  document.getElementById('fa-admin-bar').classList.add('active');
+  setTimeout(function() {
+    var el = document.getElementById('fa-admin-player');
+    if (el) el.focus();
+  }, 80);
+}
+
+function faAdminDeactivate() {
+  faAdminActive = false;
+  document.getElementById('fa-admin-bar').classList.remove('active');
+}
+
+// ── Log a signing ─────────────────────────────────────────────────
+function faAdminConfirm() {
+  var player = (document.getElementById('fa-admin-player').value || '').trim();
+  if (!player) { document.getElementById('fa-admin-player').focus(); return; }
+  var team     = document.getElementById('fa-admin-team').value || '';
+  var contract = (document.getElementById('fa-admin-contract').value || '').trim();
+  var deal     = document.getElementById('fa-admin-deal').value || 'minimum';
+
+  var signing = { id: Date.now(), player: player, team: team, contract: contract, deal: deal, ts: Date.now() };
+  _faSignings.push(signing);
+  faSaveSignings();
+  faRenderSigning(signing, true);
+  faUpdateTeamStrip();
+  faUpdateSigningCount();
+
+  // Clear player + contract, keep team + deal for fast repeat-entry
+  document.getElementById('fa-admin-player').value = '';
+  document.getElementById('fa-admin-contract').value = '';
+  document.getElementById('fa-admin-player').focus();
+}
+
+function faAdminUndo() {
+  if (!_faSignings.length) return;
+  var last = _faSignings[_faSignings.length - 1];
+  if (!confirm('Remove last signing: ' + last.player + '?')) return;
+  _faSignings.pop();
+  faSaveSignings();
+  faRebuildBoard();
+  faUpdateTeamStrip();
+  faUpdateSigningCount();
+}
+
+// ── Render one row ────────────────────────────────────────────────
+function faRenderSigning(signing, isNew) {
+  var container = document.getElementById('fa-board-entries');
+  var emptyMsg = container ? container.querySelector('.fa-board-empty') : null;
+  if (emptyMsg) emptyMsg.remove();
+
+  var num      = _faSignings.indexOf(signing) + 1;
+  var d        = new Date(signing.ts);
+  var timeStr  = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  var slug     = signing.team || '';
+  var teamName = _faTeamNames[slug] || slug || '—';
+  var isOur    = !!_faOurTeams[slug];
+  var ourCls   = isOur ? ' our-' + slug : '';
+  var dealCls  = 'fa-deal-' + (signing.deal || 'minimum');
+  var dealLbl  = _faDealLabels[signing.deal] || signing.deal || '';
+  var teamIcon = isOur ? (_faTeamIcons[slug] || '') + ' ' : '';
+
+  var row = document.createElement('div');
+  row.className = 'fa-row' + ourCls + (isNew ? ' new' : '');
+  row.setAttribute('data-fa-id', signing.id);
+  row.innerHTML =
+    '<div class="fa-row-num">' + num + '</div>' +
+    '<div><div class="fa-row-player">' + signing.player + '</div>' +
+    '<div class="fa-row-time">' + timeStr + '</div></div>' +
+    '<div class="fa-row-team">' + teamIcon + teamName + '</div>' +
+    '<div class="fa-row-contract fa-bh-contract">' + (signing.contract || '—') + '</div>' +
+    '<div class="fa-row-deal fa-bh-deal"><span class="fa-deal-badge ' + dealCls + '">' + dealLbl + '</span></div>';
+
+  // Prepend — newest signing appears at top
+  if (container) container.insertBefore(row, container.firstChild);
+}
+
+// ── Rebuild full board from _faSignings ───────────────────────────
+function faRebuildBoard() {
+  var container = document.getElementById('fa-board-entries');
+  if (!container) return;
+  container.innerHTML = '';
+  if (!_faSignings.length) {
+    container.innerHTML = '<div class="fa-board-empty">No signings logged yet.<br>Press <b>Shift+Alt+F</b> on July 1 to open Admin Mode.</div>';
+    return;
+  }
+  // Iterate oldest→newest with prepend → newest ends up at top
+  _faSignings.forEach(function(s) { faRenderSigning(s, false); });
+}
+
+// ── Our-teams summary strip ───────────────────────────────────────
+function faUpdateTeamStrip() {
+  ['mavs', 'bulls', 'thunder'].forEach(function(t) {
+    var list    = _faSignings.filter(function(s) { return s.team === t; });
+    var countEl = document.getElementById('fa-count-' + t);
+    var listEl  = document.getElementById('fa-list-' + t);
+    if (countEl) countEl.textContent = list.length;
+    if (listEl) {
+      if (!list.length) {
+        listEl.innerHTML = '<div class="fa-tc-empty">No signings yet</div>';
+      } else {
+        listEl.innerHTML = list.slice(-5).reverse().map(function(s) {
+          return '<div class="fa-tc-signing-pill">' +
+            '<span class="fa-tc-signing-name">' + s.player + '</span>' +
+            '<span class="fa-tc-signing-deal">' + (s.contract || (_faDealLabels[s.deal] || '')) + '</span></div>';
+        }).join('');
+      }
+    }
+  });
+}
+
+function faUpdateSigningCount() {
+  var el = document.getElementById('fa-sign-count');
+  if (el) el.textContent = _faSignings.length;
+}
+
+// ── localStorage ──────────────────────────────────────────────────
+function faSaveSignings() {
+  try { localStorage.setItem(_faStorageKey, JSON.stringify(_faSignings)); } catch(e) {}
+}
+
+function faLoadSignings() {
+  try {
+    var saved = JSON.parse(localStorage.getItem(_faStorageKey) || '[]');
+    if (!Array.isArray(saved) || !saved.length) return;
+    _faSignings = saved;
+    faRebuildBoard();
+    faUpdateTeamStrip();
+    faUpdateSigningCount();
+  } catch(e) {}
+}
+
+// ── Share board state via URL ─────────────────────────────────────
+function faShareState() {
+  try {
+    var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(_faSignings))));
+    var base = window.location.href.split('#')[0];
+    var url  = base + '#fa?state=' + encoded;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() {
+        alert('📤 FA board link copied!\nSend to friends — they open it to see your signing board.');
+      }).catch(function() { prompt('Copy this FA share link:', url); });
+    } else {
+      prompt('Copy this FA share link:', url);
+    }
+  } catch(e) { alert('Could not generate share link.'); }
+}
+
+// Import FA state from URL hash on page load
+(function() {
+  try {
+    var hash = window.location.hash || '';
+    var m = hash.match(/^#fa[?&]state=([A-Za-z0-9+/=]+)/);
+    if (!m) return;
+    var decoded  = decodeURIComponent(escape(atob(m[1])));
+    var imported = JSON.parse(decoded);
+    if (!Array.isArray(imported)) return;
+    var existing = JSON.parse(localStorage.getItem(_faStorageKey) || '[]');
+    var ids = {};
+    existing.forEach(function(s) { ids[s.id] = 1; });
+    imported.forEach(function(s) { if (!ids[s.id]) existing.push(s); });
+    existing.sort(function(a, b) { return a.ts - b.ts; });
+    localStorage.setItem(_faStorageKey, JSON.stringify(existing));
+  } catch(e) {}
+})();
+
+// ── FA countdown ──────────────────────────────────────────────────
+function faUpdateCountdown() {
+  var el = document.getElementById('fa-countdown');
+  if (!el) return;
+  var faTime = new Date('2026-07-01T18:00:00-04:00').getTime();
+  var diff = faTime - Date.now();
+  if (diff <= 0) { el.textContent = '🟢 FREE AGENCY IS OPEN'; el.style.color = '#00c864'; return; }
+  var d = Math.floor(diff / 86400000);
+  var h = Math.floor((diff % 86400000) / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+  el.textContent = '⏱ ' + d + 'd ' + h + 'h ' + m + 'm ' + s + 's until Free Agency';
+}
+faUpdateCountdown();
+setInterval(faUpdateCountdown, 1000);
+
+// ── Keyboard shortcut: Shift+Alt+F → FA Admin Mode ───────────────
+document.addEventListener('keydown', function(e) {
+  if (e.shiftKey && e.altKey && (e.key === 'f' || e.key === 'F')) {
+    var fw = document.getElementById('wrapper-fa');
+    if (fw && fw.style.display !== 'none') {
+      e.preventDefault();
+      faAdminToggle();
+    }
+  }
+});
+
+// ── Admin form keyboard nav ───────────────────────────────────────
+(function() {
+  function wireFAKeys() {
+    var playerEl   = document.getElementById('fa-admin-player');
+    var teamEl     = document.getElementById('fa-admin-team');
+    var contractEl = document.getElementById('fa-admin-contract');
+    var dealEl     = document.getElementById('fa-admin-deal');
+    if (!playerEl) return;
+    playerEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || (e.key === 'Tab' && !e.shiftKey)) {
+        e.preventDefault(); if (teamEl) teamEl.focus();
+      }
+    });
+    if (teamEl) teamEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { if (contractEl) contractEl.focus(); }
+    });
+    if (contractEl) contractEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || (e.key === 'Tab' && !e.shiftKey)) {
+        e.preventDefault(); if (dealEl) dealEl.focus();
+      }
+    });
+    if (dealEl) dealEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') faAdminConfirm();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireFAKeys);
+  } else {
+    wireFAKeys();
+  }
+})();
+
+// ── Load saved signings on page ready ────────────────────────────
+(function() {
+  function go() { setTimeout(faLoadSignings, 200); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', go);
+  } else {
+    go();
+  }
 })();
 </script>
 
