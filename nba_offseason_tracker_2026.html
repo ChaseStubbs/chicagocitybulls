@@ -1751,6 +1751,8 @@ button{touch-action:manipulation;}
 .fa-countdown{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,100,.12);border:1px solid rgba(0,200,100,.3);border-radius:20px;padding:5px 16px;margin-top:10px;font-size:13px;font-weight:700;color:#00c864;}
 .fa-header-row{display:flex;align-items:center;gap:14px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
 .fa-signing-counter{font-size:12px;color:var(--muted);}
+.fa-add-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(0,200,100,.1);border:1px solid rgba(0,200,100,.35);border-radius:20px;color:#00c864;font-size:11px;font-weight:700;padding:4px 14px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+.fa-add-btn:hover{background:rgba(0,200,100,.2);}
 .fa-share-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(91,156,246,.1);border:1px solid rgba(91,156,246,.3);border-radius:20px;color:#5b9cf6;font-size:11px;font-weight:700;padding:4px 14px;cursor:pointer;transition:background .15s;}
 .fa-share-btn:hover{background:rgba(91,156,246,.2);}
 
@@ -6510,9 +6512,8 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
      ═══════════════════════════════════════════════════════════════════ -->
 <div id="wrapper-fa" style="display:none;">
 
-  <!-- Admin bar (Shift+Alt+F → code 2026) -->
+  <!-- Admin bar (toggled via Add Signing button or Shift+Alt+F) -->
   <div class="fa-admin-bar" id="fa-admin-bar">
-    <div class="fa-admin-badge">🔐 Admin Mode</div>
     <span class="fa-admin-label">Log Signing:</span>
     <input class="fa-admin-input fa-admin-player" id="fa-admin-player" type="text" placeholder="Player name…" autocomplete="off" spellcheck="false">
     <select class="fa-admin-select" id="fa-admin-team" style="flex:1 1 130px;min-width:110px;">
@@ -6572,6 +6573,7 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
     <div class="fa-countdown" id="fa-countdown">⏱ Loading countdown…</div>
     <div class="fa-header-row">
       <div class="fa-signing-counter">Signings logged: <b id="fa-sign-count">0</b></div>
+      <button class="fa-add-btn" id="fa-add-btn" onclick="faAdminToggle()">➕ Add Signing</button>
       <button class="fa-share-btn" onclick="faShareState()">📤 Share Board</button>
     </div>
   </div>
@@ -6615,7 +6617,7 @@ window.DRAFT_HISTORY={"bulls":{"picks":[["2025","1","12","Noa Essengue","F","6-8
       <div class="fa-bh-deal">Deal Type</div>
     </div>
     <div id="fa-board-entries">
-      <div class="fa-board-empty">No signings logged yet.<br>Press <b>Shift+Alt+F</b> on July 1 to open Admin Mode — then log each signing as it's reported live.</div>
+      <div class="fa-board-empty">No signings logged yet.<br>Click <b>➕ Add Signing</b> above to start logging when free agency opens July 1.</div>
     </div>
   </div>
 
@@ -6703,15 +6705,14 @@ var _faTeamIcons = {mavs:'🏹',bulls:'🏀',thunder:'🌩️'};
 
 // ── Admin activate / deactivate ───────────────────────────────────
 function faAdminToggle() {
-  if (faAdminActive) { faAdminDeactivate(); return; }
-  var code = prompt('Enter FA admin code:');
-  if (code === null || code.trim() !== '2026') return;
-  faAdminActivate();
+  if (faAdminActive) { faAdminDeactivate(); } else { faAdminActivate(); }
 }
 
 function faAdminActivate() {
   faAdminActive = true;
   document.getElementById('fa-admin-bar').classList.add('active');
+  var btn = document.getElementById('fa-add-btn');
+  if (btn) { btn.textContent = '✕ Close'; btn.style.background = 'rgba(230,57,70,.12)'; btn.style.borderColor = 'rgba(230,57,70,.4)'; btn.style.color = '#e63946'; }
   setTimeout(function() {
     var el = document.getElementById('fa-admin-player');
     if (el) el.focus();
@@ -6721,6 +6722,8 @@ function faAdminActivate() {
 function faAdminDeactivate() {
   faAdminActive = false;
   document.getElementById('fa-admin-bar').classList.remove('active');
+  var btn = document.getElementById('fa-add-btn');
+  if (btn) { btn.textContent = '➕ Add Signing'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = ''; }
 }
 
 // ── Log a signing ─────────────────────────────────────────────────
