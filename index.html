@@ -1860,9 +1860,86 @@ button{touch-action:manipulation;}
   .fa-board-header .fa-bh-contract,.fa-row .fa-row-contract{display:none;}
 }
 
+
+/* ── Landing Page ── */
+#landing-page{
+  position:fixed;inset:0;z-index:2000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--bg);
+  padding:24px;
+  opacity:1;transition:opacity .25s;
+}
+#landing-page.lp-fade{opacity:0;pointer-events:none;}
+body:not(.landing-active) #landing-page{display:none;}
+
+.lp-header{text-align:center;margin-bottom:52px;}
+.lp-ball{font-size:52px;line-height:1;margin-bottom:14px;display:block;}
+.lp-title{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(44px,9vw,80px);
+  font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;margin:0 0 10px;
+}
+.lp-title span{color:#007AC1;}
+.lp-sub{font-size:13px;color:var(--muted);letter-spacing:2.5px;text-transform:uppercase;margin:0;}
+
+.lp-teams{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:760px;width:100%;}
+
+.lp-team-card{
+  flex:1;min-width:180px;max-width:220px;
+  background:var(--surface2);border:1px solid var(--border);border-radius:18px;
+  padding:34px 20px 28px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  cursor:pointer;
+  transition:transform .2s ease,border-color .2s,background .2s,box-shadow .25s;
+}
+.lp-team-card:hover{transform:translateY(-8px);}
+.lp-card-mavs:hover{border-color:rgba(0,107,182,.8);background:rgba(0,107,182,.1);box-shadow:0 16px 48px rgba(0,107,182,.3);}
+.lp-card-bulls:hover{border-color:rgba(206,17,65,.8);background:rgba(206,17,65,.1);box-shadow:0 16px 48px rgba(206,17,65,.3);}
+.lp-card-thunder:hover{border-color:rgba(0,122,193,.8);background:rgba(0,122,193,.1);box-shadow:0 16px 48px rgba(0,122,193,.3);}
+
+.lp-team-card img{width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));}
+.lp-team-name{font-size:15px;font-weight:700;color:#fff;text-align:center;line-height:1.3;}
+.lp-team-record{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.5px;}
+.lp-enter-hint{font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+
+@media(max-width:520px){
+  .lp-header{margin-bottom:36px;}
+  .lp-team-card{min-width:130px;padding:24px 14px 20px;border-radius:14px;}
+  .lp-team-card img{width:70px;height:70px;}
+  .lp-team-name{font-size:13px;}
+}
 </style>
 </head>
-<body>
+<body class="landing-active">
+
+<!-- ══ LANDING PAGE ══ -->
+<div id="landing-page">
+  <div class="lp-header">
+    <span class="lp-ball">🏀</span>
+    <h1 class="lp-title">HoopHeads<span>HQ</span></h1>
+    <p class="lp-sub">2026 NBA Offseason Tracker</p>
+  </div>
+  <div class="lp-teams">
+    <button class="lp-team-card lp-card-mavs" onclick="lpSelectTeam('mavs')">
+      <img src="https://cdn.nba.com/logos/nba/1610612742/global/L/logo.svg" onerror="this.style.display='none'">
+      <div class="lp-team-name">Dallas Mavericks</div>
+      <div class="lp-team-record">26–56 · 2025–26</div>
+      <div class="lp-enter-hint">View Team →</div>
+    </button>
+    <button class="lp-team-card lp-card-bulls" onclick="lpSelectTeam('bulls')">
+      <img src="https://cdn.nba.com/logos/nba/1610612741/global/L/logo.svg" onerror="this.style.display='none'">
+      <div class="lp-team-name">Chicago Bulls</div>
+      <div class="lp-team-record">31–51 · Rebuild Mode</div>
+      <div class="lp-enter-hint">View Team →</div>
+    </button>
+    <button class="lp-team-card lp-card-thunder" onclick="lpSelectTeam('thunder')">
+      <img src="https://cdn.nba.com/logos/nba/1610612760/global/L/logo.svg" onerror="this.style.display='none'">
+      <div class="lp-team-name">OKC Thunder</div>
+      <div class="lp-team-record">64–18 · WCF · 2025 Champs 🏆</div>
+      <div class="lp-enter-hint">View Team →</div>
+    </button>
+  </div>
+</div>
 
 <!-- ══ TEAM PICKER ══ -->
 <div class="team-picker">
@@ -4334,7 +4411,21 @@ const THEMES_LIGHT = {
   thunder: { bg:'#EEF5FC', surface:'#FFFFFF', surface2:'#E0EDF9', surface3:'#D0E4F6', border:'#A0C4E4', border2:'#B8D4EE', 'team-primary':'#007AC1', 'team-light':'#005598', 'team-sidebar':'#DDEEF8' },
 };
 
+// ── Landing page team selection ──────────────────────────────
+function lpSelectTeam(team) {
+  const lp = document.getElementById('landing-page');
+  if (lp) {
+    lp.classList.add('lp-fade');
+    setTimeout(function(){ document.body.classList.remove('landing-active'); switchTeam(team); }, 220);
+  } else {
+    document.body.classList.remove('landing-active');
+    switchTeam(team);
+  }
+}
+
 function switchTeam(team) {
+  // ── Dismiss landing page if still active (e.g. direct hash link) ──
+  document.body.classList.remove('landing-active');
   // ── URL hash deep-linking ────────────────────────────────────
   const _hashSlug={mavs:'dallas',bulls:'chicago',thunder:'okc',h2h:'h2h',stats:'stats',draft:'draft','draft-history':'history',preview:'preview',fa:'fa'};
   try{history.replaceState(null,'','#'+(_hashSlug[team]||team));}catch(e){}
