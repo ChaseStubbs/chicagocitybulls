@@ -102,6 +102,11 @@ button{touch-action:manipulation;}
 .row-tools{height:40px;flex-shrink:0;border-top:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.18);}
 .row-tools .team-tab{font-size:12px;padding:5px 13px;font-weight:600;}
 [data-light] .row-tools{background:rgba(0,0,0,.04);}
+/* Landing page — force dark background so white text stays readable in light mode */
+[data-light] #landing-page{background:#0D1520;}
+/* Sidebar elements missing light mode overrides */
+[data-light] .nav-section{color:var(--muted);}
+[data-light] .sidebar-logo .team-sub{color:var(--muted);}
 .team-tab{display:flex;align-items:center;gap:9px;padding:7px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.45);transition:all .18s;white-space:nowrap;}
 .team-tab:hover{color:#fff;background:rgba(255,255,255,.1);}
 .team-tab.active.tab-mavs{background:rgba(0,107,182,.25);border-color:rgba(0,107,182,.6);color:#7DBAEC;}
@@ -4489,6 +4494,16 @@ const THEMES_LIGHT = {
 };
 
 // ── Landing page team selection ──────────────────────────────
+// ── Bottom nav tap-active highlight ────────────────────────────
+(function(){
+  document.querySelectorAll('.mbn-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      document.querySelectorAll('.mbn-item').forEach(function(i){ i.classList.remove('mbn-active'); });
+      this.classList.add('mbn-active');
+    });
+  });
+})();
+
 function lpSelectTeam(team) {
   // Mark that the user has actively dismissed the landing page this session
   try{ sessionStorage.setItem('hq_dismissed','1'); }catch(e){}
