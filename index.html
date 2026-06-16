@@ -454,7 +454,7 @@ button{touch-action:manipulation;}
   .news-ticker{top:88px;}
   /* Total header: 88px picker + 26px ticker = 114px */
   .wrapper{margin-top:114px;}
-  #wrapper-h2h,#wrapper-stats,#wrapper-draft,#wrapper-draft-history,#wrapper-preview{margin-top:114px;}
+  #wrapper-h2h,#wrapper-stats,#wrapper-draft,#wrapper-draft-history,#wrapper-preview,#wrapper-fa{margin-top:114px;}
   /* Tighter padding on tool-tab wrappers */
   #wrapper-draft{padding:16px 14px 48px;}
   #wrapper-h2h{padding:16px 14px 48px;}
@@ -1942,6 +1942,21 @@ button{touch-action:manipulation;}
   .lp-team-card img{width:70px;height:70px;}
   .lp-team-name{font-size:13px;}
 }
+@media(max-width:480px){
+  /* Stack team cards vertically so they fill the screen cleanly */
+  .lp-teams{flex-direction:column;gap:12px;align-items:stretch;width:100%;max-width:340px;}
+  .lp-team-card{
+    flex-direction:row;align-items:center;gap:16px;
+    min-width:unset;max-width:unset;width:100%;
+    padding:16px 20px;border-radius:14px;
+  }
+  .lp-team-card img{width:52px;height:52px;flex-shrink:0;}
+  .lp-team-name{font-size:14px;text-align:left;}
+  .lp-team-record{text-align:left;}
+  .lp-enter-hint{display:none;}
+  .lp-header{margin-bottom:28px;}
+  .lp-ball{font-size:38px;margin-bottom:8px;}
+}
 </style>
 </head>
 <body>
@@ -2036,7 +2051,7 @@ button{touch-action:manipulation;}
   </a>
   <a class="mbn-item" id="mbn-fa" href="#mavs-freeagency">
     <span class="mbn-icon">🤝</span>
-    <span class="mbn-label">Free Agency</span>
+    <span class="mbn-label">FA</span>
   </a>
   <a class="mbn-item" id="mbn-stats" href="#mavs-stats">
     <span class="mbn-icon">📊</span>
@@ -4480,7 +4495,13 @@ function lpSelectTeam(team) {
   var lp = document.getElementById('landing-page');
   if (lp) {
     lp.classList.add('lp-fade');
-    setTimeout(function(){ lp.style.display = 'none'; switchTeam(team); }, 220);
+    setTimeout(function(){
+      lp.style.display = 'none';
+      switchTeam(team);
+      // Bottom nav guard checks landing visibility — now hidden, show it
+      var mbn = document.getElementById('mobile-bottom-nav');
+      if (mbn) mbn.classList.add('mbn-visible');
+    }, 220);
   } else {
     switchTeam(team);
   }
@@ -4565,7 +4586,10 @@ function switchTeam(team) {
   currentTeam = team;
 
   // ── Mobile bottom nav: show and update section links ──
-  if (_mbn) {
+  // Only show if the landing page has already been dismissed
+  var _lpCheck = document.getElementById('landing-page');
+  var _landingGone = !_lpCheck || _lpCheck.style.display === 'none';
+  if (_mbn && _landingGone) {
     const _mbnAnchors = {
       mavs:    {fo:'#mavs-leadership',    roster:'#mavs-roster',    draft:'#mavs-draft',    fa:'#mavs-freeagency',    stats:'#mavs-stats'},
       bulls:   {fo:'#bulls-leadership',   roster:'#bulls-roster',   draft:'#bulls-draft',   fa:'#bulls-freeagency',   stats:'#bulls-stats'},
