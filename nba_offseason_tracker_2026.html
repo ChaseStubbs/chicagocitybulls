@@ -4251,11 +4251,23 @@ function toggleTheme(){
   }catch(e){}
 })();
 
-// ── Restore tab from URL hash on page load ───────────────────
+// ── Restore team / section from URL hash on page load ─────────
 (function(){
   const _slugTeam={dallas:'mavs',chicago:'bulls',okc:'thunder',h2h:'h2h',stats:'stats',draft:'draft',history:'draft-history',preview:'preview'};
-  const _hash=window.location.hash.slice(1).toLowerCase();
-  if(_hash&&_slugTeam[_hash])switchTeam(_slugTeam[_hash]);
+  const _raw=window.location.hash.slice(1);
+  const _hash=_raw.toLowerCase();
+  if(!_hash) return;
+  // Direct slug match (team tabs + tool tabs)
+  if(_slugTeam[_hash]){switchTeam(_slugTeam[_hash]);return;}
+  // Section anchor: mavs-*, bulls-*, thunder-* → switch team, then scroll into view
+  const _m=_hash.match(/^(mavs|bulls|thunder)-/);
+  if(_m){
+    switchTeam(_m[1]);
+    requestAnimationFrame(()=>{
+      const el=document.getElementById(_raw);
+      if(el) el.scrollIntoView({behavior:'instant',block:'start'});
+    });
+  }
 })();
 
 // ═══════════════════════════ TEAM DATA ════════════════════════════════
