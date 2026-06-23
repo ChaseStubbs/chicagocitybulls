@@ -50,8 +50,8 @@ const BULLS_ROSTER = [
   { id:'trejones', wi:1.5, name:'Tre Jones',          sal:8000000,  sal27:8000000,  locked:true,  note:'Starting PG · TO 2027-28 $8M',              age:26, wingDiff:1.5, def:true,  intl:false, drafted:false },
   { id:'dillingham', wi:1.5,name:'Rob Dillingham',    sal:6889320,  sal27:8700000,  locked:true,  note:'Via MIN trade · TO 2027-28 $8.7M',          age:21, wingDiff:1.5, def:false, intl:false, drafted:true  },
   { id:'buzelis', wi:2,  name:'Matas Buzelis',      sal:5715360,  sal27:5715360,  locked:true,  note:'Young wing · Lithuania · Locked',            age:22, wingDiff:3.5, def:true,  intl:true,  drafted:true  },
+  { id:'claxton', wi:3.5, name:'Nic Claxton',         sal:23300000, sal27:21000000, locked:true,  note:'Traded from BKN · 2yr $44.3M · Thru 2027-28', age:27, wingDiff:4.0, def:true,  intl:false, drafted:true  },
   { id:'essengue', wi:1.5, name:'Noa Essengue',       sal:5701200,  sal27:5900000,  locked:true,  note:'TO 2027-28 · France · High ceiling',        age:19, wingDiff:4.0, def:true,  intl:true,  drafted:true  },
-  { id:'lgueye', wi:1,   name:'Mouhamadou Gueye',   sal:2411090,  sal27:0,        locked:false, note:'TO 2026-27 · Developmental',                age:22, wingDiff:4.0, def:true,  intl:true,  drafted:true  },
   { id:'lmiller', wi:1,  name:'Leonard Miller',     sal:2406205,  sal27:0,        locked:false, note:'Final year · UFA 2027',                     age:22, wingDiff:4.5, def:false, intl:true,  drafted:true  },
 ];
 const BULLS_ADDITIONS = [
