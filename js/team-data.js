@@ -15,8 +15,8 @@ const MAVS_ROSTER = [
   { id:'bagley', wi:0.5,    name:'Marvin Bagley III',     sal:3800000,  sal27:0,        locked:false, note:'Davis trade return · Expiring',   age:25, wingDiff:1.0, def:false, intl:false, drafted:true  },
 ];
 const MAVS_ADDITIONS = [
-  { id:'pick9', wi:5.5,     name:'Draft Pick #9',             sal:5600000,  sal27:5900000,  type:'draft', note:'Own pick · Yr 1 rookie scale',        age:20, wingDiff:3.0, def:true,  intl:false, drafted:true  },
-  { id:'pick30', wi:1.5,    name:'Draft Pick ~#30',            sal:2000000,  sal27:2200000,  type:'draft', note:'Via OKC · 2nd round',                  age:20, wingDiff:2.5, def:false, intl:false, drafted:true  },
+  { id:'pick9', wi:3.5,     name:'Morez Johnson Jr.',          sal:5600000,  sal27:5900000,  type:'draft', note:'Pick #9 · Michigan · 6\'9" F · Dusty May\'s own player',  age:20, wingDiff:3.5, def:true,  intl:false, drafted:true  },
+  { id:'pick30', wi:1.5,    name:'Sergio De Larrea',           sal:2000000,  sal27:2200000,  type:'draft', note:'Via NYK/PHX 3-team · Spain guard · Developmental', age:20, wingDiff:2.0, def:false, intl:true,  drafted:true  },
   { id:'pick48', wi:1,    name:'Draft Pick ~#48',            sal:1100000,  sal27:1200000,  type:'draft', note:'Via PHX · 2nd round',                  age:20, wingDiff:2.0, def:false, intl:false, drafted:true  },
   { id:'whitepick', wi:4.5, name:'Trade-down Pick ~#12',       sal:5200000,  sal27:5500000,  type:'draft', note:'If Dallas trades #9',                  age:20, wingDiff:3.0, def:true,  intl:false, drafted:true  },
   { id:'pick17', wi:3,    name:'Trade-down Pick ~#17',       sal:4800000,  sal27:5100000,  type:'draft', note:'Second pick in trade-down pkg',        age:20, wingDiff:2.5, def:false, intl:false, drafted:true  },
@@ -55,8 +55,8 @@ const BULLS_ROSTER = [
   { id:'lmiller', wi:1,  name:'Leonard Miller',     sal:2406205,  sal27:0,        locked:false, note:'Final year · UFA 2027',                     age:22, wingDiff:4.5, def:false, intl:true,  drafted:true  },
 ];
 const BULLS_ADDITIONS = [
-  { id:'bpick4', wi:6,   name:'Draft Pick #4',              sal:11000000, sal27:11600000, type:'draft', note:'Own pick · Caleb Wilson (projected)', age:19, wingDiff:5.0, def:true,  intl:false, drafted:true  },
-  { id:'bpick15', wi:3,  name:'Draft Pick #15',             sal:4500000,  sal27:4800000,  type:'draft', note:'Via Portland · Nate Ament (projected)',  age:19, wingDiff:4.0, def:false, intl:false, drafted:true  },
+  { id:'bpick4', wi:6,   name:'Caleb Wilson',               sal:11000000, sal27:11600000, type:'draft', note:'Pick #4 · UNC · 6\'9" F · 19.8 PPG/9.4 RPG · 7\'0" wingspan', age:19, wingDiff:5.0, def:true,  intl:false, drafted:true  },
+  { id:'bpick15', wi:2.5,name:'Dailyn Swain',               sal:4500000,  sal27:4800000,  type:'draft', note:'Pick #15 · Texas · 6\'7" G/F · 17.3 PPG/7.5 RPG · Defensive versatility', age:20, wingDiff:3.0, def:true,  intl:false, drafted:true  },
   { id:'btwoway', wi:0.5,  name:'Two-Way Contract',           sal:578000,   sal27:0,        type:'draft', note:'Developmental slot',                     age:22, wingDiff:2.0, def:false, intl:false, drafted:true  },
   { id:'bellis', wi:5,   name:'Keon Ellis',                 sal:12000000, sal27:13000000, type:'fa',    note:'UFA · Elite defensive wing · Top target', age:26, wingDiff:5.0, def:true,  intl:false, drafted:false },
   { id:'bvassell', wi:3.5, name:'Devin Vassell',              sal:27000000, sal27:27000000, type:'trade', note:'SAS · 5yr $135M · NOT a UFA (thru 2029) · Trade only', age:25, wingDiff:2.5, def:true,  intl:false, drafted:false },
@@ -92,8 +92,8 @@ const THUNDER_ROSTER = [
   { id:'amitchell', wi:0.5,name:'Ajay Mitchell',           sal:2850000,  sal27:2800000,  locked:true,  note:'Young wing · Belgium · TO 2027-28',      age:22, wingDiff:2.5, def:true,  intl:true,  drafted:true  },
 ];
 const THUNDER_ADDITIONS = [
-  { id:'tpick12', wi:4,  name:'Draft Pick #12',            sal:5600000,  sal27:5900000,  type:'draft', note:'Via LAC · Aday Mara projected',         age:21, wingDiff:4.0, def:true,  intl:true,  drafted:true  },
-  { id:'tpick17', wi:4.5,  name:'Draft Pick #17',            sal:4800000,  sal27:5100000,  type:'draft', note:'Via PHI · Karim Lopez projected',       age:19, wingDiff:5.0, def:true,  intl:true,  drafted:true  },
+  { id:'tpick12', wi:4,  name:'Aday Mara',                  sal:5600000,  sal27:5900000,  type:'draft', note:'Pick #12 · Michigan · 7\'3" C · Big Ten DPOY · Spain · 2.6 BPG', age:21, wingDiff:5.0, def:true,  intl:true,  drafted:true  },
+  { id:'tpick17', wi:1,  name:'Pick #17 (traded to DET)',   sal:0,        sal27:0,        type:'draft', note:'Selected Okorie (Stanford) · Traded to DET via MEM for future picks', age:20, wingDiff:0.0, def:false, intl:false, drafted:false },
   { id:'tpick37', wi:1.5,  name:'Draft Pick ~#37',           sal:1800000,  sal27:1900000,  type:'draft', note:'Via DAL · 2nd round',                   age:20, wingDiff:2.5, def:true,  intl:false, drafted:true  },
   { id:'ttwoway', wi:0.5,  name:'Two-Way Contract',          sal:578000,   sal27:0,        type:'draft', note:'Developmental slot',                    age:22, wingDiff:2.0, def:false, intl:false, drafted:true  },
   { id:'toneale', wi:2,  name:'Royce O\'Neale',            sal:5000000,  sal27:0,        type:'fa',    note:'UFA · Taxpayer MLE · 3-and-D',         age:33, wingDiff:2.5, def:true,  intl:false, drafted:false },
