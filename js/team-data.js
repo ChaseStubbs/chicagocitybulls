@@ -93,7 +93,8 @@ const THUNDER_ROSTER = [
 ];
 const THUNDER_ADDITIONS = [
   { id:'tpick12', wi:4,  name:'Aday Mara',                  sal:5600000,  sal27:5900000,  type:'draft', note:'Pick #12 · Michigan · 7\'3" C · Big Ten DPOY · Spain · 2.6 BPG', age:21, wingDiff:5.0, def:true,  intl:true,  drafted:true  },
-  { id:'tpick17', wi:1,  name:'Pick #17 (traded to DET)',   sal:0,        sal27:0,        type:'draft', note:'Selected Okorie (Stanford) · Traded to DET via MEM for future picks', age:20, wingDiff:0.0, def:false, intl:false, drafted:false },
+  { id:'tpick16', wi:3,  name:'Bennett Stirtz',             sal:4800000,  sal27:5100000,  type:'draft', note:'Pick #16 · Iowa · 6\'3" PG · 19.8 PPG / 4.4 APG · Elite IQ · via MEM trade', age:23, wingDiff:1.5, def:true,  intl:false, drafted:true  },
+  { id:'tpick17', wi:0,  name:'Pick #17 (traded via MEM)',  sal:0,        sal27:0,        type:'draft', note:'Sent to MEM in Stirtz trade · MEM selected Okorie · Detroit acquired via MEM', age:20, wingDiff:0.0, def:false, intl:false, drafted:false },
   { id:'tpick37', wi:1.5,  name:'Draft Pick ~#37',           sal:1800000,  sal27:1900000,  type:'draft', note:'Via DAL · 2nd round',                   age:20, wingDiff:2.5, def:true,  intl:false, drafted:true  },
   { id:'ttwoway', wi:0.5,  name:'Two-Way Contract',          sal:578000,   sal27:0,        type:'draft', note:'Developmental slot',                    age:22, wingDiff:2.0, def:false, intl:false, drafted:true  },
   { id:'toneale', wi:2,  name:'Royce O\'Neale',            sal:5000000,  sal27:0,        type:'fa',    note:'UFA · Taxpayer MLE · 3-and-D',         age:33, wingDiff:2.5, def:true,  intl:false, drafted:false },
